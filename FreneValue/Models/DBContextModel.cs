@@ -173,10 +173,13 @@ namespace FreneValue.Models
         [Display(Name = "Nombre de BM? ")]
         public int nb_branch_maitr { get; set; }
         [Display(Name = "Commentaire? ")]
-        public string comm { get; set; }
+      
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
+
+        [ForeignKey("id_eval")]
+        public virtual eval_abr Evaluation { get; set; }
     }
 
     public class cime
@@ -211,7 +214,7 @@ namespace FreneValue.Models
     {
         [Key]
         public int id { get; set; }
-        [Display(Name = "No arbre")]
+        [Display(Name = "Évaluation")]
         public int id_eval { get; set; }
         [Display(Name = "DHS")]
         public decimal dhs { get; set; }
@@ -250,10 +253,14 @@ namespace FreneValue.Models
         [Display(Name = "Fosse implantation")]
         public string fosse_plant { get; set; }
         [Display(Name = "Commentaire")]
-        public string comm { get; set; }
+       
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
+
+       
+        [ForeignKey("id_eval")]
+        public virtual eval_abr Evaluation { get; set; }
     }
 
 
@@ -462,6 +469,11 @@ namespace FreneValue.Models
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
+
+        [ForeignKey("id_arbre")]
+        public virtual arbre Arbre { get; set; }
+        [ForeignKey("id_evalteur")]
+        public virtual prof_util Evaluateur  { get; set; }
     }
 
 
