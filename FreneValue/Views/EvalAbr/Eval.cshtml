@@ -1,0 +1,47 @@
+﻿@model FreneValue.Models.eval_abr
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Profil" aria-controls="Profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li role="presentation"><a href="#Tronc" aria-controls="Tronc" role="tab" data-toggle="tab">Tronc</a></li>
+        <li role="presentation"><a href="#Souche" aria-controls="Souche" role="tab" data-toggle="tab">Souche</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+            @{Html.RenderAction("Profil", "EvalAbr", new { id = (int)ViewBag.id });}
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Tronc">
+            @{Html.RenderAction("Tronc", "Tronc", new { id = (int)ViewBag.id });}
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Souche">
+            @{Html.RenderAction("Souche", "Souche", new { id = (int)ViewBag.id });}
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+
+@section Scripts
+                {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-     Layout = "~/Views/Shared/_Layout.cshtml";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
@@ -172,32 +172,32 @@
         </div>
 
         @*<div class="form-group">
-                @Html.LabelFor(model => model.util, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.util, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.util, "", new { @class = "text-danger" })
-                </div>
+            @Html.LabelFor(model => model.util, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.util, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.util, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.dt_cretn, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.dt_cretn, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.dt_cretn, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.dt_cretn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dt_cretn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dt_cretn, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.dt_modf, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.dt_modf, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.dt_modf, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.dt_modf, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dt_modf, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dt_modf, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

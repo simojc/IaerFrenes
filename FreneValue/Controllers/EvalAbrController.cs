@@ -108,6 +108,37 @@ namespace FreneValue.Controllers
             return View(eval_abr);
         }
 
+        // GET: EvalAbr/Profil/5
+        public ActionResult Profil(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            eval_abr eval_abr =  db.evaluations.Find(id);
+            if (eval_abr == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_Profil", eval_abr);
+        }
+
+        // POST: EvalAbr/Edit/5
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Profil([Bind(Include = "id,id_arbre,id_evalteur,dt_eval,dhp_tot,clas_haut,intfrce,racdmt,acesbt_manu,acesbt_machn,acesbt_cam,contrnt_transp,obstcl_sol,constrct,infrstr_urbn,typ_abatg,nb_tronc,branch_maitr,action,concl,util,dt_cretn,dt_modf")] eval_abr eval_abr)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(eval_abr).State = EntityState.Modified;
+                 db.SaveChanges();
+              //  return RedirectToAction("Index");
+            }
+            return PartialView("_Profil", eval_abr);
+        }
+
         // GET: EvalAbr/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
@@ -121,6 +152,25 @@ namespace FreneValue.Controllers
                 return HttpNotFound();
             }
             return View(eval_abr);
+        }
+
+
+        public ActionResult Eval(int? id)
+        {
+            // return View(await db.evaluations.ToListAsync());
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            eval_abr eval_abr = db.evaluations.Find(id);
+            if (eval_abr == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = eval_abr.id;
+            ViewBag.id_abr = eval_abr.id_arbre;
+            return View();
         }
 
         // POST: EvalAbr/Delete/5

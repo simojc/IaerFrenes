@@ -90,6 +90,37 @@ namespace FreneValue.Controllers
             return View(tronc);
         }
 
+        // GET: troncs/Tronc/5
+        public ActionResult Tronc(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tronc tronc =  db.troncs.Find(id);
+            if (tronc == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_Tronc", tronc);
+        }
+
+        // POST: troncs/Edit/5
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Tronc([Bind(Include = "id,id_eval,no_tronc,id_tronc_parnt,dhp,diam_moy,haut_moy,morphlg,racdmt,qual,cavt,fent_fissre,blesr,contaminatn,sympt_visuel,possede_cime,est_branch_maitr,long_moy,catgr_branch_maitr,nb_branch_maitr,comm,util,dt_cretn,dt_modf")] tronc tronc)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tronc).State = EntityState.Modified;
+                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return PartialView("_Tronc", tronc);
+        }
+
         // GET: troncs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
