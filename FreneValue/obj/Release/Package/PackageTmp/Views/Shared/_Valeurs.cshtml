@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FreneValue.Models.VAL_DOM>
+
+@*<div class="ValeursDom">*@
+
+   
+    <table class="table table-bordered table-striped" id="RstRecherche">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.COD_DOM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.COD_VAL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VAL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ACTIF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIP)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UTIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DT_CRETN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DT_MODF)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_DOM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_VAL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VAL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACTIF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIP)
+                </td>
+                @*<td>
+                         @Html.DisplayFor(modelItem => item.UTIL)
+                     </td>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.DT_CRETN)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.DT_MODF)
+                     </td>
+                @*<td>
+                    @Html.ActionLink("Modifier", "EditVal", new { id = item.ID }) |
+                    @Html.ActionLink("DetailsVal", "DetailsVal", new { id = item.ID }) |
+                    @Html.ActionLink("Supprimer", "DeleteVal", new { id = item.ID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+@*</div>*@
+

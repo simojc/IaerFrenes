@@ -1,0 +1,112 @@
+﻿@model IEnumerable<FreneValue.Models.prof_util>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typ_util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typ_propr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pren)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.org)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ss_org)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telph)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.extnsn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tel_cell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typ_util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typ_propr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pren)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.org)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ss_org)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telph)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.extnsn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tel_cell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_cretn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_modf)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

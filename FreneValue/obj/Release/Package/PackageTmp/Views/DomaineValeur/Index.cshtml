@@ -1,0 +1,115 @@
+﻿@using FreneValue.Helpers
+@model IEnumerable<FreneValue.Models.COD_DOM>
+
+@{
+    ViewBag.Title = "Domaines de valeurs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <h2>Gestion des domaines de valeurs</h2>
+
+    <div align="right">
+        @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
+
+        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-link " })
+      </div>
+
+
+        <table class="table-bordered table-striped">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CODE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DESCRIP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ACTIF)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.UTIL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DT_CRETN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DT_MODF)
+                    </th>*@
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CODE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACTIF)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.UTIL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DT_CRETN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DT_MODF)
+                        </td>*@
+
+                    <td>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.CODE }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.CODE }) |*@
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.CODE }) |
+                        @Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.CODE }, new AjaxOptions
+               {
+                   UpdateTargetId = "ValDiv",
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET"
+               })
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+
+      
+
+        <p>
+            <h3>Liste  codes valeurs</h3>
+        </p>
+
+
+        <div id="ValDiv">
+
+        </div>
+
+
+    </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}
+
+
+
+

@@ -1,0 +1,163 @@
+﻿@model FreneValue.Models.loclsn
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>loclsn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.num_civc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_civc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.voie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.voie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_rue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_rue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tronc_rue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tronc_rue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_cours_eau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_cours_eau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sectn_cours_eau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sectn_cours_eau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emplcmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emplcmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code_post)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code_post)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suprfc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suprfc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lattd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lattd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longtd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longtd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.util)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.util)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
