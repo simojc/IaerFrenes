@@ -1,0 +1,203 @@
+﻿@model FreneValue.Models.souche
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>souche</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_arbre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_arbre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dhs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dhs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acces_nutrmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acces_nutrmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aeration_sol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aeration_sol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surf_deplmt_racin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surf_deplmt_racin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.racine_hs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.racine_hs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blesre_racine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blesre_racine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cavite_hrs_sol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cavite_hrs_sol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exig_essouchmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exig_essouchmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_essouchmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_essouchmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.profdeur_essouchmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profdeur_essouchmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ray_rognage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ray_rognage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.defaut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.defaut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.infrstr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.infrstr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specificite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specificite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.haut_souche)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.haut_souche)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exig_abat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exig_abat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.espace_subs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.espace_subs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fosse_plant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fosse_plant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.util)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.util)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
