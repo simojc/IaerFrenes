@@ -90,40 +90,7 @@ namespace FreneValue.Controllers
             return View(souche);
         }
 
-        // GET: souches/Edit/5
-        public ActionResult Souche(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //var souche = db.souches
-            //               .Where(r => r.id_eval == id);
-            souche souche = db.souches.Find(id);
-
-            if (souche == null)
-            {
-                return HttpNotFound();
-            }
-            return PartialView("_Souche", souche);
-        }
-
-        // POST: souches/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Souche([Bind(Include = "id,id_eval,dhs,acces_nutrmt,aeration_sol,surf_deplmt_racin,racine_hs,blesre_racine,cavite_hrs_sol,exig_essouchmt,typ_essouchmt,profdeur_essouchmt,ray_rognage,defaut,infrstr,specificite,haut_souche,exig_abat,espace_subs,fosse_plant,comm,util,dt_cretn,dt_modf")] souche souche)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(souche).State = EntityState.Modified;
-                 db.SaveChanges();
-               // return RedirectToAction("Index");
-            }
-            return PartialView("_Souche", souche);
-        }
-
+     
         // GET: souches/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {

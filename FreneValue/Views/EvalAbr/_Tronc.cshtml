@@ -6,15 +6,13 @@
    // Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
+@*<h2>Edit</h2>*@
+@using (Html.BeginForm("Tronc", "EvalAbr"))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
-        <h4>tronc</h4>
-        <hr />
+        @*<h4>tronc</h4>
+        <hr />*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 

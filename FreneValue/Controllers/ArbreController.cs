@@ -291,34 +291,7 @@ namespace FreneValue.Controllers
             }
         }
 
-        // GET: Profil/_Profil/5
-        public ActionResult Profil(int? id_arb)
-        {
-            //ViewBag.ESSENCE = CreerDDL("ESSENCE");
-
-            //ViewBag.CLASSE_HAUTEUR = CreerDDL("CLASSE_HAUTEUR");
-
-            //ViewBag.CLASSE_HAUTEUR = CreerDDL("CLASSE_HAUTEUR");
-
-            ChargerToutesLesDDL();
-
-            //  .Where(r => r.COD_DOM == "ESSENCE")
-            if (id_arb == null)
-            {
-                //id_arb = 41;
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            arbre arb = db.arbres.Find(id_arb);
-            if (arb == null)
-            {
-                return HttpNotFound();
-            }
-            // return View(tOTO);
-
-            return PartialView(arb);
-        }
-
-
+        
         // POST: Profil/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -338,40 +311,7 @@ namespace FreneValue.Controllers
         //}
 
 
-        // GET: Tronc/Edit/5
-        public ActionResult tronc(int? id , int? id_arbre)
-        {
-            if (id == null || id_arbre == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var tronc = from s in db.troncs
-                       orderby (s.id)
-                       where ((s.id_eval == id_arbre) && (s.id == id))
-                       select s;            
-            if (tronc == null)
-            {
-                return HttpNotFound();
-            }
-            return PartialView("_tronc", tronc);
-        }
-
-        // POST: Tronc/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> tronc([Bind(Include = "id,id_arbre,id_tronc_parnt,no_tronc,dhp,diam_moy,Haut_moy,morphlg,racdmt,qual,cavt,fent_fissre,blesr,contaminatn,sympt_visuel,possede_cime,est_branch_maitr,long_moy,catgr_branch_maitr,nb_branch_maitr,comm,util,dt_cretn,dt_modf")] tronc tronc)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tronc).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return PartialView("_tronc", tronc);
-        }
-
+       
 
 
 

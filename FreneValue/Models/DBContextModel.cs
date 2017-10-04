@@ -141,6 +141,7 @@ namespace FreneValue.Models
         [Display(Name = "Tronc parent")]
         public int? id_tronc_parnt { get; set; }
         [Display(Name = "DHP ")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhp { get; set; }
         [Display(Name = "Diam. Moyen")]
         public string diam_moy { get; set; }
@@ -217,6 +218,7 @@ namespace FreneValue.Models
         [Display(Name = "Évaluation")]
         public int id_eval { get; set; }
         [Display(Name = "DHS")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhs { get; set; }
         [Display(Name = "Accès nutriment")]
         public string acces_nutrmt { get; set; }
@@ -235,8 +237,10 @@ namespace FreneValue.Models
         [Display(Name = "Type Essouchmt")]
         public string typ_essouchmt { get; set; }
         [Display(Name = "Profondeur. Essouchmt")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal profdeur_essouchmt { get; set; }
         [Display(Name = "Rayon rognage")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal ray_rognage { get; set; }
         [Display(Name = "Défaut")]
         public string defaut { get; set; }
@@ -245,6 +249,7 @@ namespace FreneValue.Models
         [Display(Name = "Spécificité")]
         public string specificite { get; set; }
         [Display(Name = "Hauteur souche")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal haut_souche { get; set; }
         [Display(Name = "Exigence abattage")]
         public string exig_abat { get; set; }
@@ -387,7 +392,7 @@ namespace FreneValue.Models
         public string num_arbre { get; set; }
         [Display(Name = "Propriétaire ")]
         public int id_profil { get; set; }
-        [Display(Name = "Adresse")]
+        [Display(Name = "Emplacement")]
         public int id_local { get; set; }
         [Display(Name = "Type emplacement")]
         public string typ_emplcmt { get; set; }
@@ -435,6 +440,7 @@ namespace FreneValue.Models
         [Display(Name = "Date Éval.")]
         public DateTime dt_eval { get; set; }
         [Display(Name = "DHP Total")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhp_tot { get; set; }
         [Display(Name = "Classe hauteur")]
         public string clas_haut { get; set; }

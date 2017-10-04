@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "TestTab";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TestTab</h2>
+
+<!-- meta data -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs").tabs();
+        var data = { id: 1586735 }
+        getContentTab(1, data);
+    });
+
+
+    function getContentTab(index, id) {
+        var url = '<%= Url.Content("~/person/getDetails") %>/' + index;
+        var targetDiv = "#tabs-" + index;
+        var ajaxLoading = "<img id='ajax-loader' src='<%= Url.Content("~/Content") %>/ajax - loader.gif' align='left' height='28' width='28'>";
+        //alert(    'getContentTab');
+        $(targetDiv).html("<p>" + ajaxLoading + " Loading...</p>");
+
+
+        $.post(url, id, function (result) {
+            $(targetDiv).html(result);
+        });
+    }
+
+
+</script>
+
+
+
+
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Approver</a></li>
+        <li><a href="#tabs-2">Single Date</a></li>
+        <li><a href="#tabs-3">Date Range</a></li>
+    </ul>
+    <div id="tabs-1">
+        <% Html.RenderPartial("GetApproverTab", Model); %>
+    </div>
+    <div id="tabs-2">
+        <% Html.RenderPartial("GetSingleDateTab", Model); %>
+    </div>
+    <div id="tabs-3">
+        <% Html.RenderPartial("GetDateRangeTab", Model); %>
+    </div>
+</div>
+
+
+@section Scripts
+                {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}
