@@ -1,0 +1,62 @@
+﻿
+
+@{
+    ViewBag.Title = "Détail Évaluation";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tab-pane fade in active" id="_Profil">
+    Arbre:ViewBag.id_arb
+
+</div>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#_Profil" role="tab" data-toggle="tab">Profil</a></li>
+    <li><a href="#_tronc" role="tab" data-toggle="tab">Tronc</a></li>
+    <li><a href="#_souche" role="tab" data-toggle="tab">Souche</a></li>
+</ul>
+
+<div class="tab-content">
+
+    <div class="tab-pane fade in active" id="_Profil">
+        @{Html.RenderAction("Profil",  new { id = 1 });}  
+        
+    </div>
+
+    <div class="tab-pane fade " id="_tronc">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tronc1" aria-controls="tronc1" role="tab" data-toggle="tab">tronc1</a></li>
+                <li role="presentation"><a href="#tronc2" aria-controls="tronc2" role="tab" data-toggle="tab">tronc2</a></li>
+            </ul>
+
+            <div>
+
+                @*Boucler cette section sur ViewBag.List_id_tronc*@
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tronc1">
+                        @{Html.RenderAction("Tronc", new { id = 1 });}
+                        @*@{Html.RenderAction("tronc", new { id = ViewBag.List_id_tronc[0] });}*@
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tronc2">
+                        @{Html.RenderAction("Tronc",  new { id = 1 });}
+                        @*@{Html.RenderAction("tronc", new { id = ViewBag.List_id_tronc[1] });}*@
+                    </div>
+                </div>
+
+                @*Fin boucle*@
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="_souche">
+        @{Html.RenderAction("Souche", new { id = 1 });}
+        @*@{Html.RenderAction("tronc", new { id =id_souche });}*@
+
+    </div>
+</div>
+
+

@@ -153,7 +153,6 @@ namespace FreneValue.Controllers
         // GET: EvalAbr/Profil/5
         public ActionResult Profil(int? id)
         {            
-
             ViewBag.adresse = db.localisations.Where(x => x.num_civc != null);
 
             ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
@@ -224,7 +223,9 @@ namespace FreneValue.Controllers
                           .Where(r => r.id_eval == id)
                           .Select(r => r.id);
             ViewBag.List_id_tronc = db.troncs
-                          .Where(r => r.id_eval == id).ToList();                                      
+                          .Where(r => r.id_eval == id).ToList();
+            ViewBag.nb_tronc = db.troncs
+                       .Where(r => r.id_eval == id).Count();
 
             return View();
         }

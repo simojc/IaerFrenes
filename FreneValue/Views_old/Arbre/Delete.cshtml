@@ -1,0 +1,152 @@
+﻿@model FreneValue.Models.arbre
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Supprimer arbre</h2>
+
+<h3>êtes-vous sûr de vouloir supprimer?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.num_arbre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_arbre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_profil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_profil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_emplcmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_emplcmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orientatn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orientatn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lattd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lattd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longtd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longtd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_plant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_plant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type_lieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type_lieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_abr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_abr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_prop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_prop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_topo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_topo)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.util)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.util)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Supprimer" class="btn btn-primary" />
+        @Html.ActionLink("Retour à la liste", "Index")
+    </div>
+    }
+</div>
