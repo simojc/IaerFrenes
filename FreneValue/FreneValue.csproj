@@ -52,6 +52,12 @@
     <Reference Include="Npgsql, Version=3.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.3.2.5\lib\net451\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -205,7 +211,8 @@
     <Compile Include="Migrations\ApplicationDbInitializer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\ArbreSearchModel.cs" />
+    <Compile Include="ViewModels\ArbreSearchModel.cs" />
+    <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\DBContextModel.cs" />
@@ -215,6 +222,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -263,6 +271,7 @@
     <Content Include="Scripts\autrescript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -335,7 +344,6 @@
     <Content Include="Views\Profil_Old\Details.cshtml" />
     <Content Include="Views\Profil_Old\Edit.cshtml" />
     <Content Include="Views\Profil_Old\Index.cshtml" />
-    <Content Include="Views\DomaineValeur\Index.cshtml" />
     <Content Include="Views\Profil_Old\_Profil.cshtml" />
     <Content Include="Views\Profil_Old\_tronc.cshtml" />
     <Content Include="Views\Cime\Create.cshtml" />
@@ -396,6 +404,7 @@
     <Content Include="Views\EvalAbr\Eval.cshtml" />
     <Content Include="Views\EvalAbr\_Souche.cshtml" />
     <Content Include="Views\EvalAbr\TestTab.cshtml" />
+    <Content Include="Views\DomaineValeur\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app_code\" />

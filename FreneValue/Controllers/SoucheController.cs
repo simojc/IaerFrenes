@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using FreneValue.Models;
 
 namespace FreneValue.Controllers
@@ -51,6 +52,7 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                souche.util = User.Identity.GetUserName();
                 db.souches.Add(souche);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -83,6 +85,7 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                souche.util = User.Identity.GetUserName();
                 db.Entry(souche).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

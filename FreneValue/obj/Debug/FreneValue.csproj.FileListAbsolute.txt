@@ -188,6 +188,8 @@ C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\Microsoft.Web.Infrastructure.dl
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\Newtonsoft.Json.dll
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\Npgsql.dll
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\Owin.dll
+C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PagedList.dll
+C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PagedList.Mvc.dll
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PostgreSQL.AspNet.Identity.EntityFramework.dll
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\System.Linq.Dynamic.dll
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\System.Runtime.InteropServices.RuntimeInformation.dll
@@ -205,6 +207,8 @@ C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PostgreSQL.AspNet.Identity.Enti
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\EntityFramework6.Npgsql.xml
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\LinqKit.xml
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\Npgsql.xml
+C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PagedList.xml
+C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\PagedList.Mvc.xml
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\System.Linq.Dynamic.xml
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\System.Threading.Tasks.Extensions.xml
 C:\GitHub\Source\Repos\IaerFrenes\FreneValue\bin\System.Web.Helpers.xml

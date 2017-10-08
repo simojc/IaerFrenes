@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FreneValue.Models;
+using FreneValue.ViewModels;
 using System.Linq.Dynamic;
 
 using Microsoft.AspNet.Identity;

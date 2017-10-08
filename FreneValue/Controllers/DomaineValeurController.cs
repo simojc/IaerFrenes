@@ -7,7 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FreneValue.Models;
+//using FreneValue.ViewModels;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace FreneValue.Controllers
 {
@@ -18,14 +20,63 @@ namespace FreneValue.Controllers
 
         private arbredb _db = new arbredb();
 
-        // GET: Domval
-        public ActionResult Index()
-        {
-            return View(_db.domaines.ToList());
+     
 
-            // var model = _db.domaines;  //_db.;
-            // return View(model);
-        }
+        public ActionResult Index(string code, int page = 1, int pageSize = 10 )
+        {
+            List<COD_DOM> domains = null;
+
+            if (code != null)
+            {
+                domains = _db.domaines
+                                           .Where(r => r.CODE == code)
+                                           .OrderBy(r => r.CODE)
+                                           .ToList();
+            }
+            else
+            {
+                domains = _db.domaines
+                                          .OrderBy(r => r.CODE)
+                                          .ToList();
+            }
+            PagedList<COD_DOM> model = new PagedList<COD_DOM>(domains, page, pageSize);
+
+            return View(model);
+            }
+
+        //public ActionResult RechercherRapid(string term)
+        //{
+        //    var valeurs = _db.domaines
+        //              .OrderByDescending(r => r.CODE)
+        //              .Where(r => r.CODE.Contains(term))
+        //              .Take(10)
+        //              .Select(r => new { label = r.CODE })
+        //              .Distinct();
+
+        //    return Json(valeurs, JsonRequestBehavior.AllowGet);
+        //}
+
+        //public PartialViewResult Rechercher(string q)
+        //{
+        //    if (q != null)
+        //    {
+        //        var dom = _db.domaines
+        //                  .OrderByDescending(r => r.CODE)
+        //                  .Where(r => r.CODE.Contains(q))
+        //                  .Take(10);
+
+        //        return PartialView("_Valeurs", dom);
+        //    }
+        //    else
+        //    {
+        //        var dom = _db.domaines
+        //             .OrderByDescending(r => r.CODE)
+        //             .Take(10);
+
+        //        return PartialView("_Valeurs", dom);
+        //    }
+        //}
+
 
         // private  model = new arbredb();
 
@@ -64,7 +115,7 @@ namespace FreneValue.Controllers
                 _db.domaines.Add(domaine);
                 _db.SaveChanges();
                 return Json(new { success = true });
-               // return RedirectToAction("Index");
+                // return RedirectToAction("Index");
             }
 
             //return View(domaine);

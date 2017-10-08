@@ -111,8 +111,10 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                eval_abr.util = User.Identity.GetUserName();
                 db.evaluations.Add(eval_abr);
                 await db.SaveChangesAsync();
+               
                 return RedirectToAction("Index");
             }
 
@@ -143,6 +145,7 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                eval_abr.util = User.Identity.GetUserName();
                 db.Entry(eval_abr).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -180,9 +183,10 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                eval_abr.util = User.Identity.GetUserName();
                 db.Entry(eval_abr).State = EntityState.Modified;
                  db.SaveChanges();
-                  return RedirectToAction("Eval");
+                  return RedirectToAction("Eval", new { id = eval_abr.id });
             }
             return PartialView("_Profil", eval_abr);
         }
@@ -212,18 +216,23 @@ namespace FreneValue.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             eval_abr eval_abr = db.evaluations.Find(id);
+            arbre abr = db.arbres.Find(eval_abr.id_arbre);
+         
             if (eval_abr == null)
             {
                 return HttpNotFound();
             }
-            
-            ViewBag.id_arb = eval_abr.id_arbre;
-            ViewBag.id_eval = eval_abr.id; 
-            ViewBag.id_souche =  db.souches                          
+            ViewBag.arbre = abr;
+            ViewBag.id_arbre = eval_abr.id_arbre;
+            ViewBag.id_eval = eval_abr.id;
+            ViewBag.id_souche = db.souches
                           .Where(r => r.id_eval == id)
-                          .Select(r => r.id);
+                          .Select(r => r.id)
+                          .First();
+
             ViewBag.List_id_tronc = db.troncs
                           .Where(r => r.id_eval == id).ToList();
+
             ViewBag.nb_tronc = db.troncs
                        .Where(r => r.id_eval == id).Count();
 
@@ -245,7 +254,7 @@ namespace FreneValue.Controllers
 
         // GET: troncs/Tronc/5
         public ActionResult Tronc(int? id)
-        {
+         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -267,9 +276,10 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                tronc.util = User.Identity.GetUserName();
                 db.Entry(tronc).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Eval");
+                return RedirectToAction("Eval", new { id = tronc.id_eval });
             }
             return PartialView("_Tronc", tronc);
         }
@@ -302,9 +312,10 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
+                souche.util = User.Identity.GetUserName();
                 db.Entry(souche).State = EntityState.Modified;
                 db.SaveChanges();
-                 return RedirectToAction("Eval");
+                 return RedirectToAction("Eval" ,new { id = souche.id_eval });
             }
             return PartialView("_Souche", souche);
         }

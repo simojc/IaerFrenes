@@ -1,10 +1,14 @@
 ﻿@using FreneValue.Helpers
-@model IEnumerable<FreneValue.Models.COD_DOM>
+@model PagedList<FreneValue.Models.COD_DOM>
 
 @{
     ViewBag.Title = "Domaines de valeurs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using FreneValue.Helpers;
+@using PagedList;
+@using PagedList.Mvc;
 
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
@@ -17,41 +21,45 @@
 
 <div class="container">
 
-    <h2>Gestion des domaines de valeurs</h2>
+    <h4>Gestion des domaines de valeurs</h4>
 
     <div align="right">
         @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
-
         @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-link " })
-      </div>
+    </div>
 
+    @using (Html.BeginForm("index", "DomaineValeur", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="form-horizontal">
+                <div class="col-lg-2">
+                    @Html.TextBox("code", "", new { @class = "form-control", @placeholder = "Code domaine" })
+                    @*@Html.TextBox("name", "", new { @class = "css-class", @onclick = "alert('demo');" });*@
+                </div>
 
-        <table class="table-bordered table-striped">
-
+                <div class="col-lg-1 pull-left">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped" id="RstRecherche">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.CODE)
+                    Code
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DESCRIP)
+                    Description
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ACTIF)
+                    Actif?
                 </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.UTIL)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DT_CRETN)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DT_MODF)
-                    </th>*@
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
-            {
+                {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.CODE)
@@ -62,26 +70,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ACTIF)
                     </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.UTIL)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DT_CRETN)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DT_MODF)
-                        </td>*@
-
                     <td>
                         @Html.ActionLink("Modifier", "Edit", new { id = item.CODE }) |
                         @*@Html.ActionLink("Details", "Details", new { id = item.CODE }) |*@
                         @Html.ActionLink("Supprimer", "Delete", new { id = item.CODE }) |
-                        @Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.CODE }, new AjaxOptions
-               {
-                   UpdateTargetId = "ValDiv",
-                   InsertionMode = InsertionMode.Replace,
-                   HttpMethod = "GET"
-               })
+                        @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.CODE }, htmlAttributes: new { })
+
+
+                        @*@Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.CODE }, new AjaxOptions
+                            {
+                                UpdateTargetId = "ValDiv",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET"
+                            })*@
                     </td>
                 </tr>
 
@@ -89,26 +90,35 @@
 
         </table>
 
-
-      
-
-        <p>
-            <h3>Liste  codes valeurs</h3>
-        </p>
-
-
-        <div id="ValDiv">
-
+        <div class="col-sm-10">
+            <div class="center">
+                @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, pageSize = Model.PageSize }))
+                Affichage de @Model.FirstItemOnPage  à @Model.LastItemOnPage
+                des @Model.TotalItemCount enregistrements
+            </div>
         </div>
 
+        @*<div class="pager">
+                  @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+            </div>*@
 
-    </div>
+    }
+
+    @*<div id="ValDiv">
+
+        </div>*@
+</div>
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
 }
+
+
+
+
 
 
 

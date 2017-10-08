@@ -9,37 +9,39 @@ using System.Web;
 using System.Web.Mvc;
 using FreneValue.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 namespace FreneValue.Controllers
 {
     [Authorize]
     public class ValeurController : Controller
     {
         private arbredb _db = new arbredb();
-
        // private user = new User.Identity;      
-
         // GET: Valeur
-        public  ActionResult Index(string codedom)
+        public  ActionResult Index(string codedom, int page = 1, int pageSize = 10)
         {
             //  var model = await _db.valeurs.ToListAsync();
-            ViewBag.codedom = _db.domaines.Select(r => r.CODE).Distinct();
+            ViewBag.codedom = _db.domaines.OrderByDescending(r => r.CODE).Select(r => r.CODE).Distinct();
+            List<VAL_DOM> vals = null;          
             if (codedom != null)
             { 
-            var model = _db.valeurs
-                       .OrderByDescending(r => r.COD_DOM)
-                       .Where(r => r.COD_DOM == codedom );
-                return View(model);
+             vals = _db.valeurs
+                       .OrderByDescending(r => r.COD_VAL)
+                       .Where(r => r.COD_DOM == codedom )
+                       .ToList();
+                //return View(model);
             }
             else
             {
-                var model = _db.valeurs
-                       .OrderByDescending(r => r.COD_DOM);
-                return View(model);
+                vals = _db.valeurs
+                       .OrderByDescending(r => r.COD_DOM)
+                        .ToList(); ;
+               // return View(model);
             }
-            
+            PagedList<VAL_DOM> model = new PagedList<VAL_DOM>(vals, page, pageSize);
+            return View(model);
         }
-
-
+            
         public ActionResult RechercherRapid(string term)
         {
             var valeurs = _db.valeurs

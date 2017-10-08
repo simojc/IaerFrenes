@@ -1,11 +1,14 @@
-﻿@model IEnumerable<FreneValue.Models.VAL_DOM>
+﻿@model PagedList<FreneValue.Models.VAL_DOM>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Gestion des codes valeurs</h2>
+@using PagedList;
+@using PagedList.Mvc;
+
+<h4>Gestion des codes valeurs</h4>
 
 <div align="right"> @Html.ActionLink("Ajouter une valeur", "Create") </div>
 
@@ -29,35 +32,23 @@
     <input type="submit" value="Rechercher"  />
 }
 
-
-  
-
    <table class="table table-bordered table-striped" id="RstRecherche">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.COD_DOM)
+            Domaine
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.COD_VAL)
+            Code valeur
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VAL)
+           Valeur
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DESCRIP)
+           Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ACTIF)
+           Actif
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.UTIL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DT_CRETN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DT_MODF)
-        </th>*@
         <th>
             Action
         </th>
@@ -80,15 +71,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ACTIF)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.UTIL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DT_CRETN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DT_MODF)
-            </td>*@
 
             <td>
                 <div class="pull-right">
@@ -109,3 +91,12 @@
         }
 
 </table>
+
+<div class="col-sm-10">
+    <div class="center">
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+           new { page, pageSize = Model.PageSize }))
+        Affichage de @Model.FirstItemOnPage  à @Model.LastItemOnPage
+        des @Model.TotalItemCount enregistrements
+    </div>
+</div>

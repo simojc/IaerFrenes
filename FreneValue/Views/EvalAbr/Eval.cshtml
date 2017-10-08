@@ -6,7 +6,7 @@
 }
 
 <div class="tab-pane fade in active" id="_Profil">
-    Arbre:ViewBag.id_arb
+    Id Arbre:@ViewBag.arbre.id   &nbsp;   &nbsp;  &nbsp; No Arbre:@ViewBag.arbre.num_arbre   &nbsp;   &nbsp;  &nbsp;  Essence: @ViewBag.arbre.ess
 
 </div>
 
@@ -25,27 +25,28 @@
     <div class="tab-pane fade " id="_tronc">
         <div>
             <!-- Nav tabs -->
-
             <ul id="tabstrip" class="nav nav-tabs" role="tablist">
                 @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
-                { 
-                    <li role="presentation" class="active"><a href="#tronc-@i-1" aria-controls="tronc-@i" role="tab" data-toggle="tab">tronc-@i</a></li>
+                {
+                    var j = i + 1;
+                    <li role="presentation" ><a href="#tronc-@j " aria-controls="tronc-@j " role="tab" data-toggle="tab">tronc-@j </a></li>
                 }
             </ul>
             <div class="tab-content">
 
                 @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
                 {
-                <div role="tabpanel" class="tab-pane active" id="tronc-@i-1">
-                    @{Html.RenderAction("tronc", new { id = ViewBag.List_id_tronc[@i] });}
+                    var j = i + 1;
+                <div role="tabpanel" class="tab-pane active" id="tronc-@j">
+                    @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
                 </div>
                 }
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="_souche">
-        @*@{Html.RenderAction("Souche", new { id = 1 });}*@
-        @{Html.RenderAction("tronc", new { id = ViewBag.id_souche });}
+
+    <div class="tab-pane fade" id="_souche">        
+        @{Html.RenderAction("Souche", new { id = ViewBag.id_souche});}
     </div>
 </div>
 

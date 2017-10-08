@@ -36,6 +36,9 @@ namespace FreneValue.Models
         public DbSet<org> organisations { get; set; }
         public DbSet<eval_abr> evaluations { get; set; }
 
+        public DbSet<ErrorLog> Errors { get; set; }
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
@@ -86,9 +89,6 @@ namespace FreneValue.Models
         }
 
     }
-
-
-
 
     public class COD_DOM
     {
@@ -406,9 +406,8 @@ namespace FreneValue.Models
         [Display(Name = "Longitude")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
         public decimal longtd { get; set; }
-        [Display(Name = "Planté le")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
-        [DataType(DataType.Date)]
+        [Display(Name = "Planté le")]       
+        //[DataType(DataType.Date)]
         public Nullable<System.DateTime> dt_plant { get; set; }
         [Display(Name = "Type lieu")]
         public string type_lieu { get; set; }
