@@ -23,9 +23,6 @@
             <div class="col-lg-2">
                 @Html.TextBoxFor(m => m.num_arbre, new { @class = "form-control", @placeholder = "N° arbre" })
             </div>
-            @*<div class="col-lg-3">
-                    @Html.TextBoxFor(m => m.id_local, new { @class = "form-control", @placeholder = "Adresse" })
-                </div>*@
 
             <div class="col-lg-2">
                 @Html.DropDownListFor(m => m.id_profil, new SelectList(ViewBag.proprio, "id", "nom" + "  " + " pren"),
@@ -42,21 +39,17 @@
                    "Toutes les essences", new { @class = "form-control", @placeholder = "Essence" })
             </div>
 
-            @*<div class="col-lg-3">
-                    @Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"),
-                       "All Categories", new { @class = "form-control", @placeholder = "Category" })
-
-                </div>*@
-
             <div class="col-lg-1 pull-left">
                 <button type="submit" class="btn btn-success">
                     <span class="glyphicon glyphicon-refresh"></span>
                 </button>
             </div>
             <div class="col-lg-1 pull-right">
-                <a class="btn btn-success" data-modal="" href="/Arbre/Create" id="btnCreate">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
+
+                <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Arbre")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>               
+
+                @*<a class="btn btn-success" data-modal="" href="~/Arbre/Create" id="btnCreate"> <span class="glyphicon glyphicon-plus"></span>  </a> *@
+                @*@Html.ActionLink(" ", "Create", "Arbre", new { }, new { @class = "glyphicon glyphicon-plus ", title = "Créer" })*@               
             </div>
         </div>
     </div>
@@ -68,11 +61,10 @@
                             rowsPerPage: Model.PageSize,
                             canSort: true,
                             ajaxUpdateContainerId: "grid");
-
             grid.Bind(Model.arbres, rowCount: Model.TotalRecords, autoSortAndPage: false);
             grid.Pager(WebGridPagerModes.All);
 
-            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+        @grid.GetHtml(htmlAttributes: new { id = "grid" },
         fillEmptyRows: false,
         tableStyle: "table table-bordered table-hover",
         mode: WebGridPagerModes.All,
@@ -89,25 +81,23 @@
               grid.Column("dt_plant", "Planté_en", style: "col-lg-2", format: (item) => item.dt_plant != null ? item.dt_plant.ToString("yyyy") : "", canSort: true),
 
               grid.Column(header: "Action", canSort: false, style: "action",
-                format: @<text>
-                @Html.Raw("<a data-modal='' href='/Arbre/edit/" + item.id + "' id='" + item.id + "' title='Modifier'> <span class='glyphicon glyphicon-edit'> </span> </a>")
-                &nbsp;
-                @*@Html.Raw("<a data-modal='' href='/Arbre/delete/" + item.id + "' id='" + item.id + "' title='Supprimer'> <span class='glyphicon glyphicon-trash'> </span> </a>")
-                    &nbsp;*@
-
+                format: @<text>                
+             @*@Html.ActionLink(" ", "Edit", "Arbre", new { id = item.id }, new { @class = "glyphicon glyphicon-edit ", title = "Modifier" })
+                 &nbsp;*@    
+            <a data-modal='' href="@Url.Action("Edit", "Arbre", new { id = item.id })"  title='Modifier'> <span class="glyphicon glyphicon-edit"></span> </a>     
+        &nbsp;     
+                @*@Html.Raw("<a data-modal='' href='~/Views/Arbre/delete/" + item.id + "' id='" + item.id + "' title='Supprimer'> <span class='glyphicon glyphicon-trash'> </span> </a>")
+                &nbsp;*@      
                 @Ajax.ActionLink(" ", "Evaluation", new { id_arbre = item.id }, new AjaxOptions
-           {
-               UpdateTargetId = "EvalDiv",
-               InsertionMode = InsertionMode.Replace,
-               HttpMethod = "GET"
-           }, new { @class = "glyphicon glyphicon-tree-deciduous", title = "Évaluation" })
-
+                   {
+                       UpdateTargetId = "EvalDiv",
+                       InsertionMode = InsertionMode.Replace,
+                       HttpMethod = "GET"
+                   }, new { @class = "glyphicon glyphicon-tree-deciduous", title = "Évaluation" })
                 </text>)
-                             ));
+             ));
         }
     </div>
-
-
             }
 
 <div id="EvalDiv">

@@ -7,13 +7,13 @@ namespace FreneValue.Models
 {
     public class ErrorLog
     {
-        public int Id { get; set; }
-        public string Message { get; set; }
-        public string ControllerName { get; set; }
-        public string UserAgent { get; set; }
-        public string StackTrace { get; set; }
-        public string SessionUd { get; set; } 
-        public string TargetResult { get; set; }        
-        public DateTime Timestamp { get; set; }
+        public int id { get; set; }
+        public string message { get; set; }
+        public string controllername { get; set; }
+        public string useragent { get; set; }
+        public string stacktrace { get; set; }
+        public string sessionud { get; set; } 
+        public string targetresult { get; set; }        
+        public DateTime datetime { get; set; }
     }
 }

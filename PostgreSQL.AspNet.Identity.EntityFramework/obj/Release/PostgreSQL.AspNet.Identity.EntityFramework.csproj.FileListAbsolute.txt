@@ -47,3 +47,4 @@ C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.csproj.CoreCompileInputs.cache
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.dll
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.pdb
+C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.csprojResolveAssemblyReference.cache

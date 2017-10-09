@@ -21,20 +21,20 @@ namespace FreneValue.Controllers
         public  ActionResult Index(string codedom, int page = 1, int pageSize = 10)
         {
             //  var model = await _db.valeurs.ToListAsync();
-            ViewBag.codedom = _db.domaines.OrderByDescending(r => r.CODE).Select(r => r.CODE).Distinct();
+            ViewBag.codedom = _db.domaines.OrderBy(r => r.CODE).Select(r => r.CODE).Distinct();
             List<VAL_DOM> vals = null;          
             if (codedom != null)
             { 
              vals = _db.valeurs
-                       .OrderByDescending(r => r.COD_VAL)
-                       .Where(r => r.COD_DOM == codedom )
+                       .OrderByDescending(r => r.COD_DOM).ThenBy(r => r.COD_VAL)
+                       .Where(r => r.COD_DOM.Contains(codedom) )
                        .ToList();
                 //return View(model);
             }
             else
             {
                 vals = _db.valeurs
-                       .OrderByDescending(r => r.COD_DOM)
+                       .OrderByDescending(r => r.COD_DOM).ThenBy(r => r.COD_VAL)
                         .ToList(); ;
                // return View(model);
             }
@@ -74,8 +74,6 @@ namespace FreneValue.Controllers
             }
         }
 
-
-
         // GET: Valeur/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -83,18 +81,18 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM vAL_DOM = await _db.valeurs.FindAsync(id);
-            if (vAL_DOM == null)
+            VAL_DOM valeur = await _db.valeurs.FindAsync(id);
+            if (valeur == null)
             {
                 return HttpNotFound();
             }
-            return View(vAL_DOM);
+            return View(valeur);
         }
 
         // GET: Valeur/Create
         public ActionResult Create()
         {
-            ViewBag.codedom = _db.domaines.Select(r => r.CODE).Distinct();
+            ViewBag.codedom = _db.domaines.OrderBy(r => r.CODE).Select(r => r.CODE).Distinct() ;
             return View();
         }
 
@@ -103,33 +101,32 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,COD_DOM,COD_VAL,VAL,DESCRIP,UTIL,ACTIF,DT_CRETN,DT_MODF")] VAL_DOM vAL_DOM)
+        public async Task<ActionResult> Create([Bind(Include = "ID,COD_DOM,COD_VAL,VAL,DESCRIP,UTIL,ACTIF,DT_CRETN,DT_MODF")] VAL_DOM valeur)
         {
             if (ModelState.IsValid)
             {
-                vAL_DOM.UTIL = User.Identity.GetUserName();
-                _db.valeurs.Add(vAL_DOM);
+                valeur.UTIL = User.Identity.GetUserName();
+                _db.valeurs.Add(valeur);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            return View(vAL_DOM);
+            return View(valeur);
         }
 
         // GET: Valeur/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            ViewBag.codedom = _db.domaines.Select(r => r.CODE).Distinct();
+            ViewBag.codedom = _db.domaines.OrderBy(r => r.CODE).Select(r => r.CODE).Distinct();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM vAL_DOM = await _db.valeurs.FindAsync(id);
-            if (vAL_DOM == null)
+            VAL_DOM valeur = await _db.valeurs.FindAsync(id);
+            if (valeur == null)
             {
                 return HttpNotFound();
             }
-            return View(vAL_DOM);
+            return View(valeur);
         }
 
         // POST: Valeur/Edit/5
@@ -137,16 +134,16 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,COD_DOM,COD_VAL,VAL,DESCRIP,UTIL,ACTIF,DT_CRETN,DT_MODF")] VAL_DOM vAL_DOM)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,COD_DOM,COD_VAL,VAL,DESCRIP,UTIL,ACTIF,DT_CRETN,DT_MODF")] VAL_DOM valeur)
         {
             if (ModelState.IsValid)
             {
-                vAL_DOM.UTIL = User.Identity.GetUserName();
-                _db.Entry(vAL_DOM).State = EntityState.Modified;
+                valeur.UTIL = User.Identity.GetUserName();
+                _db.Entry(valeur).State = EntityState.Modified;
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(vAL_DOM);
+            return View(valeur);
         }
 
         // GET: Valeur/Delete/5
@@ -156,12 +153,12 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM vAL_DOM = await _db.valeurs.FindAsync(id);
-            if (vAL_DOM == null)
+            VAL_DOM Domain = await _db.valeurs.FindAsync(id);
+            if (Domain == null)
             {
                 return HttpNotFound();
             }
-            return View(vAL_DOM);
+            return View(Domain);
         }
 
         // POST: Valeur/Delete/5
@@ -169,8 +166,8 @@ namespace FreneValue.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            VAL_DOM vAL_DOM = await _db.valeurs.FindAsync(id);
-            _db.valeurs.Remove(vAL_DOM);
+            VAL_DOM Domain = await _db.valeurs.FindAsync(id);
+            _db.valeurs.Remove(Domain);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

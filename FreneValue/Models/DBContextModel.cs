@@ -62,9 +62,7 @@ namespace FreneValue.Models
             modelBuilder.Entity<prof_util>()
        .ToTable("prof_util");
             modelBuilder.Entity<ErrorLog>()
-      .ToTable("ErrorLog");
-
-
+      .ToTable("errorlog");
 
             //// TABLE COD_DOM
             modelBuilder.Entity<COD_DOM>().Property(r => r.CODE).HasColumnName("code");
@@ -175,12 +173,10 @@ namespace FreneValue.Models
         public string catgr_branch_maitr { get; set; }
         [Display(Name = "Nombre de BM? ")]
         public int nb_branch_maitr { get; set; }
-        [Display(Name = "Commentaire? ")]
-      
+        [Display(Name = "Commentaire? ")]      
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
-
         [ForeignKey("id_eval")]
         public virtual eval_abr Evaluation { get; set; }
     }
@@ -394,11 +390,13 @@ namespace FreneValue.Models
         public string num_arbre { get; set; }
         [Display(Name = "Propriétaire ")]
         public int id_profil { get; set; }
-        [Display(Name = "Emplacement")]
+        [Display(Name = "Localisation")]
         public int id_local { get; set; }
         [Display(Name = "Type emplacement")]
         public string typ_emplcmt { get; set; }
-        [Display(Name = "Orientation")]
+        [Display(Name = "Emplacement")]
+        public string emplcmt { get; set; }
+        [Display(Name = "Orientation (pos. rel.)")]
         public string orientatn { get; set; }
         [Display(Name = "Essence")]
         public string ess { get; set; }
@@ -411,6 +409,11 @@ namespace FreneValue.Models
         [Display(Name = "Planté le")]       
         //[DataType(DataType.Date)]
         public Nullable<System.DateTime> dt_plant { get; set; }
+        [Display(Name = "DHP")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal dhp_tot { get; set; }
+        [Display(Name = "Nb. troncs")]
+        public int nb_tronc { get; set; }
         [Display(Name = "Type lieu")]
         public string type_lieu { get; set; }
         [Display(Name = "Type arbre")]

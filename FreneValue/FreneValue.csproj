@@ -405,7 +405,6 @@
     <Content Include="Views\EvalAbr\_Profil.cshtml" />
     <Content Include="Views\EvalAbr\Eval.cshtml" />
     <Content Include="Views\EvalAbr\_Souche.cshtml" />
-    <Content Include="Views\EvalAbr\TestTab.cshtml" />
     <Content Include="Views\DomaineValeur\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

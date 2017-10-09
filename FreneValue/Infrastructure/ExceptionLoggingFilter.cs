@@ -34,25 +34,25 @@ namespace FreneValue.Infrastructure
             var _Context = DependencyResolver.Current.GetService<arbredb>();
             var error = new ErrorLog()
             {
-                Message = filterContext.Exception.Message,
-                StackTrace = filterContext.Exception.StackTrace,
-                ControllerName = filterContext.Controller.GetType().Name,
-                TargetResult = filterContext.Result.GetType().Name,
-                SessionUd = (string)filterContext.HttpContext.Request["LoanId"],
-                UserAgent = filterContext.HttpContext.Request.UserAgent,
-                Timestamp = DateTime.Now
+                message = filterContext.Exception.Message,
+                stacktrace = filterContext.Exception.StackTrace,
+                controllername = filterContext.Controller.GetType().Name,
+                targetresult = filterContext.Result.GetType().Name,
+                sessionud = (string)filterContext.HttpContext.Request["LoanId"],
+                useragent = filterContext.HttpContext.Request.UserAgent,
+                datetime = DateTime.Now
             };
-            _db.Errors.Add(error);
+             _db.Errors.Add(error);
              _db.SaveChanges();
            
             // send an email notification
-            MailMessage email = new MailMessage();
-            email.From = new MailAddress("simojc@gmil.com");
-            email.To.Add(new MailAddress(ConfigurationManager.AppSettings["ErrorMail"]));
-            email.Subject = "Une erreur est survenue lors de l'exécution de l'application";
-            email.Body = filterContext.Exception.Message + Environment.NewLine + filterContext.Exception.StackTrace;
-            SmtpClient client = new SmtpClient("localhost");
-            client.Send(email);
+            //MailMessage email = new MailMessage();
+            //email.From = new MailAddress("simojc@gmil.com");
+            //email.To.Add(new MailAddress(ConfigurationManager.AppSettings["ErrorMail"]));
+            //email.Subject = "Une erreur est survenue lors de l'exécution de l'application";
+            //email.Body = filterContext.Exception.Message + Environment.NewLine + filterContext.Exception.StackTrace;
+            //SmtpClient client = new SmtpClient("localhost");
+            //client.Send(email);
 
             //throw new NotImplementedException(); 
 

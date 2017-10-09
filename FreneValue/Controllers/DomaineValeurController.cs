@@ -19,13 +19,10 @@ namespace FreneValue.Controllers
         // private ApplicationDbContext _db = new ApplicationDbContext();
 
         private arbredb _db = new arbredb();
-
-     
-
+    
         public ActionResult Index(string code, int page = 1, int pageSize = 10 )
         {
             List<COD_DOM> domains = null;
-
             if (code != null)
             {
                 domains = _db.domaines
