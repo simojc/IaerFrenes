@@ -22,7 +22,7 @@
     else
     {
         //Tested in chrome
-        DateTimeFormatInfo dtfi = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
+        DateTimeFormatInfo dtfi = CultureInfo.CreateSpecificCulture("fr-CA").DateTimeFormat;
         dtfi.DateSeparator = "-";
         dtfi.ShortDatePattern = @"yyyy/MM/dd";
         @Html.TextBox("", String.Format("{0:d}", dt.ToString("d", dtfi)), new { @class = "datefield", type = "date" })

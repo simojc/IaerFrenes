@@ -12,9 +12,6 @@
   <parameter name="FreneValue.Models.ApplicationDbContext-Web.config Connection String" description="FreneValue.Models.ApplicationDbContext Chaîne de connexion utilisée dans web.config par l’application pour accéder à la base de données." defaultValue="FreneValue.Models.ApplicationDbContext_ConnectionString" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\GitHub\\Source\\Repos\\IaerFrenes\\FreneValue\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FreneValue.Models.ApplicationDbContext']/@connectionString" />
   </parameter>
-  <parameter name="FreneValue.Models.arbredb-Web.config Connection String" description="FreneValue.Models.arbredb Chaîne de connexion utilisée dans web.config par l’application pour accéder à la base de données." defaultValue="FreneValue.Models.arbredb_ConnectionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\GitHub\\Source\\Repos\\IaerFrenes\\FreneValue\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FreneValue.Models.arbredb']/@connectionString" />
-  </parameter>
   <parameter name="PostgreSQL.AspNet.Identity.EntityFramework.IdentityDbContext-Web.config Connection String" description="PostgreSQL.AspNet.Identity.EntityFramework.IdentityDbContext Chaîne de connexion utilisée dans web.config par l’application pour accéder à la base de données." defaultValue="PostgreSQL.AspNet.Identity.EntityFramework.IdentityDbContext_ConnectionString" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\GitHub\\Source\\Repos\\IaerFrenes\\FreneValue\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PostgreSQL.AspNet.Identity.EntityFramework.IdentityDbContext']/@connectionString" />
   </parameter>

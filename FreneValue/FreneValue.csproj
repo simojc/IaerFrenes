@@ -208,6 +208,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MyHelper.cs" />
+    <Compile Include="Infrastructure\ExceptionLoggingFilter.cs" />
+    <Compile Include="Infrastructure\Utilitaires.cs" />
     <Compile Include="Migrations\ApplicationDbInitializer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -271,6 +273,7 @@
     <Content Include="Scripts\autrescript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -367,7 +370,6 @@
     <Content Include="Views\Arbre\Delete.cshtml" />
     <Content Include="Views\Arbre\Details.cshtml" />
     <Content Include="Views\Arbre\Edit.cshtml" />
-    <Content Include="Views\Arbre\Index1.cshtml" />
     <Content Include="Views\Org\Create.cshtml" />
     <Content Include="Views\Org\Delete.cshtml" />
     <Content Include="Views\Org\Details.cshtml" />

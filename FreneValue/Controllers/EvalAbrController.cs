@@ -9,27 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using FreneValue.Models;
+using FreneValue.Infrastructure;
 
 namespace FreneValue.Controllers
 {
     public class EvalAbrController : Controller
     {
-        private arbredb db = new arbredb();
-
-
-        List<string> LireCodeValeur(string w_coddom)
-        {
-            var DDList = db.valeurs
-                           .Where(r => r.COD_DOM == w_coddom)
-                           .OrderBy(r => r.VAL)
-                           .Select(r => r.VAL).Distinct().ToList();
-            return (DDList);
-        }
+        private arbredb db = new arbredb();        
 
         void ChargerToutesLesDDL()
         {
-            ViewBag.ESSENCE = LireCodeValeur("ESSENCE");
-            ViewBag.CLASSE_HAUTEUR = LireCodeValeur("CLASSE_HAUTEUR");
+            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
+            ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");
 
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
@@ -37,25 +28,20 @@ namespace FreneValue.Controllers
                       Value = s.id.ToString(),
                       Text = s.nom + " " + s.pren
                   }).ToList();
-
             ViewBag.profilUtil = new SelectList(w_profilUtil, "Value", "Text");
-
             var w_localisation = db.localisations
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
                      Text = s.emplcmt + " - " + s.code_post + " - " + s.num_civc + " - " + s.nom_rue + " - " + s.ville
                  }).ToList();
-
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
-
 
         // GET: EvalAbr
         public ActionResult Index(int? id_arbre)
         {
            // return View(await db.evaluations.ToListAsync());
-
             if (id_arbre != null)
             {
                 var w_eval = db.evaluations
@@ -71,7 +57,6 @@ namespace FreneValue.Controllers
 
                 return PartialView("_Index", w_eval);
             }
-
         }
 
         // GET: EvalAbr/Details/5
@@ -88,7 +73,6 @@ namespace FreneValue.Controllers
             }
             return View(eval_abr);
         }
-
 
         // GET: EvalAbr/TestTab
         public ActionResult TestTab()
@@ -117,7 +101,6 @@ namespace FreneValue.Controllers
                
                 return RedirectToAction("Index");
             }
-
             return View(eval_abr);
         }
 
@@ -206,18 +189,15 @@ namespace FreneValue.Controllers
             return View(eval_abr);
         }
 
-
         public ActionResult Eval(int? id)
         {
             // return View(await db.evaluations.ToListAsync());
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             eval_abr eval_abr = db.evaluations.Find(id);
-            arbre abr = db.arbres.Find(eval_abr.id_arbre);
-         
+            arbre abr = db.arbres.Find(eval_abr.id_arbre);         
             if (eval_abr == null)
             {
                 return HttpNotFound();
@@ -229,29 +209,13 @@ namespace FreneValue.Controllers
                           .Where(r => r.id_eval == id)
                           .Select(r => r.id)
                           .First();
-
             ViewBag.List_id_tronc = db.troncs
                           .Where(r => r.id_eval == id).ToList();
-
             ViewBag.nb_tronc = db.troncs
                        .Where(r => r.id_eval == id).Count();
-
             return View();
         }
-
-        //public ActionResult _tronc(int?id_abr)
-        //{      
-        //    //  var model = await _db.valeurs.ToListAsync();
-        //    //ViewBag.codedom = _db.domaines.Select(r => r.CODE).Distinct();
-
-        //    var model = _db.troncs
-        //               .OrderByDescending(r => r.no_tronc)
-        //               .Where(r => r.id_arbre == id_abr || (id_abr == null));
-
-        //  //  return PartialView("_Valeurs", valeurs);
-        //    return PartialView(model);
-        //}
-
+       
         // GET: troncs/Tronc/5
         public ActionResult Tronc(int? id)
          {

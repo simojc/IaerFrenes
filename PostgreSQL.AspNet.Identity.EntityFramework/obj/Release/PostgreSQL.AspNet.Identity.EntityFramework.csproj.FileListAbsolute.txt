@@ -42,7 +42,6 @@ C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\bin
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\bin\Release\fr\EntityFramework.SqlServer.resources.dll
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\bin\Release\fr\Microsoft.AspNet.Identity.Core.resources.dll
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\bin\Release\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.csprojResolveAssemblyReference.cache
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.IdentityResources.resources
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.csproj.GenerateResource.Cache
 C:\GitHub\Source\Repos\IaerFrenes\PostgreSQL.AspNet.Identity.EntityFramework\obj\Release\PostgreSQL.AspNet.Identity.EntityFramework.csproj.CoreCompileInputs.cache

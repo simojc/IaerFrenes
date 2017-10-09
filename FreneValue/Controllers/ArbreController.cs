@@ -5,105 +5,50 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using FreneValue.Models;
 using FreneValue.ViewModels;
 using System.Linq.Dynamic;
-
 using Microsoft.AspNet.Identity;
 using LinqKit;
+//using System.Web.Caching;
+using FreneValue.Infrastructure;
 
 namespace FreneValue.Controllers
 {
     public class ArbreController : Controller
     {
         private arbredb db = new arbredb();
-
-        List<string> LireCodeValeur(string w_coddom)
-        {
-            var DDList = db.valeurs
-                           .Where(r => r.COD_DOM == w_coddom)
-                           .OrderBy(r => r.VAL)
-                           .Select(r => r.VAL).Distinct().ToList();
-            return (DDList);
-        }
-
+       
         void ChargerToutesLesDDL()
         {
-            ViewBag.ESSENCE = LireCodeValeur("ESSENCE");
-            ViewBag.CLASSE_HAUTEUR = LireCodeValeur("CLASSE_HAUTEUR");
-
+            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
+            ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");            
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
                   {
                       Value = s.id.ToString(),
                       Text = s.nom +" "+ s.pren 
                   }).ToList();
-
             ViewBag.profilUtil = new SelectList(w_profilUtil, "Value", "Text");
-
             var w_localisation = db.localisations
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
                      Text = s.emplcmt +" - " + s.code_post + " - " + s.num_civc + " - " + s.nom_rue + " - " + s.ville
                  }).ToList();
-
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
 
-
-        // GET: Arbre
-        public async Task<ActionResult> Index1()
-        {
-            return View(await db.arbres.ToListAsync());
-        }
-
-
+        [OutputCache(Duration = 60, VaryByParam = "model")]
         public ActionResult Index(ArbreSearchModel model)
-        {
-            // To Bind the category drop down in search section
-           // ViewBag.Categories = db.arbres;
-
-            ViewBag.ESSENCE = LireCodeValeur("ESSENCE");
+        {            
+            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
 
             ViewBag.adresse = db.localisations.Where(x => x.num_civc != null );
 
             ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
-
-            // total records for paging
-            //model.TotalRecords = db.arbres
-            //    .Count(x =>
-            //       ((model.num_arbre == null) || (x.num_arbre.Contains(model.num_arbre)))
-            //        && (model.ess == null || x.ess == model.ess)
-            //        && (model.id_local == null || x.id_local == model.id_local)
-            //       );
-
-            //var orderByResult = from s in studentList
-            //                    orderby s.StudentName, s.Age
-            //                    select new { s.StudentName, s.Age };
-
-            //var totalAge = (from s in studentList
-            //                select s.age).Count();
-
-
-
-            //if (firstName != string.Empty)
-            //{
-            //    predicate = predicate.And(p => p.User.FirstName.ToLower().Contains(firstName.ToLower()));
-            //}
-
-            //if (lastName != string.Empty)
-            //{
-            //    predicate = predicate.And(p => p.User.LastName.ToLower().Contains(lastName.ToLower()));
-            //}
-
-
-            //a = from r in results.AsQueryable().Where(predicate) select r;
-            //return a;
-
-
+           
             var predicate = PredicateBuilder.True<arbre>();
             if (model.num_arbre != null)
             {
@@ -119,46 +64,13 @@ namespace FreneValue.Controllers
             {
                 predicate = predicate.And(x => x.id_local.ToString().ToLower().Contains(model.id_local.ToString().ToLower()));
             }
-
-
             model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
-            //where ((string.Compare(model.num_arbre, null, true) == 0 || x.num_arbre.Contains(model.num_arbre))
-            // && (string.Compare(model.ess, null, true) == 0 || x.ess == model.ess)
-            // && (string.Compare(model.id_local.ToString(),null, true) == 0 || x.id_local == model.id_local))
-
-
             model.arbres = (from x in db.arbres.AsQueryable().Where(predicate) 
-                                //where ((string.Compare(model.num_arbre, "", true) == 0 || x.num_arbre.Contains(model.num_arbre))
-                                //      && (string.Compare(model.ess, "", true) == 0 || x.ess == model.ess)
-                                //      && (string.Compare(model.id_local.ToString(), "", true) == 0 || x.id_local == model.id_local))
-                            orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
+                              orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
                                 select x)
                                 .Skip((model.Page - 1) * model.PageSize)
                                 .Take(model.PageSize)
-                                .ToList();
-
-            //Dim skipResult = From s In studentList
-            //     Skip 3
-            //     Select s
-
-
-            //Dim takeResult = From s In studentList
-            //     Take 3
-            //     Select s
-
-            // Get Products
-            //model.arbres = db.arbres
-            //    .Where(
-            //        x =>
-            //        (model.num_arbre == null || x.num_arbre.Contains(model.num_arbre))
-            //        && (model.ess == null  ||  x.ess == model.ess)
-            //        && (model.id_local == null || x.id_local == model.id_local)
-            //       )
-            //    .OrderBy(model.Sort + " " + model.SortDir)
-            //    .Skip((model.Page - 1) * model.PageSize)
-            //    .Take(model.PageSize)
-            //    .ToList();
-
+                                .ToList();           
             return View(model);
         }
 
@@ -206,7 +118,6 @@ namespace FreneValue.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ChargerToutesLesDDL();
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

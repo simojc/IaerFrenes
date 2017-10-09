@@ -9,7 +9,7 @@
 
     <div class="form-horizontal">
         @*<h4>arbre</h4>*@
-       
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
         <table class="table ">
@@ -59,7 +59,7 @@
                                     @Html.ValidationMessageFor(model => model.orientatn, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                       </p>
+                        </p>
 
                         <p>
                             <div class="form-group">
@@ -78,15 +78,9 @@
                                     @Html.ValidationMessageFor(model => model.lattd, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
                         </p>
-
-
                     </td>
-
                     <td>
-
-
                         <p>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.id_profil, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -149,29 +143,21 @@
                                 </div>
                             </div>
                         </p>
-
-
                     </td>
                 </tr>
                 <tr>
                     <td>
-
-
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Enregistrer" class="btn  btn-primary" />
                             </div>
                         </div>
-
                     </td>
                 </tr>
-
             </tbody>
         </table>
-
     </div>
 }
-
 <div>
     @Html.ActionLink("Retourner à la liste", "Index")
 </div>

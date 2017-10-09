@@ -61,6 +61,8 @@ namespace FreneValue.Models
          .ToTable("loclsn");
             modelBuilder.Entity<prof_util>()
        .ToTable("prof_util");
+            modelBuilder.Entity<ErrorLog>()
+      .ToTable("ErrorLog");
 
 
 

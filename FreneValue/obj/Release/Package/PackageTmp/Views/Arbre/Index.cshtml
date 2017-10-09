@@ -1,4 +1,4 @@
-﻿@model FreneValue.Models.ArbreSearchModel
+﻿@model FreneValue.ViewModels.ArbreSearchModel
 
 <style type="text/css">
     .action {
@@ -14,13 +14,11 @@
     <h3>
         Rechercher arbre
     </h3>
-
 </div>
 
 @using (Html.BeginForm("index", "Arbre", FormMethod.Get))
 {
     <div class="row">
-
         <div class="form-horizontal">
             <div class="col-lg-2">
                 @Html.TextBoxFor(m => m.num_arbre, new { @class = "form-control", @placeholder = "N° arbre" })
