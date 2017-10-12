@@ -1,0 +1,67 @@
+﻿@model MvcTestApp2017.Models.utilModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>utilModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UTI_NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UTI_NOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UTI_PRENM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UTI_PRENM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stringFKUTIDIR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stringFKUTIDIR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UTI_SUBST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UTI_SUBST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FKUTIAMR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FKUTIAMR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UMI_DT_DERN_MAJ_ENGRS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UMI_DT_DERN_MAJ_ENGRS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PKUTI }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

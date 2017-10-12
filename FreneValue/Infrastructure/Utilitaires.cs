@@ -16,12 +16,13 @@ namespace FreneValue.Infrastructure
 {
     public static class Utilitaires 
     {
-       private static arbredb db = new arbredb();     
+       private static arbredb db = new arbredb();
 
-       public static List<string> LireCodeValeurCache(string w_coddom)
+     //   [OutputCache(Duration = 60, VaryByParam = "w_coddom")]
+        public static List<string> LireCodeValeurCache(string w_coddom)
         {
             List<string> valeurList = null;
-            var cacheKey = "ValeurListKey";
+            var cacheKey = w_coddom;  // "ValeurListKey";
 
            // if (HttpContext.Cache[cacheKey] == null)
             if  (HttpContext.Current.Cache[cacheKey] == null)
@@ -30,7 +31,6 @@ namespace FreneValue.Infrastructure
                            .Where(r => r.COD_DOM == w_coddom)
                            .OrderBy(r => r.VAL)
                            .Select(r => r.VAL).Distinct().ToList();
-
                 HttpContext.Current.Cache.Insert(cacheKey,
                                                        valeurList,
                                                        null,
@@ -44,6 +44,5 @@ namespace FreneValue.Infrastructure
             }
             return (valeurList);
         }
-
     }
 }

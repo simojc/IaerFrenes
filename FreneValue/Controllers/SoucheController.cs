@@ -38,9 +38,15 @@ namespace FreneValue.Controllers
         }
 
         // GET: souches/Create
-        public ActionResult Create()
+        public ActionResult Create(int id_eval)
         {
-            return View();
+            if (id_eval == null)
+            {
+                return HttpNotFound();
+            }
+            souche model = new souche();
+            model.id_eval = id_eval;
+            return View(model);
         }
 
         // POST: souches/Create
@@ -51,7 +57,7 @@ namespace FreneValue.Controllers
         public async Task<ActionResult> Create([Bind(Include = "id,id_eval,dhs,acces_nutrmt,aeration_sol,surf_deplmt_racin,racine_hs,blesre_racine,cavite_hrs_sol,exig_essouchmt,typ_essouchmt,profdeur_essouchmt,ray_rognage,defaut,infrstr,specificite,haut_souche,exig_abat,espace_subs,fosse_plant,comm,util,dt_cretn,dt_modf")] souche souche)
         {
             if (ModelState.IsValid)
-            {
+            {               
                 souche.util = User.Identity.GetUserName();
                 db.souches.Add(souche);
                 await db.SaveChangesAsync();

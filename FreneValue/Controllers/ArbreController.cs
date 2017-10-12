@@ -23,7 +23,9 @@ namespace FreneValue.Controllers
         void ChargerToutesLesDDL()
         {
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
-            ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");            
+            ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("ORIENTATION");
+            //ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
+            ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
                   {

@@ -1,0 +1,136 @@
+﻿@model IEnumerable<FreneValue.Models.loclsn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Créer Localisation", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.num_civc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.voie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom_rue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tronc_rue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom_cours_eau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sectn_cours_eau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emplcmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.code_post)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prov)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suprfc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lattd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longtd)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_civc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.voie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_rue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tronc_rue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_cours_eau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sectn_cours_eau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emplcmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.code_post)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prov)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suprfc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lattd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longtd)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_cretn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_modf)
+        </td>*@
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -38,9 +38,16 @@ namespace FreneValue.Controllers
         }
 
         // GET: Cime/Create
-        public ActionResult Create()
+        public ActionResult Create(int id_tronc)
         {
-            return View();
+            if (id_tronc == null)
+            {
+                return HttpNotFound();
+            }
+            cime model = new cime();
+            model.id_tronc = id_tronc;
+            return View(model);
+            // return View();            
         }
 
         // POST: Cime/Create

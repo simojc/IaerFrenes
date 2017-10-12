@@ -1,0 +1,59 @@
+﻿
+
+@{
+    ViewBag.Title = "Détail Évaluation";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tab-pane fade in active" id="_Profil">
+    Id Arbre:@ViewBag.arbre.id   &nbsp;   &nbsp;  &nbsp; No Arbre:@ViewBag.arbre.num_arbre   &nbsp;   &nbsp;  &nbsp;  Essence: @ViewBag.arbre.ess
+
+</div>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#_Profil" role="tab" data-toggle="tab">Profil</a></li>
+    <li><a href="#_tronc" role="tab" data-toggle="tab">Tronc</a></li>
+    <li><a href="#_souche" role="tab" data-toggle="tab">Souche</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="_Profil">
+        @{Html.RenderAction("Profil", new { id = ViewBag.id_eval });}
+    </div>
+
+    <div class="tab-pane fade " id="_tronc">
+        <div>
+            <!-- Nav tabs -->
+            <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+                @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                {
+                    var j = i + 1;
+                    <li role="presentation" ><a href="#tronc-@j " aria-controls="tronc-@j " role="tab" data-toggle="tab">tronc-@j </a></li>
+                }
+            </ul>
+            <div class="tab-content">
+
+                @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                {
+                    var j = i + 1;
+                <div role="tabpanel" class="tab-pane active" id="tronc-@j">
+                    @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="_souche">        
+        @{Html.RenderAction("Souche", new { id = ViewBag.id_souche});}
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#tabs").tabs();
+    });
+
+</script>

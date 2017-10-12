@@ -207,8 +207,8 @@ namespace FreneValue.Controllers
             ViewBag.id_eval = eval_abr.id;
             ViewBag.id_souche = db.souches
                           .Where(r => r.id_eval == id)
-                          .Select(r => r.id)
-                          .First();
+                          .Select(r => r.id);
+                         // .First();
             ViewBag.List_id_tronc = db.troncs
                           .Where(r => r.id_eval == id).ToList();
             ViewBag.nb_tronc = db.troncs
@@ -247,7 +247,6 @@ namespace FreneValue.Controllers
             }
             return PartialView("_Tronc", tronc);
         }
-
 
         // GET: souches/Edit/5
         public ActionResult Souche(int? id)

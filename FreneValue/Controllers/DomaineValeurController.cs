@@ -25,10 +25,11 @@ namespace FreneValue.Controllers
             List<COD_DOM> domains = null;
             if (code != null)
             {
-                domains = _db.domaines
-                                           .Where(r => r.CODE == code)
+                        domains = _db.domaines
+                                           .Where(r => r.CODE.Contains(code))
                                            .OrderBy(r => r.CODE)
                                            .ToList();
+
             }
             else
             {
@@ -291,7 +292,7 @@ namespace FreneValue.Controllers
             {
                 var ValeursDom = _db.valeurs
                            .OrderByDescending(r => r.COD_VAL)
-                           .Where(r => r.COD_DOM == codedom);
+                           .Where(r => r.COD_DOM.Contains(codedom));
 
                 return PartialView("_Valeurs", ValeursDom);
             }

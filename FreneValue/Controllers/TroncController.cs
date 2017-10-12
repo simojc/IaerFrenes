@@ -38,9 +38,16 @@ namespace FreneValue.Controllers
         }
 
         // GET: troncs/Create
-        public ActionResult Create()
+        public ActionResult Create(int id_eval)
         {
-            return View();
+            if (id_eval == null)
+            {
+                return HttpNotFound();
+            }
+            tronc model = new tronc();
+            model.id_eval = id_eval;
+            return View(model);
+           // return View();
         }
 
         // POST: troncs/Create
