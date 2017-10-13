@@ -202,8 +202,7 @@ namespace FreneValue.Controllers
             arbre abr = db.arbres.Find(eval_abr.id_arbre);
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
-                //.Where(s => s.id == abr.id_profil)
-                //.Select(s => s.nom + " " + s.pren);            
+                            
             if (eval_abr == null)
             {
                 return HttpNotFound();

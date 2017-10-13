@@ -24,7 +24,7 @@ namespace FreneValue.Controllers
         {
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
             ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("ORIENTATION");
-            ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
+            ViewBag.TYPE_EMPLACEMENT = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
             //ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
