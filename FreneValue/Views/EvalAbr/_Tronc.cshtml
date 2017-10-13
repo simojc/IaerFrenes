@@ -1,15 +1,23 @@
-﻿
+﻿@using FreneValue.Helpers
 @model FreneValue.Models.tronc
-
 @{
     ViewBag.Title = "Edit";
     // Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div align="right">
     @Html.ActionLink("Ajouter Cime", "Create", "Cime", new { id_tronc = Model.id })
-</div>
+    <div class="col-lg-4">
+        @if ((bool)ViewBag.CimeExiste)
+        {
+            @Html.NoEncodeActionLink("Modifier Cime", "Mod", "Edit", "Cime", routeValues: new { id_tronc = Model.id }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+        }
+        else
+        {
+            @Html.NoEncodeActionLink("Ajouter Cime", "Add", "Create", "Cime", routeValues: new { id_tronc = Model.id }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+        }
+    </div>
 
+</div>
 @*<h2>Edit</h2>*@
 @using (Html.BeginForm("Tronc", "EvalAbr"))
 {
@@ -18,7 +26,6 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.id_eval)
-
         @*<div class="form-group">
                 @Html.LabelFor(model => model.id_eval, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -26,7 +33,6 @@
                     @Html.ValidationMessageFor(model => model.id_eval, "", new { @class = "text-danger" })
                 </div>
             </div>*@
-
         <table class="table ">
             <tr>
                 <th colspan="3" style="color:blue"> Information Tronc </th>
@@ -42,7 +48,6 @@
                                 @Html.ValidationMessageFor(model => model.no_tronc, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <p>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.id_tronc_parnt, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -62,7 +67,6 @@
                             </div>
                         </p>
                         <p>
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.diam_moy, htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-5">
@@ -80,7 +84,6 @@
                                 </div>
                             </div>
                         </p>
-
                         <p>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.long_moy, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -91,7 +94,6 @@
                             </div>
                         </p>
                     </td>
-
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.morphlg, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -100,7 +102,6 @@
                                 @Html.ValidationMessageFor(model => model.morphlg, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <p>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.racdmt, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -147,7 +148,6 @@
                             </div>
                         </p>
                     </td>
-
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.blesr, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -156,7 +156,6 @@
                                 @Html.ValidationMessageFor(model => model.blesr, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <p>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.contaminatn, htmlAttributes: new { @class = "control-label col-md-3" })

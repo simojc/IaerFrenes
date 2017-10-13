@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FreneValue.Models.eval_abr>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historique des évaluations</h2>
+
+<p>
+    @Html.ActionLink("Créer évaluation", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_arbre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_evalteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_eval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dhp_tot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clas_haut)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.nb_tronc)
+        </th>
+           
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_arbre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_evalteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_eval)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dhp_tot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clas_haut)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.nb_tronc)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Suprimer", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

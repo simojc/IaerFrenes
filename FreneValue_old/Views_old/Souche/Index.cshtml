@@ -1,0 +1,162 @@
+﻿@model IEnumerable<FreneValue.Models.souche>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_eval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dhs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.acces_nutrmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aeration_sol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surf_deplmt_racin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.racine_hs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.blesre_racine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cavite_hrs_sol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exig_essouchmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typ_essouchmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profdeur_essouchmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ray_rognage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.defaut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.infrstr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.specificite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.haut_souche)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exig_abat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.espace_subs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fosse_plant)
+        </th>
+       
+        @*<th>
+            @Html.DisplayNameFor(model => model.util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_eval)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dhs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.acces_nutrmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aeration_sol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surf_deplmt_racin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.racine_hs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blesre_racine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cavite_hrs_sol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exig_essouchmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typ_essouchmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.profdeur_essouchmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ray_rognage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.defaut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.infrstr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.specificite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.haut_souche)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exig_abat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.espace_subs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fosse_plant)
+        </td>
+       
+        @*<td>
+            @Html.DisplayFor(modelItem => item.util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_cretn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_modf)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

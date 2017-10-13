@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FreneValue.Models.VAL_DOM>
+﻿@model IEnumerable<FreneValue.Models.val_dom>
 
 @*<div class="ValeursDom">*@
 
@@ -6,19 +6,19 @@
     <table class="table table-bordered table-striped" id="RstRecherche">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.COD_DOM)
+                @Html.DisplayNameFor(model => model.code_dom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.COD_VAL)
+                @Html.DisplayNameFor(model => model.code_val)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VAL)
+                @Html.DisplayNameFor(model => model.val)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ACTIF)
+                @Html.DisplayNameFor(model => model.actif)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DESCRIP)
+                @Html.DisplayNameFor(model => model.descrip)
             </th>
          
             <th></th>
@@ -28,27 +28,27 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.COD_DOM)
+                    @Html.DisplayFor(modelItem => item.code_dom)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.COD_VAL)
+                    @Html.DisplayFor(modelItem => item.code_val)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VAL)
+                    @Html.DisplayFor(modelItem => item.val)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACTIF)
+                    @Html.DisplayFor(modelItem => item.actif)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DESCRIP)
+                    @Html.DisplayFor(modelItem => item.descrip)
                 </td>
                 <td>
                     <div class="pull-right">
 
-                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                        @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
                         &nbsp;
                         &nbsp;
-                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
                     </div>
                 </td>
 

@@ -1,0 +1,26 @@
+﻿/// <reference path="jquery-ui-1.12.1.js" />
+/// <reference path="jquery.validate-vsdoc.js" />
+
+$(document).ready(function () {
+
+    $(":input[data-autocomplete]").each(function () {
+        $(this).autocomplete({ source: $(this).attr("data-autocomplete") });
+    });
+
+    $(":input[data-datepicker]").datepicker();
+
+})
+
+$.validator.methods.range = function (value, element, param) {
+    var globalizedValue = value.replace(",", ".");
+    return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+}
+
+$.validator.methods.number = function (value, element) {
+    return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+}
+//Date dd/MM/yyyy
+//$.validator.methods.date = function (value, element) {
+//    var date = value.split("/");
+//    return this.optional(element) || !/Invalid|NaN/.test(new Date(date[2], date[1], date[0]).toString());
+//}

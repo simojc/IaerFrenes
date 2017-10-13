@@ -1,0 +1,173 @@
+﻿@model FreneValue.Models.arbre
+@{
+    ViewBag.Title = "Modification de l'arbre";
+}
+<center>
+    <h3>Modification de l'arbre</h3>
+</center>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">     
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        <table class="table ">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.num_arbre, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.num_arbre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.num_arbre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ess, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(model => model.ess, new SelectList(ViewBag.ESSENCE), new { @class = "form-control  " })
+                                    @Html.ValidationMessageFor(model => model.ess, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.typ_emplcmt, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.typ_emplcmt, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.typ_emplcmt, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.emplcmt, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.emplcmt, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.emplcmt, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.id_local, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(model => model.id_local, ViewBag.localisation.Items as List<SelectListItem>, new { @class = "form-control  " })
+                                    @Html.ValidationMessageFor(model => model.id_local, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.orientatn, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.orientatn, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.orientatn, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.id_profil, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(model => model.id_profil, ViewBag.profilUtil.Items as List<SelectListItem>, new { @class = "form-control  " })
+                                    @Html.ValidationMessageFor(model => model.id_profil, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dt_plant, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.dt_plant, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.dt_plant, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.type_lieu, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.type_lieu, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.type_lieu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.typ_abr, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.typ_abr, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.typ_abr, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dhp_tot, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.dhp_tot, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.dhp_tot, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nb_tronc, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.nb_tronc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nb_tronc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.longtd, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.longtd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.longtd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lattd, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.lattd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.lattd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Enregistrer" class="btn  btn-primary" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+<div>
+    @Html.ActionLink("Retourner à la liste", "Index")
+</div>

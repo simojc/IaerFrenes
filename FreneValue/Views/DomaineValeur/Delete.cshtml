@@ -1,4 +1,4 @@
-﻿@model FreneValue.Models.COD_DOM
+﻿@model FreneValue.Models.code_dom
 
 @{
     ViewBag.Title = "Delete";
@@ -9,47 +9,46 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>COD_DOM</h4>
+    <h4>code_dom</h4>
     <hr />
     <dl class="dl-horizontal">
-
         <dt>
-            @Html.DisplayNameFor(model => model.CODE)
+            @Html.DisplayNameFor(model => model.code)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CODE)
+            @Html.DisplayFor(model => model.code)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DESCRIP)
+            @Html.DisplayNameFor(model => model.descrip)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DESCRIP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UTIL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UTIL)
+            @Html.DisplayFor(model => model.descrip)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DT_CRETN)
+            @Html.DisplayNameFor(model => model.util)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DT_CRETN)
+            @Html.DisplayFor(model => model.util)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DT_MODF)
+            @Html.DisplayNameFor(model => model.dt_cretn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DT_MODF)
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
         </dd>
 
     </dl>

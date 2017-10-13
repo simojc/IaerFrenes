@@ -1,55 +1,203 @@
 ﻿
 @{
     ViewBag.Title = "Détail Évaluation";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="tab-pane fade in active" id="_Profil">
-    Id Arbre:@ViewBag.arbre.id   &nbsp;   &nbsp;  &nbsp; No Arbre:@ViewBag.arbre.num_arbre   &nbsp;   &nbsp;  &nbsp;  Essence: @ViewBag.arbre.ess
-</div>
-<!-- Tab Buttons -->
-<ul id="tabstrip" class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#_Profil" role="tab" data-toggle="tab">Profil</a></li>
-    <li><a href="#_tronc" role="tab" data-toggle="tab">Tronc</a></li>
-    <li><a href="#_souche" role="tab" data-toggle="tab">Souche</a></li>
-</ul>
-
-<div class="tab-content">
-
-    <div class="tab-pane fade " id="_Profil">
-        @{Html.RenderAction("Profil", new { id = ViewBag.id_eval });}
-    </div>
-
-    <div class="tab-pane fade " id="_tronc">
-        <div>
-            <!-- Nav tabs -->
-            <ul id="tabstrip" class="nav nav-tabs" role="tablist">
-                @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
-                {
-                    var j = i + 1;
-                    <li role="presentation"><a href="#tronc-@j " aria-controls="tronc-@j " role="tab" data-toggle="tab">tronc-@j </a></li>
-                }
-            </ul>
-            <div class="tab-content">
-                @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
-                {
-                    var j = i + 1;
-                    @*<div role="tabpanel" class="tab-pane active" id="tronc-@j">*@
-                    <div role="tabpanel" class="tab-pane @(i == 0 ? "active" : string.Empty)" id="tronc-@j">
-                        @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
-                    </div>
-                  }
-            </div>
+<br/>
+<div class="row">
+    <div class="form-horizontal">
+        <div class="col-lg-1" align="right" >
+            @Html.Label("Numarbre", "N° arbre:")
+        </div>
+        <div class="col-lg-2">
+            @Html.TextBox("Numarbre", (string)ViewBag.arbre.num_arbre, new { @class = "form-control" })
+        </div>
+        <div class="col-lg-1" align="right">
+            @Html.Label("ess", "Essence:")
+        </div>
+        <div class="col-lg-2">
+            @Html.TextBox("ess", (string)ViewBag.arbre.ess, new { @class = "form-control" })
+        </div>
+        <div class="col-lg-1">
+            @Html.Label("Propro", "Propriétaire:")
+        </div>
+        <div class="col-lg-2">
+            @Html.TextBox("Propro", (string)ViewBag.profilUtil, new { @class = "form-control" })
         </div>
     </div>
-    <div class="tab-pane fade" id="_souche">
-        @{Html.RenderAction("Souche", new { id = ViewBag.id_souche });}
+</div>
+
+@*<div class="form-horizontal">
+        Id Arbre:@ViewBag.arbre.id   &nbsp;   &nbsp;  &nbsp; No Arbre:@ViewBag.arbre.num_arbre   &nbsp;   &nbsp;  &nbsp;  Essence: @ViewBag.arbre.ess
+    </div>*@
+
+<!-- Tab Buttons -->
+<div id="tabs">
+    <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#_Profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li><a href="#_tronc" role="tab" data-toggle="tab">Tronc</a></li>
+        <li><a href="#_souche" role="tab" data-toggle="tab">Souche</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade " id="_Profil">
+            @{Html.RenderAction("Profil", new { id = ViewBag.id_eval });}
+        </div>
+        <div class="tab-pane fade " id="_tronc">
+            <div>
+                <!-- Nav tabs -->
+                <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+                    @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                    {
+                        var j = i + 1;
+                        <li role="presentation"><a href="#tronc-@j " aria-controls="tronc-@j " role="tab" data-toggle="tab">tronc-@j </a></li>
+                    }
+                </ul>
+                <div class="tab-content">
+                    @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                    {
+                        var j = i + 1;
+                        @*<div role="tabpanel" class="tab-pane active" id="tronc-@j">*@
+                        <div role="tabpanel" class="tab-pane @(i == 0 ? "active" : string.Empty)" id="tronc-@j">
+                            @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
+                        </div>
+                                }
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="_souche">
+            @{Html.RenderAction("Souche", new { id = ViewBag.id_souche });}
+        </div>
     </div>
 </div>
 
-@*<script type="text/javascript">
+<script type="text/javascript">
 
     $(function () {
         $("#tabs").tabs();
     });
 
-</script>*@
+</script>
+
+     @*un exemple de tabs JQuery déjà ajaxifié*@
+    @*<!DOCTYPE html>
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <title>Testing jQuery Tabs with Dynamic Contents</title>
+            <link href="Content/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+            <script src="Scripts/jquery-2.0.3.js"></script>
+            <script src="Scripts/jquery-ui-1.10.3.custom.js"></script>
+            <style>
+                body {
+                    font: 62.5% "Trebuchet MS", sans-serif;
+                    margin: 50px;
+                }
+
+                .demoHeaders {
+                    margin-top: 2em;
+                }
+
+                #dialog-link {
+                    padding: .4em 1em .4em 20px;
+                    text-decoration: none;
+                    position: relative;
+                }
+
+                    #dialog-link span.ui-icon {
+                        margin: 0 5px 0 0;
+                        position: absolute;
+                        left: .2em;
+                        top: 50%;
+                        margin-top: -8px;
+                    }
+
+                #icons {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                    #icons li {
+                        margin: 2px;
+                        position: relative;
+                        padding: 4px 0;
+                        cursor: pointer;
+                        float: left;
+                        list-style: none;
+                    }
+
+                    #icons span.ui-icon {
+                        float: left;
+                        margin: 0 4px;
+                    }
+
+                .fakewindowcontain .ui-widget-overlay {
+                    position: absolute;
+                }
+            </style>
+            <script>
+                $(function () {
+                    $("#tabs").tabs();
+                });
+            </script>
+        </head>
+        <body>
+            <h2 class="demoHeaders">Adding Dynamic Contents in jQuery Tabs</h2>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Home</a></li>
+                    <li><a href="#tabs-2">Contact</a></li>
+                    <li><a href="/Customer">Customers</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <h1>This is Home Tab</h1>
+                </div>
+                <div id="tabs-2">
+                    <h1>This is Contact Tab</h1>
+                </div>
+            </div>
+        </body>
+        </html>*@
+
+    @*Note 1 - Dans <a href="/Customer">, Customer est un controller et cette référence appele son controller.
+        Note 2: Bien remarquer <div id="tabs">, id="tabs" fait peut-être le lien avec JQuery UI*@
+
+
+    @*
+            //  Old code
+
+            <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#_Profil" role="tab" data-toggle="tab">Profil</a></li>
+                <li><a href="#_tronc" role="tab" data-toggle="tab">Tronc</a></li>
+                <li><a href="#_souche" role="tab" data-toggle="tab">Souche</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade " id="_Profil">
+                    @{Html.RenderAction("Profil", new { id = ViewBag.id_eval });}
+                </div>
+                <div class="tab-pane fade " id="_tronc">
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+                            @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                            {
+                                var j = i + 1;
+                                <li role="presentation"><a href="#tronc-@j " aria-controls="tronc-@j " role="tab" data-toggle="tab">tronc-@j </a></li>
+                            }
+                        </ul>
+                        <div class="tab-content">
+                            @for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
+                            {
+                                var j = i + 1;
+
+                            <div role="tabpanel" class="tab-pane @(i == 0 ? "active" : string.Empty)" id="tronc-@j">
+                                @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
+                            </div>
+                                    }
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="_souche">
+                @{Html.RenderAction("Souche", new { id = ViewBag.id_souche });}
+            </div>
+        </div>
+
+    *@

@@ -336,7 +336,7 @@ namespace PostgreSQL.AspNet.Identity.EntityFramework {
 
             // Needed to ensure subclasses share the same table
 
-            //modelBuilder.Entity<COD_DOM>()
+            //modelBuilder.Entity<code_dom>()
             //         .ToTable("code_dom");   aspnetusers          
 
             var user = modelBuilder.Entity<TUser>()

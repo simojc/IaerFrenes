@@ -22,22 +22,22 @@ namespace FreneValue.Controllers
     
         public ActionResult Index(string code, int page = 1, int pageSize = 10 )
         {
-            List<COD_DOM> domains = null;
+            List<code_dom> domains = null;
             if (code != null)
             {
                         domains = _db.domaines
-                                           .Where(r => r.CODE.Contains(code))
-                                           .OrderBy(r => r.CODE)
+                                           .Where(r => r.code.Contains(code))
+                                           .OrderBy(r => r.code)
                                            .ToList();
 
             }
             else
             {
                 domains = _db.domaines
-                                          .OrderBy(r => r.CODE)
+                                          .OrderBy(r => r.code)
                                           .ToList();
             }
-            PagedList<COD_DOM> model = new PagedList<COD_DOM>(domains, page, pageSize);
+            PagedList<code_dom> model = new PagedList<code_dom>(domains, page, pageSize);
 
             return View(model);
             }
@@ -45,10 +45,10 @@ namespace FreneValue.Controllers
         //public ActionResult RechercherRapid(string term)
         //{
         //    var valeurs = _db.domaines
-        //              .OrderByDescending(r => r.CODE)
-        //              .Where(r => r.CODE.Contains(term))
+        //              .OrderByDescending(r => r.code)
+        //              .Where(r => r.code.Contains(term))
         //              .Take(10)
-        //              .Select(r => new { label = r.CODE })
+        //              .Select(r => new { label = r.code })
         //              .Distinct();
 
         //    return Json(valeurs, JsonRequestBehavior.AllowGet);
@@ -59,8 +59,8 @@ namespace FreneValue.Controllers
         //    if (q != null)
         //    {
         //        var dom = _db.domaines
-        //                  .OrderByDescending(r => r.CODE)
-        //                  .Where(r => r.CODE.Contains(q))
+        //                  .OrderByDescending(r => r.code)
+        //                  .Where(r => r.code.Contains(q))
         //                  .Take(10);
 
         //        return PartialView("_Valeurs", dom);
@@ -68,7 +68,7 @@ namespace FreneValue.Controllers
         //    else
         //    {
         //        var dom = _db.domaines
-        //             .OrderByDescending(r => r.CODE)
+        //             .OrderByDescending(r => r.code)
         //             .Take(10);
 
         //        return PartialView("_Valeurs", dom);
@@ -85,7 +85,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            COD_DOM domaine = _db.domaines.Find(id); // _db.domaines.Find(id);
+            code_dom domaine = _db.domaines.Find(id); // _db.domaines.Find(id);
             if (domaine == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace FreneValue.Controllers
         // GET: Domval/Create
         public ActionResult Create()
         {
-            return PartialView("_Create", new COD_DOM());
+            return PartialView("_Create", new code_dom());
             //return View();
         }
 
@@ -105,11 +105,11 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "code,descrip,util,actif,dt_cretn,dt_modf")] COD_DOM domaine)
+        public ActionResult Create([Bind(Include = "code,descrip,util,actif,dt_cretn,dt_modf")] code_dom domaine)
         {
             if (ModelState.IsValid)
             {
-                domaine.UTIL = User.Identity.GetUserName();
+                domaine.util = User.Identity.GetUserName();
                 _db.domaines.Add(domaine);
                 _db.SaveChanges();
                 return Json(new { success = true });
@@ -127,7 +127,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            COD_DOM domaine = _db.domaines.Find(id);
+            code_dom domaine = _db.domaines.Find(id);
             if (domaine == null)
             {
                 return HttpNotFound();
@@ -140,11 +140,11 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "code,DESCRIP,util,ACTIF,dt_cretn,dt_modf")] COD_DOM domaine)
+        public ActionResult Edit([Bind(Include = "code,descrip,util,actif,dt_cretn,dt_modf")] code_dom domaine)
         {
             if (ModelState.IsValid)
             {
-                domaine.UTIL = User.Identity.GetUserName();
+                domaine.util = User.Identity.GetUserName();
                 _db.Entry(domaine).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -159,7 +159,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            COD_DOM domaine = _db.domaines.Find(id);
+            code_dom domaine = _db.domaines.Find(id);
             if (domaine == null)
             {
                 return HttpNotFound();
@@ -172,7 +172,7 @@ namespace FreneValue.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            COD_DOM domaine = _db.domaines.Find(id);
+            code_dom domaine = _db.domaines.Find(id);
             _db.domaines.Remove(domaine);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -207,7 +207,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM valeur = _db.valeurs.Find(id); // _db.domaines.Find(id);
+            val_dom valeur = _db.valeurs.Find(id); // _db.domaines.Find(id);
             if (valeur == null)
             {
                 return HttpNotFound();
@@ -218,7 +218,7 @@ namespace FreneValue.Controllers
         // GET: Domval/Create
         public ActionResult CreateVal()
         {
-            return View(new VAL_DOM());
+            return View(new val_dom());
             //return View();
         }
 
@@ -227,7 +227,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateVal([Bind(Include = "id,code_dom,code_val,val,DESCRIP,actif,util,dt_cretn,dt_modf")] VAL_DOM valeur)
+        public ActionResult CreateVal([Bind(Include = "id,code_dom,code_val,val,descrip,actif,util,dt_cretn,dt_modf")] val_dom valeur)
         {
             if (ModelState.IsValid)
             {
@@ -247,7 +247,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM valeur = _db.valeurs.Find(id);
+            val_dom valeur = _db.valeurs.Find(id);
             if (valeur == null)
             {
                 return HttpNotFound();
@@ -260,7 +260,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditVal([Bind(Include = "id,code_dom,code_val,val,DESCRIP,actif,util,dt_cretn,dt_modf")] VAL_DOM valeur)
+        public ActionResult EditVal([Bind(Include = "id,code_dom,code_val,val,descrip,actif,util,dt_cretn,dt_modf")] val_dom valeur)
         {
             if (ModelState.IsValid)
             {
@@ -278,7 +278,7 @@ namespace FreneValue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VAL_DOM valeur = _db.valeurs.Find(id);
+            val_dom valeur = _db.valeurs.Find(id);
             if (valeur == null)
             {
                 return HttpNotFound();
@@ -291,15 +291,15 @@ namespace FreneValue.Controllers
             if (codedom != null)
             {
                 var ValeursDom = _db.valeurs
-                           .OrderByDescending(r => r.COD_VAL)
-                           .Where(r => r.COD_DOM.Contains(codedom));
+                           .OrderByDescending(r => r.code_val)
+                           .Where(r => r.code_dom.Contains(codedom));
 
                 return PartialView("_Valeurs", ValeursDom);
             }
             else
             {
                 var ValeursDom = _db.valeurs
-                       .OrderByDescending(r => r.COD_VAL);
+                       .OrderByDescending(r => r.code_val);
 
                 return PartialView("_Valeurs", ValeursDom);
             }

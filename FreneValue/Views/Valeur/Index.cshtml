@@ -1,4 +1,4 @@
-﻿@model PagedList<FreneValue.Models.VAL_DOM>
+﻿@model PagedList<FreneValue.Models.val_dom>
 
 @{
     ViewBag.Title = "Index";
@@ -57,36 +57,32 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.COD_DOM)
+                @Html.DisplayFor(modelItem => item.code_dom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.COD_VAL)
+                @Html.DisplayFor(modelItem => item.code_val)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VAL)
+                @Html.DisplayFor(modelItem => item.val)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DESCRIP)
+                @Html.DisplayFor(modelItem => item.descrip)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACTIF)
+                @Html.DisplayFor(modelItem => item.actif)
             </td>
 
             <td>
                 <div class="pull-right">
 
-                    @Html.ActionLink(" ", "Edit",  new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                    @Html.ActionLink(" ", "Edit",  new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
                     &nbsp;
                     &nbsp;
-                    @Html.ActionLink(" ", "Delete",  new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                    @Html.ActionLink(" ", "Delete",  new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
                 </div>
             </td>
 
-            @*<td>
-                @Html.ActionLink("Modifier", "Edit", new { id=item.ID }) |
-                @@Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Supprimer", "Delete", new { id=item.ID })
-            </td>*@
+           
         </tr>
         }
 

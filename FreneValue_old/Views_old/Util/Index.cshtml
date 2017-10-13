@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MvcTestApp2017.Models.utilModel>
+
+@{
+    ViewBag.Title = "utilisateus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Les utilisateus</h2>
+
+<p>
+    @Html.ActionLink("Créer nouvel utilisateur", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UTI_NOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UTI_PRENM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stringFKUTIDIR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UTI_SUBST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FKUTIAMR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UMI_DT_DERN_MAJ_ENGRS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UTI_NOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UTI_PRENM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stringFKUTIDIR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UTI_SUBST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FKUTIAMR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UMI_DT_DERN_MAJ_ENGRS)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { PKUTI = item.PKUTI }) |
+            @Html.ActionLink("Details", "Details", new { PKUTI = item.PKUTI }) |
+            @Html.ActionLink("Delete", "Delete", new { PKUTI = item.PKUTI })
+        </td>
+    </tr>
+}
+
+</table>

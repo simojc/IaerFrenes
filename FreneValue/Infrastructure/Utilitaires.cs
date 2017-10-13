@@ -28,9 +28,9 @@ namespace FreneValue.Infrastructure
             if  (HttpContext.Current.Cache[cacheKey] == null)
             {
                 valeurList = db.valeurs
-                           .Where(r => r.COD_DOM == w_coddom)
-                           .OrderBy(r => r.VAL)
-                           .Select(r => r.VAL).Distinct().ToList();
+                           .Where(r => r.code_dom == w_coddom)
+                           .OrderBy(r => r.val)
+                           .Select(r => r.val).Distinct().ToList();
                 HttpContext.Current.Cache.Insert(cacheKey,
                                                        valeurList,
                                                        null,

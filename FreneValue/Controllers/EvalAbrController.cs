@@ -39,6 +39,7 @@ namespace FreneValue.Controllers
         }
 
         // GET: EvalAbr
+        [OutputCache(Duration = 60, VaryByParam = "id_arbre")]
         public ActionResult Index(int? id_arbre)
         {
            // return View(await db.evaluations.ToListAsync());
@@ -189,6 +190,7 @@ namespace FreneValue.Controllers
             return View(eval_abr);
         }
 
+        [OutputCache(Duration = 60, VaryByParam = "id")]
         public ActionResult Eval(int? id)
         {
             // return View(await db.evaluations.ToListAsync());
@@ -197,7 +199,11 @@ namespace FreneValue.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             eval_abr eval_abr = db.evaluations.Find(id);
-            arbre abr = db.arbres.Find(eval_abr.id_arbre);         
+            arbre abr = db.arbres.Find(eval_abr.id_arbre);
+            var profilUtil = db.prof_utils.Find(abr.id_profil);
+            ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
+                //.Where(s => s.id == abr.id_profil)
+                //.Select(s => s.nom + " " + s.pren);            
             if (eval_abr == null)
             {
                 return HttpNotFound();
@@ -207,18 +213,24 @@ namespace FreneValue.Controllers
             ViewBag.id_eval = eval_abr.id;
             ViewBag.id_souche = db.souches
                           .Where(r => r.id_eval == id)
-                          .Select(r => r.id);
-                         // .First();
+                          .Select(r => r.id)
+                          .FirstOrDefault();
             ViewBag.List_id_tronc = db.troncs
                           .Where(r => r.id_eval == id).ToList();
             ViewBag.nb_tronc = db.troncs
                        .Where(r => r.id_eval == id).Count();
+
             return View();
         }
        
         // GET: troncs/Tronc/5
         public ActionResult Tronc(int? id)
          {
+            int nb_cime = db.cimes
+                      .Where(r => r.id_tronc == id)
+                      .Select(r => r.id).Count();
+            bool CimeExiste = (nb_cime > 0);
+            ViewBag.CimeExiste = CimeExiste;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

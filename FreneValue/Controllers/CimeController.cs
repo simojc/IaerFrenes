@@ -69,17 +69,32 @@ namespace FreneValue.Controllers
         }
 
         // GET: Cime/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public  ActionResult Edit( int? id_tronc)
         {
-            if (id == null)
+            cime cime = new cime();
+            if (id_tronc == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cime cime = await db.cimes.FindAsync(id);
-            if (cime == null)
+            else
             {
-                return HttpNotFound();
+                cime = db.cimes.Where(r => r.id_tronc == id_tronc).LastOrDefault();
+                if (cime == null)
+                {
+                    return HttpNotFound();
+                }
+
             }
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //cime cime = await db.cimes.FindAsync(id);
+            //if (cime == null)
+            //{
+            //    return HttpNotFound();
+            //}
             return View(cime);
         }
 

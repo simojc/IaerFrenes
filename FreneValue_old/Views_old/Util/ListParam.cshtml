@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MvcTestApp2017.Models.ParamModel>
+
+@{
+    ViewBag.Title = "ListParam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListParam</h2>
+
+
+@using (Html.BeginForm("ListParam", "Util", FormMethod.Get))
+{
+    @Html.DropDownList("sdmaj", new SelectList(ViewBag.sdmajs))
+    <input type="submit" value="Filter" />
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_DERN_MODIF_REC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOURC_DERN_MODIF_REC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESC_PARAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VALEUR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_APPL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_DERN_MODIF_REC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOURC_DERN_MODIF_REC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESC_PARAM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VALEUR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_APPL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CD_PARAM }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CD_PARAM }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CD_PARAM })
+        </td>
+    </tr>
+}
+
+</table>

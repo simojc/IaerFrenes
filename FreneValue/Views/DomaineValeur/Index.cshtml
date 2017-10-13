@@ -1,5 +1,5 @@
 ﻿@using FreneValue.Helpers
-@model PagedList<FreneValue.Models.COD_DOM>
+@model PagedList<FreneValue.Models.code_dom>
 
 @{
     ViewBag.Title = "Domaines de valeurs";
@@ -62,22 +62,22 @@
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CODE)
+                        @Html.DisplayFor(modelItem => item.code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIP)
+                        @Html.DisplayFor(modelItem => item.descrip)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ACTIF)
+                        @Html.DisplayFor(modelItem => item.actif)
                     </td>
                     <td>
-                        @Html.ActionLink("Modifier", "Edit", new { id = item.CODE }) |
-                        @*@Html.ActionLink("Details", "Details", new { id = item.CODE }) |*@
-                        @Html.ActionLink("Supprimer", "Delete", new { id = item.CODE }) |
-                        @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.CODE }, htmlAttributes: new { })
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.code }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.code }) |*@
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.code }) |
+                        @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.code }, htmlAttributes: new { })
 
 
-                        @*@Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.CODE }, new AjaxOptions
+                        @*@Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.code }, new AjaxOptions
                             {
                                 UpdateTargetId = "ValDiv",
                                 InsertionMode = InsertionMode.Replace,

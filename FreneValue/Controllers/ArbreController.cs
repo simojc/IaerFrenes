@@ -24,8 +24,8 @@ namespace FreneValue.Controllers
         {
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
             ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("ORIENTATION");
-            //ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
-            ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
+            ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
+            //ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
                   {
@@ -214,7 +214,7 @@ namespace FreneValue.Controllers
         //public ActionResult _tronc(int?id_abr)
         //{      
         //    //  var model = await _db.valeurs.ToListAsync();
-        //    //ViewBag.codedom = _db.domaines.Select(r => r.CODE).Distinct();
+        //    //ViewBag.codedom = _db.domaines.Select(r => r.code).Distinct();
 
         //    var model = _db.troncs
         //               .OrderByDescending(r => r.no_tronc)

@@ -26,7 +26,7 @@ namespace EntityFramework.CodeFirst
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<FreneValue.Models.COD_DOM> COD_DOM { get; set; }
+        //public System.Data.Entity.DbSet<FreneValue.Models.code_dom> code_dom { get; set; }
 
         // public DbSet<MyClass> Educations { get; set; } //Example for creating db table 
     }
