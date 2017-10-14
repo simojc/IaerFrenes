@@ -16,6 +16,8 @@ namespace FreneValue.Controllers
     {
         private arbredb db = new arbredb();
 
+        private ApplicationDbContext context = new ApplicationDbContext();
+
         void ChargerToutesLesDDL()
         {              
             var w_localisation = db.localisations
@@ -34,7 +36,16 @@ namespace FreneValue.Controllers
                   Text = s.nom + " - " + s.sigle + " - "
               }).ToList();
 
-            ViewBag.org = new SelectList(w_org, "Value", "Text");
+            ViewBag.org = new SelectList(w_org, "Value", "Text");   
+              
+            var w_uti = context.Users
+             .Select(s => new SelectListItem
+             {
+                 Value = s.Id .ToString(),
+                 Text = s.UserName + " - " + s.Address + " - "
+             }).ToList();
+
+            ViewBag.w_uti = new SelectList(w_uti, "Value", "Text");
         }
 
 

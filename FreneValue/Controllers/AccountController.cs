@@ -18,7 +18,7 @@ namespace FreneValue.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-       // private arbredb _db = new arbredb();
+     
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

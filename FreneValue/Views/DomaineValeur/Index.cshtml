@@ -70,20 +70,27 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.actif)
                     </td>
+
                     <td>
-                        @Html.ActionLink("Modifier", "Edit", new { id = item.code }) |
-                        @*@Html.ActionLink("Details", "Details", new { id = item.code }) |*@
+                        <div class="pull-right">
+                            @Html.ActionLink(" ", "Edit", new { id = item.code }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            @Html.ActionLink(" ", "Delete", new { id = item.code }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            @Html.NoEncodeActionLink("Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.code }, htmlAttributes: new { })
+                        </div>
+                    </td>
+                    @*<td>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.code }) |                        
                         @Html.ActionLink("Supprimer", "Delete", new { id = item.code }) |
                         @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.code }, htmlAttributes: new { })
-
-
-                        @*@Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.code }, new AjaxOptions
-                            {
-                                UpdateTargetId = "ValDiv",
-                                InsertionMode = InsertionMode.Replace,
-                                HttpMethod = "GET"
-                            })*@
-                    </td>
+                   </td>*@
                 </tr>
 
             }

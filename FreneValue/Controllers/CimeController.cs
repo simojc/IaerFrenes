@@ -78,14 +78,14 @@ namespace FreneValue.Controllers
             }
             else
             {
-                cime = db.cimes.Where(r => r.id_tronc == id_tronc).LastOrDefault();
+                 cime = db.cimes.Where(r => r.id_tronc == id_tronc).First() ;
+                //cime = db.cimes.Find(cimes. .id);
                 if (cime == null)
                 {
                     return HttpNotFound();
                 }
-
             }
-
+            
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

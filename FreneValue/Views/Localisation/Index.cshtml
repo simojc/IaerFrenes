@@ -48,15 +48,15 @@
         <th>
             @Html.DisplayNameFor(model => model.pays)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.suprfc)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.lattd)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.longtd)
-        </th>
+        </th>*@
         @*<th>
             @Html.DisplayNameFor(model => model.util)
         </th>
@@ -107,15 +107,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.pays)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.suprfc)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.lattd)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.longtd)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.util)
         </td>
@@ -125,10 +125,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.dt_modf)
         </td>*@
-        <td>
+        @*<td>
             @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
             @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
+        </td>*@
+        <td>
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                &nbsp;
+                @*&nbsp;*@
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+            </div>
         </td>
     </tr>
 }

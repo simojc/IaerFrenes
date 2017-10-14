@@ -146,6 +146,13 @@ namespace FreneValue.Controllers
 
              ChargerToutesLesDDL();
 
+
+            int nb_souche = db.souches
+                      .Where(r => r.id_eval == id)
+                      .Select(r => r.id).Count();
+            bool SoucheExiste = (nb_souche > 0);
+            ViewBag.SoucheNotExiste = !SoucheExiste;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
