@@ -47,7 +47,7 @@ namespace FreneValue.Controllers
             tronc model = new tronc();
             model.id_eval = id_eval;
             return View(model);
-           // return View();
+            // return View();
         }
 
         // POST: troncs/Create

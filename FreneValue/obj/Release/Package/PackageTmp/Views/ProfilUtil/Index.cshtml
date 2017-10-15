@@ -8,13 +8,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Créer nouveau profil", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.id_util)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.typ_util)
         </th>
@@ -45,7 +45,7 @@
         <th>
             @Html.DisplayNameFor(model => model.id_local)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.util)
         </th>
         <th>
@@ -53,15 +53,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.dt_modf)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.id_util)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.typ_util)
         </td>
@@ -92,7 +92,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.id_local)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.util)
         </td>
         <td>
@@ -100,12 +100,19 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dt_modf)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+            </div>
         </td>
+        @*<td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |            
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
+        </td>*@
     </tr>
 }
 

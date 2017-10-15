@@ -152,9 +152,12 @@
             @Html.DisplayFor(modelItem => item.dt_modf)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+            </div>
         </td>
     </tr>
 }

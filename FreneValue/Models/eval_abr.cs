@@ -46,9 +46,9 @@ namespace FreneValue.Models
         public int nb_tronc { get; set; }
         [Display(Name = "Présence BM?")]
         public bool branch_maitr { get; set; }
-        [Display(Name = "Actions?")]
+        [Display(Name = "Actions")]
         public string action { get; set; }
-        [Display(Name = "Conclusion?")]
+        [Display(Name = "Conclusion")]
         public string concl { get; set; }
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }

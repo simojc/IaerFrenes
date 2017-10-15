@@ -1,5 +1,5 @@
 ﻿@using FreneValue.Helpers
-@model PagedList<FreneValue.Models.COD_DOM>
+@model PagedList<FreneValue.Models.code_dom>
 
 @{
     ViewBag.Title = "Domaines de valeurs";
@@ -10,14 +10,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<!-- modal placeholder-->
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
-    </div>
-</div>
+
 
 <div class="container">
 
@@ -25,7 +18,7 @@
 
     <div align="right">
         @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
-        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-link " })
+        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
     </div>
 
     @using (Html.BeginForm("index", "DomaineValeur", FormMethod.Get))
@@ -62,28 +55,35 @@
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CODE)
+                        @Html.DisplayFor(modelItem => item.code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIP)
+                        @Html.DisplayFor(modelItem => item.descrip)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ACTIF)
+                        @Html.DisplayFor(modelItem => item.actif)
                     </td>
-                    <td>
-                        @Html.ActionLink("Modifier", "Edit", new { id = item.CODE }) |
-                        @*@Html.ActionLink("Details", "Details", new { id = item.CODE }) |*@
-                        @Html.ActionLink("Supprimer", "Delete", new { id = item.CODE }) |
-                        @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.CODE }, htmlAttributes: new { })
 
-
-                        @*@Ajax.ActionLink("Afficher Valeurs", "ValeursDomaine", new { codedom = item.CODE }, new AjaxOptions
-                            {
-                                UpdateTargetId = "ValDiv",
-                                InsertionMode = InsertionMode.Replace,
-                                HttpMethod = "GET"
-                            })*@
+                    <td>
+                        <div class="pull-right">
+                            @Html.ActionLink(" ", "Edit", new { id = item.code }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            @Html.ActionLink(" ", "Delete", new { id = item.code }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            @Html.NoEncodeActionLink("Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.code }, htmlAttributes: new { })
+                        </div>
                     </td>
+                    @*<td>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.code }) |                        
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.code }) |
+                        @Html.NoEncodeActionLink("Voir Valeurs", "Valeurs", "Index", "Valeur", routeValues: new { codedom = item.code }, htmlAttributes: new { })
+                   </td>*@
                 </tr>
 
             }
@@ -110,6 +110,14 @@
         </div>*@
 </div>
 
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

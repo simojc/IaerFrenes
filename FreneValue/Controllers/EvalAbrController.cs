@@ -82,9 +82,17 @@ namespace FreneValue.Controllers
         }
 
         // GET: EvalAbr/Create
-        public ActionResult Create()
-        {
-            return View();
+        public ActionResult Create(int id_arbre)
+        {            
+            ViewBag.adresse = db.localisations.Where(x => x.num_civc != null);
+
+            ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
+
+             ChargerToutesLesDDL();
+
+            eval_abr model = new eval_abr();
+            model.id_arbre = id_arbre;
+            return View(model);
         }
 
         // POST: EvalAbr/Create
@@ -145,7 +153,6 @@ namespace FreneValue.Controllers
             ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
 
              ChargerToutesLesDDL();
-
 
             int nb_souche = db.souches
                       .Where(r => r.id_eval == id)
@@ -228,10 +235,10 @@ namespace FreneValue.Controllers
 
             return View();
         }
-       
+
         // GET: troncs/Tronc/5
         public ActionResult Tronc(int? id)
-         {
+        {
             int nb_cime = db.cimes
                       .Where(r => r.id_tronc == id)
                       .Select(r => r.id).Count();

@@ -22,11 +22,11 @@ namespace FreneValue.Models
         [Display(Name = "Surf. déploy racine")]
         public string surf_deplmt_racin { get; set; }
         [Display(Name = "Racine Hors sol")]
-        public string racine_hs { get; set; }
+        public bool racine_hs { get; set; }
         [Display(Name = "Blessure racine")]
         public string blesre_racine { get; set; }
         [Display(Name = "Cavité hors sol")]
-        public string cavite_hrs_sol { get; set; }
+        public bool cavite_hrs_sol { get; set; }
         [Display(Name = "Exigce Essouchmt")]
         public string exig_essouchmt { get; set; }
         [Display(Name = "Type Essouchmt")]
@@ -49,9 +49,9 @@ namespace FreneValue.Models
         [Display(Name = "Exigence abattage")]
         public string exig_abat { get; set; }
         [Display(Name = "Espace de subtitution")]
-        public string espace_subs { get; set; }
+        public bool espace_subs { get; set; }
         [Display(Name = "Fosse implantation")]
-        public string fosse_plant { get; set; }
+        public bool fosse_plant { get; set; }
         [Display(Name = "Commentaire")]
 
         public string util { get; set; }

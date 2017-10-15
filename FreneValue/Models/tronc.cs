@@ -38,16 +38,16 @@ namespace FreneValue.Models
         [Display(Name = "Symptôme visuel ")]
         public string sympt_visuel { get; set; }
         [Display(Name = "A une cime? ")]
-        public string possede_cime { get; set; }
-        [Display(Name = "Est BM? ")]
-        public string est_branch_maitr { get; set; }
+        public bool possede_cime { get; set; }
+        [Display(Name = "Est BM? ")]       
+        public bool est_branch_maitr { get; set; }
         [Display(Name = "Long. Moyen")]
         public string long_moy { get; set; }
         [Display(Name = "Catégorie BM")]
         public string catgr_branch_maitr { get; set; }
-        [Display(Name = "Nombre de BM? ")]
+        [Display(Name = "Nombre de BM ")]
         public int nb_branch_maitr { get; set; }
-        [Display(Name = "Commentaire? ")]
+        [Display(Name = "Commentaire ")]
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }

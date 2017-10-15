@@ -10,14 +10,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<!-- modal placeholder-->
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
-    </div>
-</div>
+
 
 <div class="container">
 
@@ -25,7 +18,7 @@
 
     <div align="right">
         @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
-        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-link " })
+        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
     </div>
 
     @using (Html.BeginForm("index", "DomaineValeur", FormMethod.Get))
@@ -117,6 +110,14 @@
         </div>*@
 </div>
 
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

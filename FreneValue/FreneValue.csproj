@@ -305,6 +305,7 @@
     <Content Include="Scripts\Specifs\modalform.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\EvalAbr\Edit.cshtml" />
+    <Content Include="Views\Tronc\Create.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -392,7 +393,6 @@
     <Content Include="Views\EvalAbr\_Index.cshtml" />
     <Content Include="Views\Shared\_Evaluation.cshtml" />
     <Content Include="Views\Arbre\Index.cshtml" />
-    <Content Include="Views\Tronc\Create.cshtml" />
     <Content Include="Views\Tronc\Delete.cshtml" />
     <Content Include="Views\Tronc\Details.cshtml" />
     <Content Include="Views\Tronc\Edit.cshtml" />

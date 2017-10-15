@@ -8,9 +8,9 @@
 
 <h4>Historique des évaluations</h4>
 
-<p>
-    @Html.ActionLink("Créer évaluation", "Create", "EvalAbr")
-</p>
+<div align="right">   
+    @Html.NoEncodeActionLink("Créer évaluation", "Add", "Create", "EvalAbr", routeValues: new { id_arbre = ViewBag.id_arbre }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+</div>
 <table class="table">
     <tr>
         <th>
@@ -72,19 +72,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.branch_maitr)
             </td>
-            @*<td>
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id })
-                </td>*@
 
-            @*<a href="@Url.Action("Action", "Controller")" class="btn btn-warning">
-                    link text
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>*@
             <td>
                 <div class="pull-right">
-
                     @Html.ActionLink(" ", "Eval", "EvalAbr", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
                     &nbsp;
                     &nbsp;
@@ -105,6 +95,4 @@
             </td>*@
         </tr>
     }
-
 </table>
-

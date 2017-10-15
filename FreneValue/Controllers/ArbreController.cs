@@ -111,7 +111,7 @@ namespace FreneValue.Controllers
                 db.arbres.Add(arbre);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
-            }
+           }
             ChargerToutesLesDDL();
             return View(arbre);
         }
@@ -187,6 +187,8 @@ namespace FreneValue.Controllers
         public ActionResult Evaluation(int? id_arbre)
         {
             // return View(await db.evaluations.ToListAsync());
+
+            ViewBag.id_arbre = id_arbre;
 
             if (id_arbre != null)
             {

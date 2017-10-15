@@ -9,7 +9,7 @@ namespace FreneValue.Models
     public class arbre
     {
         [Key]
-        public int id { get; set; }
+        public int? id { get; set; }
         [Display(Name = "N° arbre")]
         public string num_arbre { get; set; }
         [Display(Name = "Propriétaire ")]
@@ -26,10 +26,10 @@ namespace FreneValue.Models
         public string ess { get; set; }
         [Display(Name = "Latitude")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
-        public decimal lattd { get; set; }
+        public decimal? lattd { get; set; }
         [Display(Name = "Longitude")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
-        public decimal longtd { get; set; }
+        public decimal? longtd { get; set; }
         [Display(Name = "Planté le")]
         //[DataType(DataType.Date)]
         public Nullable<System.DateTime> dt_plant { get; set; }
