@@ -63,7 +63,6 @@ namespace FreneValue.Models
             modelBuilder.Entity<ErrorLog>()
       .ToTable("errorlog");
 
-
         }
 
     }

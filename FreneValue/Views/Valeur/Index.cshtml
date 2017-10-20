@@ -1,4 +1,5 @@
-﻿@model PagedList<FreneValue.Models.val_dom>
+﻿@using FreneValue.Helpers
+@model PagedList<FreneValue.Models.val_dom>
 
 @{
     ViewBag.Title = "Index";
@@ -12,15 +13,13 @@
 <div class="container">
 
     <h4>Gestion des codes valeurs</h4>
-    <div align="right"> @Html.ActionLink("Ajouter une valeur", "Create") </div>
-    @*@using (Html.BeginForm("Index", "Valeur", FormMethod.Get))
-        {
-            @Html.DropDownList("codedom", new SelectList(ViewBag.codedom))
-            <input type="submit" value="Filtrer ici" />
-        }
-
-        <hr/>
-        <br />*@
+    @*<div align="right">
+        @Html.ActionLink("Ajouter une valeur", "Create","Valeur", htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+     </div>
+    <div class="col-lg-1 pull-right">
+        <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Valeur")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+    </div>*@
+  
     @using (Ajax.BeginForm("Rechercher", "Valeur", new AjaxOptions
     {
         HttpMethod = "GET",
@@ -30,8 +29,23 @@
     }))
     {
         <input type="text" name="q" data-autocomplete="@Url.Action("RechercherRapid", "Valeur")" />
-        <input type="submit" value="Rechercher" />
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </button>
+        <div class="col-lg-1 pull-right">
+            <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Valeur")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+        </div>
+        @*<input type="submit" value="Rechercher" />*@
     }
+
+    @*<div class="col-lg-1 pull-left">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </button>
+    </div>*@
+
+
+
     <table class="table table-bordered table-striped" id="RstRecherche">
         <tr>
             <th>

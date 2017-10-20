@@ -21,6 +21,14 @@ namespace FreneValue.Controllers
         {
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
             ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");
+            ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");
+            ViewBag.INTERFERENCES = Utilitaires.LireCodeValeurCache("INTERFERENCES");
+            ViewBag.ACCES_MANUTENTION = Utilitaires.LireCodeValeurCache("ACCES_MANUTENTION");
+            ViewBag.ACCES_MACHINERIE = Utilitaires.LireCodeValeurCache("ACCES_MACHINERIE");
+            ViewBag.ACCES_CAMION = Utilitaires.LireCodeValeurCache("ACCES_CAMION");
+            ViewBag.CONSTRUCTION = Utilitaires.LireCodeValeurCache("CONSTRUCTION");
+            ViewBag.INFRS_URBAINE = Utilitaires.LireCodeValeurCache("INFRS_URBAINE");
+            ViewBag.CONTRAINTE_TRANSP = Utilitaires.LireCodeValeurCache("CONTRAINTE_TRANSP");
 
             var w_profilUtil = db.prof_utils
                   .Select(s => new SelectListItem
@@ -147,7 +155,8 @@ namespace FreneValue.Controllers
 
         // GET: EvalAbr/Profil/5
         public ActionResult Profil(int? id)
-        {            
+        {
+            eval_abr eval_abr = db.evaluations.Find(id);
             ViewBag.adresse = db.localisations.Where(x => x.num_civc != null);
 
             ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
@@ -160,11 +169,18 @@ namespace FreneValue.Controllers
             bool SoucheExiste = (nb_souche > 0);
             ViewBag.SoucheNotExiste = !SoucheExiste;
 
+            int nb_tronc = db.troncs
+                                .Where(r => r.id_eval == id)
+                                .Select(r => r.id).Count();
+
+            bool nbTroncAtteind = (nb_tronc == eval_abr.nb_tronc);
+            ViewBag.nbTroncAtteind = nbTroncAtteind;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            eval_abr eval_abr =  db.evaluations.Find(id);
+          
             if (eval_abr == null)
             {
                 return HttpNotFound();

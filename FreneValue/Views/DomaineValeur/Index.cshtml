@@ -10,16 +10,10 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-
-
 <div class="container">
 
     <h4>Gestion des domaines de valeurs</h4>
 
-    <div align="right">
-        @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
-        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
-    </div>
 
     @using (Html.BeginForm("index", "DomaineValeur", FormMethod.Get))
     {
@@ -34,6 +28,11 @@
                     <button type="submit" class="btn btn-success">
                         <span class="glyphicon glyphicon-refresh"></span>
                     </button>
+                </div>
+
+                <div class="col-lg-2 pull-right">
+                        @*@Html.ActionLink("Ajouter un domaine de valeur", "Create")*@
+                        @Html.NoEncodeActionLink("Ajouter Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })                    
                 </div>
             </div>
         </div>

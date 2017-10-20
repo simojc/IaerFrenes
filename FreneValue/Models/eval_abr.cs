@@ -26,16 +26,16 @@ namespace FreneValue.Models
         public string intfrce { get; set; }
         [Display(Name = "Raccordement")]
         public string racdmt { get; set; }
-        [Display(Name = "Accessbté Manutention")]
+        [Display(Name = "Access. Manutention")]
         public string acesbt_manu { get; set; }
-        [Display(Name = "Accessbté Machinerie")]
+        [Display(Name = "Access. Machinerie")]
         public string acesbt_machn { get; set; }
-        [Display(Name = "Accessbté Cammion")]
+        [Display(Name = "Access. Cammion")]
         public string acesbt_cam { get; set; }
         [Display(Name = "Contrainte transport")]
         public string contrnt_transp { get; set; }
-        [Display(Name = "Obstacle au sol")]
-        public string obstcl_sol { get; set; }
+        [Display(Name = "Obst. au sol")]
+        public bool obstcl_sol { get; set; }
         [Display(Name = "Construction")]
         public string constrct { get; set; }
         [Display(Name = "Infastr. Urbaine")]
