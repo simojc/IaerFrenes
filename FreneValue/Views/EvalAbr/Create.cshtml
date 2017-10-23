@@ -54,16 +54,16 @@
                         </p>
                         <p>
                             @*<p>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.branch_maitr, htmlAttributes: new { @class = "control-label col-md-4" })
-                                        <div class="col-md-3">
-                                            <div class="checkbox">
-                                                @Html.EditorFor(model => model.branch_maitr)
-                                                @Html.ValidationMessageFor(model => model.branch_maitr, "", new { @class = "text-danger" })
-                                            </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.branch_maitr, htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            @Html.EditorFor(model => model.branch_maitr)
+                                            @Html.ValidationMessageFor(model => model.branch_maitr, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </p>*@
+                                </div>
+                            </p>*@
                         </p>
                     </td>
                     <td>
@@ -140,12 +140,12 @@
                 <tr>
                     <td>
                         @*<div class="form-group">
-                                @Html.LabelFor(model => model.obstcl_sol, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.obstcl_sol, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.obstcl_sol, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
+                            @Html.LabelFor(model => model.obstcl_sol, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.obstcl_sol, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.obstcl_sol, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
                         <div class="form-group">
                             @Html.LabelFor(model => model.obstcl_sol, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-3">
@@ -175,13 +175,12 @@
                         </div>
                     </td>
                 </tr>
-                @*<tr>
+                <tr>
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.typ_abatg, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DisplayFor(model => model.typ_abatg, new { htmlAttributes = new { @class = "form-control" } })
-
+                                @Html.EditorFor(model => model.typ_abatg, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
@@ -189,8 +188,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.action, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DisplayFor(model => model.action, new { htmlAttributes = new { @class = "form-control" } })
-
+                                @Html.EditorFor(model => model.action, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
@@ -198,19 +196,24 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.concl, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DisplayFor(model => model.concl, new { htmlAttributes = new { @class = "form-control" } })
-
+                                @Html.EditorFor(model => model.concl, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
-                </tr>*@
+                </tr>
 
                 <tr>
                     <td colspan="3">
                         <div class="row">
                             <div class="form-horizontal">
                                 <div class="col-lg-2">
-                                    @Html.ActionLink("Retour", "Index", "Arbre", htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+                                    @*@Html.ActionLink("Retour Inventaire", "Index", "Arbre", htmlAttributes: new { @class = "btn btn-primary " })*@
+                                    @Html.ActionLink(
+                                    linkText: "Retour Inventaire",
+                                    actionName: "Index",
+                                    controllerName: "Arbre",
+                                    routeValues: null,
+                                    htmlAttributes: new { @class = "btn btn-primary " })
                                 </div>
 
                                 <div class="col-lg-2 pull-right">
@@ -222,6 +225,7 @@
                 </tr>
             </tbody>
         </table>
+
 
     </div>
 }

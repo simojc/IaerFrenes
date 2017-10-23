@@ -193,27 +193,24 @@
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.typ_abatg, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.typ_abatg, new { htmlAttributes = new { @class = "form-control" } })
-
+                            <div class="col-md-8">                                
+                                @Html.EditorFor(model => model.typ_abatg, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.action, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.action, new { htmlAttributes = new { @class = "form-control" } })
-
+                            <div class="col-md-8">                                
+                                @Html.EditorFor(model => model.action, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             @Html.LabelFor(model => model.concl, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.concl, new { htmlAttributes = new { @class = "form-control" } })
-
+                            <div class="col-md-8">                                
+                                @Html.EditorFor(model => model.concl, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
                         </div>
                     </td>
@@ -232,8 +229,6 @@
                                     routeValues: null,
                                     htmlAttributes: new { @class = "btn btn-primary " }  )
                                 </div>
-
-
 
                                 <div class="col-lg-2 pull-right">
                                     <input type="submit" value="Enregistrer" class="btn  btn-primary" />

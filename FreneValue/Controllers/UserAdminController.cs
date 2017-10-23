@@ -96,18 +96,10 @@ namespace FreneValue.Controllers
                 var user = new ApplicationUser {
                     UserName = userViewModel.UserName,
                     Email = userViewModel.Email,
-                     // Add the Address Info:
-                    Address = userViewModel.Address,
-                    City = userViewModel.City,
-                    State = userViewModel.State,
+                     
                     PostalCode = userViewModel.PostalCode
                 };
-                // Add the Address Info:
-                //user.Address = userViewModel.Address;
-                //user.City = userViewModel.City;
-                //user.State = userViewModel.State;
-                //user.PostalCode = userViewModel.PostalCode;
-
+               
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
@@ -172,11 +164,7 @@ namespace FreneValue.Controllers
 
             model.Id = user.Id;
             model.Email = user.Email;
-            model.UserName = user.UserName;
-            // Include the Addresss info:
-            model.Address = user.Address;
-            model.City = user.City;
-            model.State = user.State;
+            model.UserName = user.UserName;            
             model.PostalCode = user.PostalCode;
                 model.RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
@@ -185,26 +173,7 @@ namespace FreneValue.Controllers
                     Value = x.Name
                 });
 
-            return View(model);
-
-            //return View(new EditUserViewModel()
-            //{
-            //    Id = user.Id,
-            //    Email = user.Email,
-            //    UserName = user.UserName,
-            //    // Include the Addresss info:
-            //    Address = user.Address,
-            //    City = user.City,
-            //    State = user.State,
-            //    PostalCode = user.PostalCode,
-            //    RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
-            //    {
-            //        Selected = userRoles.Contains(x.Name),
-            //        Text = x.Name,
-            //        Value = x.Name
-            //    })
-            //});
-
+            return View(model);          
         }
 
         //
@@ -213,7 +182,7 @@ namespace FreneValue.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include =
-    "Email,UserName,Id,Address,City,State,PostalCode")]
+    "Email,UserName,Id,PostalCode")]
     EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
@@ -226,9 +195,7 @@ namespace FreneValue.Controllers
 
                 user.UserName = editUser.UserName;
                 user.Email = editUser.Email;
-                user.Address = editUser.Address;
-                user.City = editUser.City;
-                user.State = editUser.State;
+                
                 user.PostalCode = editUser.PostalCode;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);

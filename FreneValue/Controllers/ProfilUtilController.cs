@@ -42,7 +42,8 @@ namespace FreneValue.Controllers
              .Select(s => new SelectListItem
              {
                  Value = s.Id .ToString(),
-                 Text = s.UserName + " - " + s.Address + " - "
+                 Text = s.UserName
+                 //Text = s.UserName + " - " + s.Address + " - "
              }).ToList();
 
             ViewBag.w_uti = new SelectList(w_uti, "Value", "Text");

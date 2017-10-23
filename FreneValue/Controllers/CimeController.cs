@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using FreneValue.Infrastructure;
 using FreneValue.Models;
 
 namespace FreneValue.Controllers
@@ -15,6 +16,16 @@ namespace FreneValue.Controllers
     public class CimeController : Controller
     {
         private arbredb db = new arbredb();
+
+        void ChargerToutesLesDDLCime()
+        {
+            ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");            
+            //ViewBag.DENS_BRANCH_RAMEAU = Utilitaires.LireCodeValeurCache("DENS_BRANCH_RAMEAU");
+            ViewBag.SYMPT_VISUEL = Utilitaires.LireCodeValeurCache("SYMPT_VISUEL");
+          //  ViewBag.DENS_FEUILLE = Utilitaires.LireCodeValeurCache("DENS_FEUILLE");
+            ViewBag.TRAVAUX_BRANCH = Utilitaires.LireCodeValeurCache("TRAVAUX_BRANCH");
+            ViewBag.INTERFERENCES = Utilitaires.LireCodeValeurCache("INTERFERENCES");
+        }
 
         // GET: Cime
         public async Task<ActionResult> Index()
@@ -44,6 +55,7 @@ namespace FreneValue.Controllers
             {
                 return HttpNotFound();
             }
+            ChargerToutesLesDDLCime();
             cime model = new cime();
             model.id_tronc = id_tronc;
             return View(model);
@@ -78,23 +90,15 @@ namespace FreneValue.Controllers
             }
             else
             {
-                 cime = db.cimes.Where(r => r.id_tronc == id_tronc).First() ;
+                ChargerToutesLesDDLCime();
+                cime = db.cimes.Where(r => r.id_tronc == id_tronc).First() ;
                 //cime = db.cimes.Find(cimes. .id);
                 if (cime == null)
                 {
                     return HttpNotFound();
                 }
             }
-            
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //cime cime = await db.cimes.FindAsync(id);
-            //if (cime == null)
-            //{
-            //    return HttpNotFound();
-            //}
+                
             return View(cime);
         }
 

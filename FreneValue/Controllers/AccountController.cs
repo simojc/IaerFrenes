@@ -163,9 +163,9 @@ namespace FreneValue.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 // Add the Address properties:
-                user.Address = model.Address;
-                user.City = model.City;
-                user.State = model.State;
+                //user.Address = model.Address;
+                //user.City = model.City;
+                //user.State = model.State;
                 user.PostalCode = model.PostalCode;
 
                 var result = await UserManager.CreateAsync(user, model.Password);

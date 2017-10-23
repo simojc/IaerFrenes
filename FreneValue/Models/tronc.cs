@@ -14,13 +14,15 @@ namespace FreneValue.Models
         public int no_tronc { get; set; }
         [Display(Name = "Tronc parent")]
         public int? id_tronc_parnt { get; set; }
-        [Display(Name = "DHP ")]
+        [Display(Name = "DHP")]
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhp { get; set; }
-        [Display(Name = "Diam. Moyen")]
-        public string diam_moy { get; set; }
-        [Display(Name = "Haut. Moyen")]
-        public string haut_moy { get; set; }
+        [Display(Name = "Diam. Moy. (en cm)")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal diam_moy { get; set; }
+        [Display(Name = "Haut. Moy. (mètre)")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal haut_moy { get; set; }
         [Display(Name = "Morphologie ")]
         public string morphlg { get; set; }
         [Display(Name = "Racordement ")]
@@ -37,17 +39,24 @@ namespace FreneValue.Models
         public string contaminatn { get; set; }
         [Display(Name = "Symptôme visuel ")]
         public string sympt_visuel { get; set; }
-        [Display(Name = "A une cime? ")]
+        [Display(Name = "Possède cime ")]
         public bool possede_cime { get; set; }
-        [Display(Name = "Est BM? ")]       
+        [Display(Name = "Possède Branche Maîtresse ")]
+        public bool possede_bm { get; set; }
+        [Display(Name = "Est une Branche Maîtresse ")]       
         public bool est_branch_maitr { get; set; }
-        [Display(Name = "Long. Moyen")]
-        public string long_moy { get; set; }
+        [Display(Name = "Long. Moy. (en m)")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal long_moy { get; set; }
         [Display(Name = "Catégorie BM")]
         public string catgr_branch_maitr { get; set; }
         [Display(Name = "Nombre de BM ")]
         public int nb_branch_maitr { get; set; }
-        [Display(Name = "Commentaire ")]
+
+        [Display(Name = "Long. Valo (mètre)")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal long_valo { get; set; }
+
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }

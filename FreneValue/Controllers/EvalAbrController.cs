@@ -41,10 +41,45 @@ namespace FreneValue.Controllers
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
-                     Text = s.emplcmt + " - " + s.code_post + " - " + s.num_civc + " - " + s.nom_rue + " - " + s.ville
+                     Text = s.emplcmt + " - "  + s.num_civc + " - " + s.voie + " - "+ s.code_post + " - " + s.ville
                  }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
+
+
+        void ChargerToutesLesDDLTronc()
+        {
+            ViewBag.MORPHOLOGIE = Utilitaires.LireCodeValeurCache("MORPHOLOGIE");
+            ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");
+            ViewBag.SYMPT_VISUEL = Utilitaires.LireCodeValeurCache("SYMPT_VISUEL");
+            ViewBag.CONTAMINATION = Utilitaires.LireCodeValeurCache("CONTAMINATION");
+            ViewBag.QUALITE_VALO = Utilitaires.LireCodeValeurCache("QUALITE_VALO");
+            ViewBag.CAVITE = Utilitaires.LireCodeValeurCache("CAVITE");
+            ViewBag.FENTE_EXTERNE = Utilitaires.LireCodeValeurCache("FENTE_EXTERNE");
+            ViewBag.BLESSURE = Utilitaires.LireCodeValeurCache("BLESSURE");
+            ViewBag.CATEGORIE_BM = Utilitaires.LireCodeValeurCache("CATEGORIE_BM");
+
+            ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");                  
+        }
+
+
+        void ChargerToutesLesDDLSouche()
+        {
+            ViewBag.SURF_DEPLOY_RACIN = Utilitaires.LireCodeValeurCache("SURF_DEPLOY_RACIN");
+            ViewBag.AERATION_SOL = Utilitaires.LireCodeValeurCache("AERATION_SOL");
+            ViewBag.SPECIFICITE = Utilitaires.LireCodeValeurCache("SPECIFICITE");
+            ViewBag.INFRASTR_SOUCH = Utilitaires.LireCodeValeurCache("INFRASTR_SOUCH");
+            ViewBag.TYPE_ESSOUCHMT = Utilitaires.LireCodeValeurCache("TYPE_ESSOUCHMT");
+            ViewBag.TRAVAUX_RECOMMANDES = Utilitaires.LireCodeValeurCache("TRAVAUX_RECOMMANDES");
+            ViewBag.EXIGENCE_ESSOUCHMT = Utilitaires.LireCodeValeurCache("EXIGENCE_ESSOUCHMT");
+            ViewBag.SYMPT_VISUEL = Utilitaires.LireCodeValeurCache("SYMPT_VISUEL");        
+
+            ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");
+     
+        }
+
+
+
 
         // GET: EvalAbr
         [OutputCache(Duration = 60, VaryByParam = "id_arbre")]
@@ -255,16 +290,29 @@ namespace FreneValue.Controllers
         // GET: troncs/Tronc/5
         public ActionResult Tronc(int? id)
         {
-            int nb_cime = db.cimes
-                      .Where(r => r.id_tronc == id)
-                      .Select(r => r.id).Count();
-            bool CimeExiste = (nb_cime > 0);
-            ViewBag.CimeExiste = CimeExiste;
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tronc tronc = db.troncs.Find(id);
+            var w_troncs = db.troncs
+           .Where(s => s.id_eval == tronc.id_eval)
+             .Select(s => new SelectListItem
+             {
+                 Value = s.id.ToString(),
+                 Text =  s.no_tronc.ToString()
+             }).ToList();
+          //  w_troncs.Add(new SelectListItem() { Value = String.Empty, Text = String.Empty });
+            ViewBag.w_tronc = new SelectList(w_troncs, "Value", "Text");
+
+            int nb_cime = db.cimes
+                      .Where(r => r.id_tronc == id)
+                      .Select(r => r.id).Count();
+            bool CimeExiste = (nb_cime > 0);
+            ViewBag.CimeExiste = CimeExiste;
+            ChargerToutesLesDDLTronc();
+           
             if (tronc == null)
             {
                 return HttpNotFound();
@@ -299,6 +347,8 @@ namespace FreneValue.Controllers
             //var souche = db.souches
             //               .Where(r => r.id_eval == id);
             souche souche = db.souches.Find(id);
+
+            ChargerToutesLesDDLSouche();
 
             if (souche == null)
             {

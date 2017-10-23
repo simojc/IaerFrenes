@@ -36,14 +36,7 @@ namespace FreneValue.Models
         [Required]
         [Display(Name = "Code utilisateur")]
         public string UserName { get; set; }
-
-        // Add the Address Info:
-        [Display(Name = "Adresse")]
-        public string Address { get; set; }
-        [Display(Name = "Ville")]
-        public string City { get; set; }
-        [Display(Name = "Province")]
-        public string State { get; set; }
+        
 
         // Use a sensible display name for views:
         [Display(Name = "Code postal ")]

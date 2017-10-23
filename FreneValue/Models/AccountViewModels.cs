@@ -98,48 +98,12 @@ namespace FreneValue.Models
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
         
-        // Add the new address properties:
-        [Display(Name = "Adresse")]
-        public string Address { get; set; }
-        [Display(Name = "Ville")]
-        public string City { get; set; }
-        [Display(Name = "Province")]
-        public string State { get; set; }
-
+        
         // Use a sensible display name for views:
         [Display(Name = "Code postal ")]
         public string PostalCode { get; set; }
     }
-
-    //public class RegisterViewModel
-    //{
-    //    [Required]
-    //    [EmailAddress]
-    //    [Display(Name = "Email")]
-    //    public string Email { get; set; }
-
-    //    [Required]
-    //    [StringLength(100, ErrorMessage =
-    //        "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-    //    [DataType(DataType.Password)]
-    //    [Display(Name = "Password")]
-    //    public string Password { get; set; }
-
-    //    [DataType(DataType.Password)]
-    //    [Display(Name = "Confirm password")]
-    //    [Compare("Password", ErrorMessage =
-    //        "The password and confirmation password do not match.")]
-    //    public string ConfirmPassword { get; set; }
-
-    //    // Add the new address properties:
-    //    public string Address { get; set; }
-    //    public string City { get; set; }
-    //    public string State { get; set; }
-
-    //    // Use a sensible display name for views:
-    //    [Display(Name = "Code Postal ")]
-    //    public string PostalCode { get; set; }
-    //}
+    
 
     public class ResetPasswordViewModel
     {
