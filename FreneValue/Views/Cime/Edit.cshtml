@@ -57,8 +57,8 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.defaut, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.defaut, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Liste non trouvée!" } })
+                <div class="col-md-10">                   
+                    @Html.DropDownListFor(model => model.defaut, new SelectList(ViewBag.DEFAUT_CIME), string.Empty, new { @class = "form-control  " })
                     @Html.ValidationMessageFor(model => model.defaut, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -76,14 +76,23 @@
                     @Html.ValidationMessageFor(model => model.travaux, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="row">
+                <div class="form-horizontal">
+                    <div class="col-lg-2">
+                        @Html.ActionLink(
+                                    linkText: "Retour Inventaire",
+                                    actionName: "Index",
+                                    controllerName: "Arbre",
+                                    routeValues: null,
+                                    htmlAttributes: new { @class = "btn btn-primary " })
+                    </div>
+
+                    <div class="col-lg-2 pull-right">
+                        <input type="submit" value="Enregistrer" class="btn  btn-primary" />
+                    </div>
                 </div>
             </div>
         </div>
     }
-    <div>
-        @Html.ActionLink("Retour", "Index")
-    </div>
+   
 </div>

@@ -25,6 +25,7 @@ namespace FreneValue.Controllers
           //  ViewBag.DENS_FEUILLE = Utilitaires.LireCodeValeurCache("DENS_FEUILLE");
             ViewBag.TRAVAUX_BRANCH = Utilitaires.LireCodeValeurCache("TRAVAUX_BRANCH");
             ViewBag.INTERFERENCES = Utilitaires.LireCodeValeurCache("INTERFERENCES");
+            ViewBag.DEFAUT_CIME = Utilitaires.LireCodeValeurCache("DEFAUT_CIME");
         }
 
         // GET: Cime

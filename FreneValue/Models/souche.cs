@@ -23,12 +23,12 @@ namespace FreneValue.Models
         public string surf_deplmt_racin { get; set; }
         [Display(Name = "Racine Hors sol")]
         public bool racine_hs { get; set; }
-        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Only one decimal point value allowed")]
-        [Range(0.1, 100)]
+        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Entrer valeur décimale autorisée entre 0 et 100")]
+        [Range(0.0, 100)]
         [Display(Name = "Blessure racine (%)")]
         public decimal blesre_racine { get; set; }
-        [Display(Name = "Cavité hors sol")]
-        public bool cavite_hrs_sol { get; set; }
+        [Display(Name = "Cavité au collet")]
+        public bool cavite_au_collet { get; set; }
         [Display(Name = "Exigce Essouchmt")]
         public string exig_essouchmt { get; set; }
         [Display(Name = "Type Essouchmt")]

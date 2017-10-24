@@ -12,16 +12,16 @@ namespace FreneValue.Models
         public int id_tronc { get; set; }
         [Display(Name = "Racordement")]
         public string racdmt { get; set; }
-        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Only one decimal point value allowed")]
-        [Range(0.1, 100)]
+        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Entrer valeur décimale autorisée entre 0 et 100")]
+        [Range(0.0, 100)]
         [Display(Name = "Densité branche (%)")]
         public decimal dens_brach { get; set; }
-        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Only one decimal point value allowed")]
-        [Range(0.1, 100)]
+        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Entrer valeur décimale autorisée entre 0 et 100")]
+        [Range(0.0, 100)]
         [Display(Name = "densité feuille(%)")]
         public decimal dens_feuille { get; set; }
-        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Only one decimal point value allowed")]
-        [Range(0.1, 100)]
+        [RegularExpression(@"^\d+(\.\d)?$", ErrorMessage = "Entrer valeur décimale autorisée entre 0 et 100")]
+        [Range(0.0, 100)]
         [Display(Name = "densité rameaux(%)")]
         public decimal dens_rameaux { get; set; }
         [Display(Name = "Symptôme visuel")]
