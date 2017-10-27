@@ -234,6 +234,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\ArchitectHeroLarge.png" />
+    <Content Include="Content\images\frene.jpg" />
+    <Content Include="Content\images\frene2.jpg" />
+    <Content Include="Content\images\frene3.jpg" />
+    <Content Include="Content\images\frene4.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />

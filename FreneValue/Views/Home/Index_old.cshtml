@@ -1,0 +1,67 @@
+﻿@*<body background="~/Content/images/ArchitectHeroLarge.png">*@
+@*<img src="~/Content/images/ArchitectHeroLarge.png" />*@
+    @*@{
+        ViewBag.Title = "Home Page";
+    }
+
+    <div class="jumbotron">
+        <h1>VALEUR-DE-MON-FRENE</h1>
+        <p class="lead">
+            IAER propose depuis 2013 des solutions pour soutenir la gestion
+            éco responsable de la forêt urbaine à des meilleurs coûts. Dans ses différents mandats avec ses clients tel la Ville de Montréal, de Québec, de Terrebonne les résultats sont concrets
+            (des économies chiffrées en passant par la valorisation à 80 % du bois des frênes ...
+        </p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    </body>*@
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1> Bienvenue sur <p> VALEUR-DE-MON-FRENE </p></h1>
+    <p class="lead"> Ce logiciel vous permettra de suivre tout le cycle de vie de vos frênes, de l'inventaire à l'abattage en passant par des évaluations cycliques...</p>
+    <p>
+        @Html.ActionLink(
+                                    linkText: "Cliquer ici pour vous connecter",
+                                    actionName: "Login",
+                                    controllerName: "Account",
+                                    routeValues: null,
+                                    htmlAttributes: new { @class = "btn btn-primary btn-lg" })
+    </p>
+    @*<img src="~/Content/images/ArchitectHeroLarge.png" />*@
+   
+    <p>
+        IAER propose depuis 2013 des solutions pour soutenir la gestion
+        éco responsable de la forêt urbaine à des meilleurs coûts. Dans ses différents mandats avec ses clients tel la Ville de Montréal, de Québec, de Terrebonne les résultats sont concrets
+        (des économies chiffrées en passant par la valorisation à 80 % du bois des frênes ...
+    </p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg"> Pour en savoir plus &raquo;</a></p>
+</div>
+
+    @*<div class="row">
+        <div class="col-md-4">
+            <h2>Pour commencer</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Pour aller plus loin</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Notre ambition</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+
+    

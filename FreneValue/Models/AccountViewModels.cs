@@ -55,7 +55,7 @@ namespace FreneValue.Models
         //public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Nom Utilisateur")]
+        [Display(Name = "Nom d'utilisateur")]
         public string UserName { get; set; }
 
         [Required]

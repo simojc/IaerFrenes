@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dhs, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.dhs, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.dhs, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.dhs, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -82,9 +82,9 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <div class="checkbox">
-                                        @Html.CheckBoxFor(model => model.cavite_hrs_sol)
-                                        @Html.LabelFor(model => model.cavite_hrs_sol)
-                                        @Html.ValidationMessageFor(model => model.cavite_hrs_sol, "", new { @class = "text-danger" })
+                                        @Html.CheckBoxFor(model => model.cavite_au_collet)
+                                        @Html.LabelFor(model => model.cavite_au_collet)
+                                        @Html.ValidationMessageFor(model => model.cavite_au_collet, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.profdeur_essouchmt, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.profdeur_essouchmt, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.profdeur_essouchmt, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.profdeur_essouchmt, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ray_rognage, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.ray_rognage, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.ray_rognage, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.ray_rognage, "", new { @class = "text-danger" })
                                 </div>
                             </div>

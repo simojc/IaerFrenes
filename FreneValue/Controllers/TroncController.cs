@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using FreneValue.Models;
+using FreneValue.Infrastructure;
 
 namespace FreneValue.Controllers
 {
@@ -22,6 +23,20 @@ namespace FreneValue.Controllers
             return View(await db.troncs.ToListAsync());
         }
 
+        void ChargerToutesLesDDLTronc()
+        {
+            ViewBag.MORPHOLOGIE = Utilitaires.LireCodeValeurCache("MORPHOLOGIE");
+            ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");
+            ViewBag.SYMPT_VISUEL = Utilitaires.LireCodeValeurCache("SYMPT_VISUEL");
+            ViewBag.CONTAMINATION = Utilitaires.LireCodeValeurCache("CONTAMINATION");
+            ViewBag.QUALITE_VALO = Utilitaires.LireCodeValeurCache("QUALITE_VALO");
+            ViewBag.CAVITE = Utilitaires.LireCodeValeurCache("CAVITE");
+            ViewBag.FENTE_EXTERNE = Utilitaires.LireCodeValeurCache("FENTE_EXTERNE");
+            ViewBag.BLESSURE = Utilitaires.LireCodeValeurCache("BLESSURE");
+            ViewBag.CATEGORIE_BM = Utilitaires.LireCodeValeurCache("CATEGORIE_BM");
+
+            ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");
+        }
         // GET: troncs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -44,6 +59,19 @@ namespace FreneValue.Controllers
             {
                 return HttpNotFound();
             }
+
+            var w_troncs = db.troncs
+           .Where(s => s.id_eval == id_eval)
+             .Select(s => new SelectListItem
+             {
+                 Value = s.id.ToString(),
+                 Text = s.no_tronc.ToString()
+             }).ToList();
+            //  w_troncs.Add(new SelectListItem() { Value = String.Empty, Text = String.Empty });
+            ViewBag.w_tronc = new SelectList(w_troncs, "Value", "Text");
+
+            ChargerToutesLesDDLTronc();
+
             tronc model = new tronc();
             model.id_eval = id_eval;
             return View(model);

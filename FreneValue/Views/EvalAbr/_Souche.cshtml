@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dhs, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.dhs, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.dhs, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.dhs, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.profdeur_essouchmt, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.profdeur_essouchmt, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.profdeur_essouchmt, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.profdeur_essouchmt, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ray_rognage, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.ray_rognage, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.ray_rognage, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right" } })
                                     @Html.ValidationMessageFor(model => model.ray_rognage, "", new { @class = "text-danger" })
                                 </div>
                             </div>
