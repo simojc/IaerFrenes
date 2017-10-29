@@ -161,13 +161,8 @@ namespace FreneValue.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-                // Add the Address properties:
-                //user.Address = model.Address;
-                //user.City = model.City;
-                //user.State = model.State;
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };               
                 user.PostalCode = model.PostalCode;
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -187,7 +182,6 @@ namespace FreneValue.Controllers
                 //                          .ToList(), "Name", "Name");
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form   
             return View(model);
         }

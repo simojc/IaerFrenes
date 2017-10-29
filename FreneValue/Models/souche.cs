@@ -60,7 +60,6 @@ namespace FreneValue.Models
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
 
-
         [ForeignKey("id_eval")]
         public virtual eval_abr Evaluation { get; set; }
     }

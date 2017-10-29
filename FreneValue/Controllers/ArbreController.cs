@@ -37,19 +37,19 @@ namespace FreneValue.Controllers
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
-                     Text = s.emplcmt +" - " + s.code_post + " - " + s.num_civc + " - " + s.nom_rue + " - " + s.ville
+                     Text = s.AdresseComplete 
                  }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
 
-        [OutputCache(Duration = 60, VaryByParam = "model")]
+        //[OutputCache(Duration = 60, VaryByParam = "model")]
         public ActionResult Index(ArbreSearchModel model)
         {            
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
 
             ViewBag.adresse = db.localisations.Where(x => x.num_civc != null );
 
-            ViewBag.proprio = db.prof_utils.Where(x => x.typ_util == "PROPRIETAIRE");
+            ViewBag.proprio = db.prof_utils; //.Where(x => x.typ_util == "PROPRIETAIRE");
            
             var predicate = PredicateBuilder.True<arbre>();
             if (model.num_arbre != null)

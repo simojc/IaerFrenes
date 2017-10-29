@@ -1,0 +1,70 @@
+﻿@using FreneValue.Helpers
+@model PagedList<FreneValue.Models.val_dom>
+
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<div class="container" id="RstRecherche">
+
+    <table class="table table-bordered table-striped" >
+        <tr>
+            <th>
+                Domaine
+            </th>
+            <th>
+                Code valeur
+            </th>
+            <th>
+                Valeur
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Actif
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code_dom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code_val)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.val)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actif)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                        &nbsp;
+                        &nbsp;
+                        @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                    </div>
+                </td>
+
+            </tr>
+        }
+    </table>
+    <div class="col-sm-10">
+        <div class="center">
+            @Html.PagedListPager(Model, page => Url.Action("Rechercher",
+           new { page, pageSize = Model.PageSize }))
+            Affichage de @Model.FirstItemOnPage  à @Model.LastItemOnPage
+            des @Model.TotalItemCount enregistrements
+        </div>
+    </div>
+</div>
+

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using FreneValue.Models;
 using FreneValue.Infrastructure;
+using PagedList;
 
 namespace FreneValue.Controllers
 {
@@ -82,27 +83,75 @@ namespace FreneValue.Controllers
 
 
         // GET: EvalAbr
-        [OutputCache(Duration = 60, VaryByParam = "id_arbre")]
-        public ActionResult Index(int? id_arbre)
+        //[OutputCache(Duration = 60, VaryByParam = "id_arbre")]
+        public ActionResult Index(int? id_arbre, int page = 1, int pageSize = 10)
         {
-           // return View(await db.evaluations.ToListAsync());
+            // return View(await db.evaluations.ToListAsync());
+            ViewBag.evaluateur = db.prof_utils;
+
+            List<eval_abr> w_eval = null;
+
             if (id_arbre != null)
             {
+                 w_eval = db.evaluations
+                           .OrderByDescending(r => r.dt_eval)
+                           .Where(r => r.id_arbre == id_arbre).ToList();
+
+               // return PartialView("_Index", w_eval);
+            }
+            else
+            {
+                 w_eval = db.evaluations
+                     .OrderByDescending(r => r.dt_eval).ToList();
+
+               // return PartialView("_Index", w_eval);
+            };
+
+            PagedList<eval_abr> model = new PagedList<eval_abr>(w_eval, page, pageSize);
+            return View(model);   // PartialView("_Index", model);
+
+
+        }
+        
+       
+
+        public ActionResult RechercherRapid(string term)
+        {
+            var valeurs = db.arbres
+                      .OrderByDescending(r => r.num_arbre)
+                      .Where(r => r.num_arbre.Contains(term))
+                      .Take(10)
+                      .Select(r => new { label = r.num_arbre })
+                      .Distinct();
+
+            return Json(valeurs, JsonRequestBehavior.AllowGet);
+        }
+        
+
+        public ActionResult Rechercher(string q)
+        {
+            // return View(await db.evaluations.ToListAsync());
+            if (q != null)
+            {
+                //var w_abr = db.arbres                        
+                //        .Where(r => r.num_arbre.Contains(q))
+                //        .Select(r => r.id).
+                //        ToList();
+
                 var w_eval = db.evaluations
                            .OrderByDescending(r => r.dt_eval)
-                           .Where(r => r.id_arbre == id_arbre);
-
-                return PartialView("_Index", w_eval);
+                           .Where(r => r.Arbre.num_arbre.Contains(q)).ToList(); 
+                        
+                return PartialView("_HistoEval", w_eval);
             }
             else
             {
                 var w_eval = db.evaluations
-                     .OrderByDescending(r => r.dt_eval);
+                     .OrderByDescending(r => r.dt_eval).ToList();
 
-                return PartialView("_Index", w_eval);
+                return PartialView("_HistoEval", w_eval);
             }
         }
-
         // GET: EvalAbr/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -255,7 +304,7 @@ namespace FreneValue.Controllers
             return View(eval_abr);
         }
 
-        [OutputCache(Duration = 60, VaryByParam = "id")]
+       // [OutputCache(Duration = 60, VaryByParam = "id")]
         public ActionResult Eval(int? id)
         {
             // return View(await db.evaluations.ToListAsync());
@@ -268,6 +317,42 @@ namespace FreneValue.Controllers
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
                             
+            if (eval_abr == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.arbre = abr;
+            ViewBag.id_arbre = eval_abr.id_arbre;
+            ViewBag.id_eval = eval_abr.id;
+            ViewBag.id_souche = db.souches
+                          .Where(r => r.id_eval == id)
+                          .Select(r => r.id)
+                          .FirstOrDefault();
+            ViewBag.List_id_tronc = db.troncs
+                          .Where(r => r.id_eval == id).ToList();
+            ViewBag.nb_tronc = db.troncs
+                       .Where(r => r.id_eval == id).Count();
+
+            return View();
+        }
+
+       // [OutputCache(Duration = 60, VaryByParam = "id")]
+        public ActionResult EvalLast(int? id)
+        {
+            // return View(await db.evaluations.ToListAsync());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            arbre abr = db.arbres.Find(id);
+            
+            DateTime maxdateval = db.evaluations.Where(x => x.id_arbre == id).Max(x => x.dt_eval);
+
+            eval_abr eval_abr = db.evaluations.Where(x => x.id_arbre == id).First(x => x.dt_eval == maxdateval);        
+
+            var profilUtil = db.prof_utils.Find(abr.id_profil);
+            ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
+
             if (eval_abr == null)
             {
                 return HttpNotFound();

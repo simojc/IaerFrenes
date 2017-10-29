@@ -396,7 +396,7 @@
     <Content Include="Views\EvalAbr\Create.cshtml" />
     <Content Include="Views\EvalAbr\Delete.cshtml" />
     <Content Include="Views\EvalAbr\Details.cshtml" />
-    <Content Include="Views\EvalAbr\_Index.cshtml" />
+    <Content Include="Views\EvalAbr\Index.cshtml" />
     <Content Include="Views\Shared\_Evaluation.cshtml" />
     <Content Include="Views\Arbre\Index.cshtml" />
     <Content Include="Views\Tronc\Delete.cshtml" />
@@ -413,6 +413,9 @@
     <Content Include="Views\EvalAbr\_Souche.cshtml" />
     <Content Include="Views\DomaineValeur\Index.cshtml" />
     <Content Include="Views\EvalAbr\Eval_First.cshtml" />
+    <Content Include="Views\EvalAbr\EvalLast.cshtml" />
+    <Content Include="Views\EvalAbr\_HistoEval.cshtml" />
+    <Content Include="Views\Valeur\_Valeur1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app_code\" />

@@ -26,7 +26,7 @@ namespace FreneValue.Controllers
             if (codedom != null)
             { 
              vals = _db.valeurs
-                       .OrderByDescending(r => r.code_dom).ThenBy(r => r.code_val)
+                       .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
                        .Where(r => r.code_dom.Contains(codedom) )
                        .ToList();
                 //return View(model);
@@ -34,18 +34,19 @@ namespace FreneValue.Controllers
             else
             {
                 vals = _db.valeurs
-                       .OrderByDescending(r => r.code_dom).ThenBy(r => r.code_val)
+                       .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
                         .ToList(); ;
                // return View(model);
             }
             PagedList<val_dom> model = new PagedList<val_dom>(vals, page, pageSize);
-            return View(model);
+            //return PartialView("_Valeur1", model);
+            return View(model); 
         }
             
         public ActionResult RechercherRapid(string term)
         {
             var valeurs = _db.valeurs
-                      .OrderByDescending(r => r.code_val)
+                      .OrderBy(r => r.code_val)
                       .Where(r => r.code_dom.Contains(term) )
                       .Take(10)
                       .Select(r => new { label = r.code_dom })
@@ -54,23 +55,30 @@ namespace FreneValue.Controllers
             return Json(valeurs, JsonRequestBehavior.AllowGet); 
         }
 
-        public PartialViewResult Rechercher(string q)
+        public PartialViewResult Rechercher(string q, int page = 1, int pageSize = 10)
         {if (q != null)
-            { 
-            var valeurs = _db.valeurs
-                      .OrderByDescending(r => r.code_val)
+            {                
+                var valeurs = _db.valeurs
+                     .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
                       .Where(r => r.code_dom.Contains(q)  )
-                      .Take(10);
+                      .ToList();
 
-            return PartialView("_Valeurs", valeurs);
+                PagedList<val_dom> model = new PagedList<val_dom>(valeurs, page, pageSize);
+            //return View(model);
+
+              //  return PartialView("_Valeurs", model);
+                return PartialView("_Valeur1", model);
             }
         else
             {
                 var valeurs = _db.valeurs
-                     .OrderByDescending(r => r.code_val)
-                     .Take(10);
+                     .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
+                     .ToList(); 
+                PagedList<val_dom> model = new PagedList<val_dom>(valeurs, page, pageSize);
+                //return View(model);
 
-                return PartialView("_Valeurs", valeurs);
+               // return PartialView("_Valeurs", model);
+                return PartialView("_Valeur1", model);
             }
         }
 
