@@ -79,12 +79,9 @@ namespace FreneValue.Controllers
      
         }
 
-
-
-
         // GET: EvalAbr
         //[OutputCache(Duration = 60, VaryByParam = "id_arbre")]
-        public ActionResult Index(int? id_arbre, int page = 1, int pageSize = 10)
+        public ActionResult Index1(int? id_arbre, int page = 1, int pageSize = 10)
         {
             // return View(await db.evaluations.ToListAsync());
             ViewBag.evaluateur = db.prof_utils;
@@ -106,14 +103,54 @@ namespace FreneValue.Controllers
 
                // return PartialView("_Index", w_eval);
             };
-
             PagedList<eval_abr> model = new PagedList<eval_abr>(w_eval, page, pageSize);
             return View(model);   // PartialView("_Index", model);
-
-
         }
-        
-       
+
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.evaluateur = db.prof_utils;
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NumrAbreSortParm = String.IsNullOrEmpty(sortOrder) ? "NumrAbre_desc" : "";
+            
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var evals = from s in db.evaluations
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                evals = evals.Where(s => s.Arbre.num_arbre.Contains(searchString));
+                                       //|| s.Evaluateur.NomPrem.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "NumrAbre_desc":
+                    evals = evals.OrderByDescending(s => s.id_arbre);
+                    break;
+                case "date_desc":
+                    evals = evals.OrderByDescending(s => s.dt_eval);
+                    break;
+                default:  // Name ascending 
+                    evals = evals.OrderBy(s => s.id_arbre).ThenBy(s => s.dt_eval);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(evals.ToPagedList(pageNumber, pageSize));
+        }
 
         public ActionResult RechercherRapid(string term)
         {
@@ -139,7 +176,7 @@ namespace FreneValue.Controllers
                 //        ToList();
 
                 var w_eval = db.evaluations
-                           .OrderByDescending(r => r.dt_eval)
+                           .OrderBy(r => r.dt_eval)
                            .Where(r => r.Arbre.num_arbre.Contains(q)).ToList(); 
                         
                 return PartialView("_HistoEval", w_eval);
@@ -147,7 +184,7 @@ namespace FreneValue.Controllers
             else
             {
                 var w_eval = db.evaluations
-                     .OrderByDescending(r => r.dt_eval).ToList();
+                     .OrderBy(r => r.dt_eval).ToList();
 
                 return PartialView("_HistoEval", w_eval);
             }

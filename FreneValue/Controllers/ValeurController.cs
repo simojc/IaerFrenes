@@ -18,33 +18,53 @@ namespace FreneValue.Controllers
         private arbredb _db = new arbredb();
        // private user = new User.Identity;      
         // GET: Valeur
-        public  ActionResult Index(string codedom, int page = 1, int pageSize = 10)
+
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            //  var model = await _db.valeurs.ToListAsync();
-            ViewBag.codedom = _db.domaines.OrderBy(r => r.code).Select(r => r.code).Distinct();
-            List<val_dom> vals = null;          
-            if (codedom != null)
-            { 
-             vals = _db.valeurs
-                       .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
-                       .Where(r => r.code_dom.Contains(codedom) )
-                       .ToList();
-                //return View(model);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.code_domSortParm = String.IsNullOrEmpty(sortOrder) ? "code_dom_desc" : "";
+            ViewBag.actifSortParm = String.IsNullOrEmpty(sortOrder) ? "actif_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
             }
             else
             {
-                vals = _db.valeurs
-                       .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
-                        .ToList(); ;
-               // return View(model);
+                searchString = currentFilter;
             }
-            PagedList<val_dom> model = new PagedList<val_dom>(vals, page, pageSize);
-            //return PartialView("_Valeur1", model);
-            return View(model); 
+
+            ViewBag.CurrentFilter = searchString;
+
+            var valeurs = from s in _db.valeurs
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                valeurs = valeurs.Where(s => s.code_dom.Contains(searchString)
+                                       || s.code_val.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "code_dom_desc":
+                    valeurs = valeurs.OrderByDescending(s => s.code_dom);
+                    break;               
+                case "actif_desc":
+                    valeurs = valeurs.OrderByDescending(s => s.actif);
+                    break;
+                default:  // Name ascending 
+                    valeurs = valeurs.OrderBy(s => s.code_dom).ThenBy(s => s.code_val);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(valeurs.ToPagedList(pageNumber, pageSize));
         }
-            
+
+
         public ActionResult RechercherRapid(string term)
         {
+            term = term.ToUpper();
             var valeurs = _db.valeurs
                       .OrderBy(r => r.code_val)
                       .Where(r => r.code_dom.Contains(term) )
@@ -53,34 +73,7 @@ namespace FreneValue.Controllers
                       .Distinct();
 
             return Json(valeurs, JsonRequestBehavior.AllowGet); 
-        }
-
-        public PartialViewResult Rechercher(string q, int page = 1, int pageSize = 10)
-        {if (q != null)
-            {                
-                var valeurs = _db.valeurs
-                     .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
-                      .Where(r => r.code_dom.Contains(q)  )
-                      .ToList();
-
-                PagedList<val_dom> model = new PagedList<val_dom>(valeurs, page, pageSize);
-            //return View(model);
-
-              //  return PartialView("_Valeurs", model);
-                return PartialView("_Valeur1", model);
-            }
-        else
-            {
-                var valeurs = _db.valeurs
-                     .OrderBy(r => r.code_dom).ThenBy(r => r.code_val)
-                     .ToList(); 
-                PagedList<val_dom> model = new PagedList<val_dom>(valeurs, page, pageSize);
-                //return View(model);
-
-               // return PartialView("_Valeurs", model);
-                return PartialView("_Valeur1", model);
-            }
-        }
+        }       
 
         // GET: Valeur/Details/5
         public async Task<ActionResult> Details(int? id)

@@ -356,7 +356,6 @@
     <Content Include="Views\Valeur\Delete.cshtml" />
     <Content Include="Views\Valeur\Details.cshtml" />
     <Content Include="Views\Valeur\Edit.cshtml" />
-    <Content Include="Views\Valeur\Index.cshtml" />
     <Content Include="Views\Shared\_Valeurs.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Datetime.cshtml" />
     <Content Include="Views\Cime\Create.cshtml" />
@@ -415,7 +414,7 @@
     <Content Include="Views\EvalAbr\Eval_First.cshtml" />
     <Content Include="Views\EvalAbr\EvalLast.cshtml" />
     <Content Include="Views\EvalAbr\_HistoEval.cshtml" />
-    <Content Include="Views\Valeur\_Valeur1.cshtml" />
+    <Content Include="Views\Valeur\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app_code\" />

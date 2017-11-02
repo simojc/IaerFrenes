@@ -1,14 +1,5 @@
-﻿@using FreneValue.Helpers
+﻿@*@using FreneValue.Helpers
 @model PagedList<FreneValue.Models.eval_abr>
-
-@{
-    ViewBag.Title = "Historique évaluations";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@using PagedList;
-@using PagedList.Mvc;
-
 
 <div class="container">
 
@@ -29,85 +20,108 @@
     }
 
     <div id="RstRecherche">
-        <table class="table table-bordered table-striped" >
-            <tr>
-                <th>
-                    Arbre
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.id)
-                    </th>*@
-                <th>
-                    Évaluateur
-                </th>
-                <th>
-                    Date évaluation
-                </th>
-                <th>
-                    DHP
-                </th>
-                <th>
-                    Classe Hauteur
-                </th>
+       
 
-                <th>
-                    Nb. tronc
-                </th>
+</div>*@
 
-                <th>
-                    Brch. maîtresse
-                </th>
 
-                <th></th>
-            </tr>
-            @foreach (var item in Model)
+@using FreneValue.Helpers
+@model PagedList.IPagedList<FreneValue.Models.eval_abr>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Historique évaluations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h4> Historique évaluations </h4>
+
+    @using (Html.BeginForm("Index", "EvalAbr", FormMethod.Get))
+    {
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { data_autocomplete = Url.Action("RechercherRapid", "EvalAbr") })
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </button>      
+    }
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                
+                @Html.ActionLink("Arbre", "Index", new { sortOrder = ViewBag.NumrAbreSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+
+            <th>
+                Évaluateur
+            </th>
+            <th>
+                
+                @Html.ActionLink("Date évaluation", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                DHP
+            </th>
+            <th>
+                Classe Hauteur
+            </th>
+
+            <th>
+                Nb. tronc
+            </th>
+
+            <th>
+                B. M. ?
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Arbre.num_arbre)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.id)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Evaluateur.NomPrem)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arbre.num_arbre)
+                </td>
 
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dt_eval)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dhp_tot)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.clas_haut)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evaluateur.NomPrem)
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nb_tronc)
-                    </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dt_eval)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dhp_tot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clas_haut)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.branch_maitr)
-                    </td>
-                    <td>
-                        <div class="pull-right">
-                            @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
-                            @*&nbsp;
-                                &nbsp;
-                                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })*@
-                        </div>
-                    </td>
-                </tr>
-            }
-        </table>
-        <div class="col-sm-10">
-            <div class="center">
-                @Html.PagedListPager(Model, page => Url.Action("Index",
-           new { page, pageSize = Model.PageSize }))
-                Affichage de @Model.FirstItemOnPage  à @Model.LastItemOnPage
-                des @Model.TotalItemCount enregistrements
-            </div>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nb_tronc)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.branch_maitr)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink(" ", "Eval", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+    <div class="col-sm-10">
+        <div class="center">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         </div>
     </div>
 </div>
