@@ -218,6 +218,7 @@
     <Compile Include="Models\cod_dom.cs" />
     <Compile Include="Models\eval_abr.cs" />
     <Compile Include="Models\loclsn.cs" />
+    <Compile Include="Models\mun_cod_post.cs" />
     <Compile Include="Models\org.cs" />
     <Compile Include="Models\prof_util.cs" />
     <Compile Include="Models\souche.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\EvalAbr\Edit.cshtml" />
     <Content Include="Views\EvalAbr\Eval.cshtml" />
+    <Content Include="Views\Localisation\Create_old.cshtml" />
     <Content Include="Views\Tronc\Create.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -382,7 +384,6 @@
     <Content Include="Views\Org\Details.cshtml" />
     <Content Include="Views\Org\Edit.cshtml" />
     <Content Include="Views\Org\Index.cshtml" />
-    <Content Include="Views\Localisation\Create.cshtml" />
     <Content Include="Views\Localisation\Delete.cshtml" />
     <Content Include="Views\Localisation\Details.cshtml" />
     <Content Include="Views\Localisation\Edit.cshtml" />
@@ -415,6 +416,12 @@
     <Content Include="Views\EvalAbr\EvalLast.cshtml" />
     <Content Include="Views\EvalAbr\_HistoEval.cshtml" />
     <Content Include="Views\Valeur\Index.cshtml" />
+    <Content Include="Views\Localisation\Create.cshtml" />
+    <Content Include="Views\Localisation\_Create1.cshtml" />
+    <Content Include="Views\Localisation\_Create.cshtml" />
+    <Content Include="Views\Localisation\_Create2.cshtml" />
+    <Content Include="Views\Localisation\_Edit1.cshtml" />
+    <Content Include="Views\Localisation\_Edit2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app_code\" />

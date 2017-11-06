@@ -37,8 +37,8 @@ namespace FreneValue.Controllers
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
-                     Text = s.AdresseComplete 
-                 }).ToList();
+                     Text = s.num_civc + ", " + s.nom_rue + ", " + s.ville
+        }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
 
@@ -47,7 +47,7 @@ namespace FreneValue.Controllers
         {            
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
 
-            ViewBag.adresse = db.localisations.Where(x => x.num_civc != null );
+            ViewBag.adresse = db.localisations.Where(x => x.num_civc != null);
 
             ViewBag.proprio = db.prof_utils; //.Where(x => x.typ_util == "PROPRIETAIRE");
            

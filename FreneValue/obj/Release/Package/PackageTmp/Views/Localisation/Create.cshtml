@@ -1,187 +1,58 @@
-﻿@model FreneValue.Models.loclsn
+﻿@using FreneValue.Helpers
+@model FreneValue.Models.loclsn
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "PreCreate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Création d'une localisation</h2>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+@*@using (Html.BeginForm())
+    {
+        <td>
+            @Html.DropDownListFor(x => x.SelectedValue, ViewBag.typloc.Items as List<SelectListItem>, "Choisir type localisation", new { @class = "form-control" })
+        </td>
+        <td>
+            No Description
+        </td>
+        <td>
+            @Html.ActionLink("Add", "AddSoftware", new { pDeviceId = Model.Id, pSoftwareId = Model.SelectedValue })
+        </td>
+    }*@
 
-        <table class="table ">
-            <tbody>
-                <tr>
-                    <td>
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.num_civc, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.num_civc, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.num_civc, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.voie, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.voie, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.voie, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.lot, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.lot, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.lot, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.nom_rue, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nom_rue, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.nom_rue, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.tronc_rue, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.tronc_rue, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.tronc_rue, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                    </td>
-
-                    <td>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nom_cours_eau, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.nom_cours_eau, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.nom_cours_eau, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.sectn_cours_eau, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.sectn_cours_eau, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.sectn_cours_eau, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.emplcmt, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.emplcmt, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.emplcmt, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.code_post, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.code_post, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.code_post, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ville, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.ville, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ville, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-                    </td>
-
-                    <td>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.prov, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.prov, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.prov, "", new { @class = "text-danger" })
-                            </div>
-                        </div>                      
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.pays, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.pays, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.pays, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.suprfc, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.suprfc, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.suprfc, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.lattd, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.lattd, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.lattd, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                        <p>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.longtd, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.longtd, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.longtd, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </p>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Enregistrer" class="btn  btn-primary" />
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-}
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <h2>Création d'une localisation </h2>
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.typ_loc, htmlAttributes: new { @class = "control-label col-md-4" })*@
+            <div class="col-md-8">
+                Quel type de localisation voulez-vous créer?
+                @*@Html.DropDownListFor(model => model.typ_loc, ViewBag.typloc.Items as List<SelectListItem>, new { @class = "form-control" })
+                @Html.EditorFor(model => model.typ_loc, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("typ_loc", ViewBag.typloc.Items as List<SelectListItem>, "-- select an option --", new { id = "typ_loc", @class = "form-control" })
+                
+                @*@Html.DropDownList("typ_loc", ViewBag.typloc.Items as List<SelectListItem>, new { @class = "form-control" })*@
+            </div>
+        </div>
+
+        <div>
+            <p>
+              @Html.NoEncodeActionLink("Continuer", "Add", "Create1", "Localisation", routeValues: new {  }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
+            </p>
+        </div>
+
+        <div>
+            @Ajax.ActionLink("Continuer", "Create1", "Localisation", new { typ_loc = Model.typ_loc }, new AjaxOptions
+               {
+                   UpdateTargetId = "creloc",
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET"
+               }, new { @class = "btn btn-primary " })
+        </div>
+    }
+
+    <div id="creloc">
+    </div>
+
 </div>

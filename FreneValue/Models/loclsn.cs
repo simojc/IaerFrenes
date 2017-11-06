@@ -5,14 +5,23 @@ namespace FreneValue.Models
 {
     public class loclsn
     {
+
+
+
         [Key]
         public int id { get; set; }
+        [Display(Name = "Type localisation")]
+        public string typ_loc { get; set; }
         [Display(Name = "N° Civique")]
         public string num_civc { get; set; }
-        [Display(Name = "Voie")]
+        [Display(Name = "Rue, Bld., Av.")]
         public string voie { get; set; }
         [Display(Name = "Lot")]
         public string lot { get; set; }
+        [Display(Name = "Matricule")]
+        public string mtrle { get; set; }
+        [Display(Name = "Appelation")]
+        public string nom { get; set; }
         [Display(Name = "Rue")]
         public string nom_rue { get; set; }
         [Display(Name = "Tronçon rue")]
@@ -29,17 +38,31 @@ namespace FreneValue.Models
         public string ville { get; set; }
         [Display(Name = "Province")]
         public string prov { get; set; }
+        
+        [Display(Name = "Orientation")]
+        public string orient { get; set; }
+
+        [Display(Name = "Géométrie")]
+        public string geomtr { get; set; }
+
         [Display(Name = "Pays")]
         public string pays { get; set; }
         [Display(Name = "Superficie")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
         public decimal? suprfc { get; set; }
-        [Display(Name = "Latitude")]
+        [Display(Name = "Latitude AA*")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
-        public decimal? lattd { get; set; }
-        [Display(Name = "Longitude")]
+        public decimal? lattd_a { get; set; }
+        
+        [Display(Name = "Latitude BB*")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
-        public decimal? longtd { get; set; }
+        public decimal? lattd_b { get; set; }
+        [Display(Name = "Longitude AA*")]
+        [DisplayFormat(DataFormatString = "{0:n0}")]
+        public decimal? longtd_a { get; set; }
+        [Display(Name = "Longitude BB*")]
+        [DisplayFormat(DataFormatString = "{0:n0}")]
+        public decimal? longtd_b { get; set; }
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
@@ -51,7 +74,7 @@ namespace FreneValue.Models
             {
                 return num_civc + ", " + nom_rue + ", " + ville;
             }
-        }
-
+        }        
+            
     }
 }

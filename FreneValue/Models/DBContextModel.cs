@@ -37,7 +37,8 @@ namespace FreneValue.Models
 
         public DbSet<ErrorLog> Errors { get; set; }
 
-
+        public DbSet<mun_cod_post> codepostal { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
