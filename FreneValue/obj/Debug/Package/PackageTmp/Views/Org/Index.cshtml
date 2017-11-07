@@ -1,0 +1,92 @@
+﻿@model IEnumerable<FreneValue.Models.org>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des organisations </h2>
+
+<p>
+    @Html.ActionLink("Créer une organisation", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.niv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sigle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cntct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adr)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.niv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sigle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.parnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cntct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adr)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_cretn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_modf)
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Suprimer", "Delete", new { id=item.id })
+        </td>*@
+
+        <td>
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+            </div>
+        </td>
+
+    </tr>
+}
+
+</table>

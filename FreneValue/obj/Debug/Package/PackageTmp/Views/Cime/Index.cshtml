@@ -1,0 +1,109 @@
+﻿@model IEnumerable<FreneValue.Models.cime>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_tronc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.racdmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dens_brach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dens_feuille)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dens_rameaux)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sympt_visuel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.defaut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intfrce)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.travaux)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.util)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_tronc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.racdmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dens_brach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dens_feuille)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dens_rameaux)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sympt_visuel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.defaut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intfrce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.travaux)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.util)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_cretn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dt_modf)
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>*@
+        <td>
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+            </div>
+        </td>
+
+    </tr>
+}
+
+</table>

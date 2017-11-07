@@ -312,7 +312,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\EvalAbr\Edit.cshtml" />
     <Content Include="Views\EvalAbr\Eval.cshtml" />
-    <Content Include="Views\Localisation\Create_old.cshtml" />
     <Content Include="Views\Tronc\Create.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -385,8 +384,6 @@
     <Content Include="Views\Org\Edit.cshtml" />
     <Content Include="Views\Org\Index.cshtml" />
     <Content Include="Views\Localisation\Delete.cshtml" />
-    <Content Include="Views\Localisation\Details.cshtml" />
-    <Content Include="Views\Localisation\Edit.cshtml" />
     <Content Include="Views\Localisation\Index.cshtml" />
     <Content Include="Views\ProfilUtil\Create.cshtml" />
     <Content Include="Views\ProfilUtil\Delete.cshtml" />
@@ -416,7 +413,6 @@
     <Content Include="Views\EvalAbr\EvalLast.cshtml" />
     <Content Include="Views\EvalAbr\_HistoEval.cshtml" />
     <Content Include="Views\Valeur\Index.cshtml" />
-    <Content Include="Views\Localisation\Create.cshtml" />
     <Content Include="Views\Localisation\_Create1.cshtml" />
     <Content Include="Views\Localisation\_Create.cshtml" />
     <Content Include="Views\Localisation\_Create2.cshtml" />

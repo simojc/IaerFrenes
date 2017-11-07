@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using FreneValue.Models;
 
 namespace FreneValue.Controllers
@@ -17,10 +18,57 @@ namespace FreneValue.Controllers
         private arbredb db = new arbredb();
 
         // GET: Localisation
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index_1()
         {
             return View(await db.localisations.ToListAsync());
         }
+
+
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.typ_locSortParm = String.IsNullOrEmpty(sortOrder) ? "typ_loc_desc" : "";
+            ViewBag.villeSortParm = String.IsNullOrEmpty(sortOrder) ? "ville_desc" : "";
+            ViewBag.code_postSortParm = String.IsNullOrEmpty(sortOrder) ? "code_post_desc" : "";
+            
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var localisation = from s in db.localisations
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                localisation = localisation.Where(s => s.typ_loc.Contains(searchString)
+                                       || s.ville.Contains(searchString)
+                                       || s.code_post.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "typ_loc_desc":
+                    localisation = localisation.OrderByDescending(s => s.typ_loc);
+                    break;
+                case "ville_desc":
+                    localisation = localisation.OrderByDescending(s => s.ville);
+                    break;
+                default:  // Name ascending 
+                    localisation = localisation.OrderBy(s => s.typ_loc).ThenBy(s => s.ville);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(localisation.ToPagedList(pageNumber, pageSize));
+        }
+
 
         // GET: Localisation/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -37,23 +85,7 @@ namespace FreneValue.Controllers
             return View(loclsn);
         }
 
-        // GET: Localisation/Create
-        public ActionResult Create2()
-        {
-            List<SelectListItem> myListtyploc = new List<SelectListItem>();
-            var data = new[]{
-                 new SelectListItem{ Value="1",Text="Terrain en zone urbanisée"},
-                 new SelectListItem{ Value="2",Text="Voie de transport"},
-                 new SelectListItem{ Value="3",Text="Cours d'eau"}
-            };
-            myListtyploc = data.ToList();
-
-            ViewBag.typloc = new SelectList(myListtyploc, "Value", "Text");
-            loclsn model = new loclsn();
-            // model.typ_loc = "1";
-            return View(model);
-        }
-
+       
         // GET: Localisation/Create
         public ActionResult Create(string type)
         {
@@ -88,7 +120,7 @@ namespace FreneValue.Controllers
                 return PartialView("_Create");
             }
             else
-            if (type == "1")
+            if (type == "1")  
                 return PartialView("_Create1", model);
             else
             if (type == "2" || type == "3")
@@ -104,7 +136,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,typ_loc,num_civc,voie,lot,mtrle,nom, nom_rue,tronc_rue,nom_cours_eau,sectn_cours_eau,emplcmt,code_post,ville,prov,orient,geomtr,pays,suprfc,lattd_a,longtd_a,lattd_b,longtd_b,util,dt_cretn,dt_modf")] loclsn loclsn)
+        public async Task<ActionResult> Create([Bind(Include = "id,typ_loc,num_civc,voie,lot,mtrle,nom,tronc_rue,sectn_cours_eau,emplcmt,code_post,ville,prov,orient,geomtr,longueur,pays,suprfc,lattd_a,longtd_a,lattd_b,longtd_b,util,dt_cretn,dt_modf")] loclsn loclsn)
         {
             if (ModelState.IsValid)
             {
@@ -118,21 +150,21 @@ namespace FreneValue.Controllers
         }
 
         // GET: Localisation/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public  ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            loclsn loclsn = await db.localisations.FindAsync(id);
+            loclsn loclsn =  db.localisations.Find(id);
             if (loclsn == null)
             {
                 return HttpNotFound();
             }
-            if (loclsn.typ_loc == "Terrain en zone urbanisée")
+            if (loclsn.typ_loc.Contains("Terrain"))
                 return PartialView("_Edit1", loclsn);
             else
-           if (loclsn.typ_loc == "Voie de transport" || loclsn.typ_loc == "Cours d'eau")
+           if (loclsn.typ_loc.Contains("transport") || loclsn.typ_loc.Contains("Cours"))
                 return PartialView("_Edit2", loclsn);
             else
             {
@@ -146,7 +178,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,typ_loc,num_civc,voie,lot,mtrle,nom, nom_rue,tronc_rue,nom_cours_eau,sectn_cours_eau,emplcmt,code_post,ville,prov,orient,geomtr,pays,suprfc,lattd_a,longtd_a,lattd_b,longtd_b,util,dt_cretn,dt_modf")] loclsn loclsn)
+        public async Task<ActionResult> Edit([Bind(Include = "id,typ_loc,num_civc,voie,lot,mtrle,nom,tronc_rue,sectn_cours_eau,emplcmt,code_post,ville,prov,orient,geomtr,longueur,pays,suprfc,lattd_a,longtd_a,lattd_b,longtd_b,util,dt_cretn,dt_modf")] loclsn loclsn)
         {
             if (ModelState.IsValid)
             {

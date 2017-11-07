@@ -1,0 +1,99 @@
+﻿@model FreneValue.ViewModels.ArbreSearchModel
+<style type="text/css">
+    .action {
+        width: 300px !important;
+    }
+</style>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>
+        Inventaire de arbres
+    </h3>
+</div>
+@using (Html.BeginForm("index", "Arbre", FormMethod.Get))
+{
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="col-lg-2">
+                @Html.TextBoxFor(m => m.num_arbre, new { @class = "form-control", @placeholder = "N° arbre" })
+            </div>
+            <div class="col-lg-2">
+                @Html.DropDownListFor(m => m.id_profil, new SelectList(ViewBag.proprio, "id", "NomPrem"),
+                   "Tous les propriétaires", new { @class = "form-control", @placeholder = "Propriétaire" })
+            </div>
+            <div class="col-lg-2">
+                @Html.DropDownListFor(m => m.id_local, new SelectList(ViewBag.adresse, "id", "AdresseComplete"),
+                "Toutes les Adresses", new { @class = "form-control", @placeholder = "Adresse" })
+            </div>
+
+            <div class="col-lg-2">
+                @Html.DropDownListFor(m => m.ess, new SelectList(ViewBag.ESSENCE),
+                   "Toutes les essences", new { @class = "form-control", @placeholder = "Essence" })
+            </div>
+
+            @*<div class="col-lg-2">
+                @Html.TextBoxFor(m => m.Adress, new { @class = "form-control", @placeholder = "Adresse contient" })
+            </div>*@
+
+            <div class="col-lg-1 pull-left">
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+            </div>
+            <div class="col-lg-1 pull-right">
+                <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Arbre")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:17px;">
+        @{
+            var grid = new WebGrid(
+                            canPage: true,
+                            rowsPerPage: Model.PageSize,
+                            canSort: true,
+                            ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.arbres, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+        fillEmptyRows: false,
+        tableStyle: "table table-bordered table-hover",
+        mode: WebGridPagerModes.All,
+        columns: grid.Columns(
+              // grid.Column("id", "ID"),
+              grid.Column("num_arbre", "N° arbre", style: "col-lg-1"),
+              // grid.Column("Price", header: "Price", format: @<text>@String.Format("{0:C}", item.Price) </text>),
+              grid.Column("proprio.NomPrem", "Propriétaire", style: "col-lg-2"),
+              grid.Column("adresse.AdresseComplete", "Adresse", style: "col-lg-3"),
+
+              grid.Column("typ_emplcmt", "Type Emplcmt", style: "col-lg-2"),
+              grid.Column("orientatn", "Orientation", style: "col-lg-2"),
+              grid.Column("ess", "Essence", style: "col-lg-2"),
+              grid.Column("dt_plant", "Planté_en", style: "col-lg-2", format: (item) => item.dt_plant != null ? item.dt_plant.ToString("yyyy") : "", canSort: true),
+
+              grid.Column(header: "Action", canSort: false, style: "action",
+                format: @<text>
+                <a data-modal='' href="@Url.Action("Edit", "Arbre", new { id = item.id })" title='Modifier inventaire'> <span class="glyphicon glyphicon-edit"></span> </a>
+                &nbsp;
+               
+          <a data-modal='' href="@Url.Action("EvalLast", "EvalAbr", new { id = item.id })" title='Dernière évaluation'> <span class="glyphicon glyphicon-tree-conifer"></span> </a>
+                
+                @*&nbsp;
+                         @Ajax.ActionLink(" ", "Evaluation", new { id_arbre = item.id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "EvalDiv",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET"
+                    }, new { @class = "glyphicon glyphicon-tree-deciduous", title = "Histo. évaluation" })*@
+                </text>)
+             ));
+        }
+    </div>
+            }
+<div id="EvalDiv">
+</div>
+

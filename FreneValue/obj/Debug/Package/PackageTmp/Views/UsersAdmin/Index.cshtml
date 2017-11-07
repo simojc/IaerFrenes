@@ -1,0 +1,54 @@
+﻿@model IEnumerable< FreneValue.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Liste des utilisateurs</h2>
+
+<div align="right"> @Html.ActionLink("Créer Nouvel utilisateur", "Create") </div>
+
+<p>
+
+</p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.Id }) |
+                
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

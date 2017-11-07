@@ -22,13 +22,11 @@ namespace FreneValue.Models
         public string mtrle { get; set; }
         [Display(Name = "Appelation")]
         public string nom { get; set; }
-        [Display(Name = "Rue")]
-        public string nom_rue { get; set; }
-        [Display(Name = "Tronçon rue")]
+   
+        [Display(Name = "Tronçon")]
         public string tronc_rue { get; set; }
-        [Display(Name = "Cours d'eau")]
-        public string nom_cours_eau { get; set; }
-        [Display(Name = "Section Cours d'eau")]
+      
+        [Display(Name = "Section")]
         public string sectn_cours_eau { get; set; }
         [Display(Name = "Emplacement")]
         public string emplcmt { get; set; }
@@ -44,6 +42,9 @@ namespace FreneValue.Models
 
         [Display(Name = "Géométrie")]
         public string geomtr { get; set; }
+
+        [Display(Name = "Longueur")]
+        public int? longueur { get; set; }
 
         [Display(Name = "Pays")]
         public string pays { get; set; }
@@ -72,7 +73,7 @@ namespace FreneValue.Models
         {
             get
             {
-                return num_civc + ", " + nom_rue + ", " + ville;
+                return num_civc + ", " + voie + ", " + ville;
             }
         }        
             

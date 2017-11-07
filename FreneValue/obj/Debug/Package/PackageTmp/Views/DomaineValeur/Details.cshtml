@@ -1,0 +1,51 @@
+﻿@model FreneValue.Models.code_dom
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>code_dom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.util)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.util)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.code }) |
+    @Html.ActionLink("Retour à la Liste", "Index")
+</p>

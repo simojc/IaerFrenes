@@ -37,7 +37,7 @@ namespace FreneValue.Controllers
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
-                     Text = s.num_civc + ", " + s.nom_rue + ", " + s.ville
+                     Text = s.num_civc + ", " + s.voie + ", " + s.ville
         }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }

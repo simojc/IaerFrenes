@@ -1,0 +1,84 @@
+﻿@using FreneValue.Helpers
+@model PagedList.IPagedList<FreneValue.Models.val_dom>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Valeurs domaines";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h4>Gestion des codes valeurs</h4>
+
+    @using (Html.BeginForm("Index", "Valeur", FormMethod.Get))
+    {
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { data_autocomplete = Url.Action("RechercherRapid", "Valeur") })
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </button>
+            <div class="col-lg-1 pull-right">
+                <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Valeur")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+            </div>
+    }
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.ActionLink("Domaine", "Index", new { sortOrder = ViewBag.code_domSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Code valeur
+            </th>
+            <th>
+                Valeur
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                @Html.ActionLink("Actif", "Index", new { sortOrder = ViewBag.actifSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code_dom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code_val)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.val)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actif)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                        &nbsp;
+                        &nbsp;
+                        @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                    </div>
+                </td>
+
+            </tr>
+        }
+    </table>
+
+    <div class="col-sm-10">
+        <div class="center">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+</div>
