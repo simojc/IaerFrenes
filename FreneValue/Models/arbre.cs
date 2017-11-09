@@ -54,6 +54,13 @@ namespace FreneValue.Models
         public virtual prof_util proprio { get; set; }
         [ForeignKey("id_local")]
         public virtual loclsn adresse { get; set; }
+
+        public ICollection<eval_abr> Evals { get; set; }
+
+        public int Nbevals
+        {
+            get { return Evals.Count; }
+        }
     }
 
 }

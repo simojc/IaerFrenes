@@ -5,9 +5,6 @@ namespace FreneValue.Models
 {
     public class loclsn
     {
-
-
-
         [Key]
         public int id { get; set; }
         [Display(Name = "Type localisation")]
@@ -73,7 +70,7 @@ namespace FreneValue.Models
         {
             get
             {
-                return num_civc + ", " + voie + ", " + ville;
+                return nom + '-' + num_civc + "- " + voie + "- " + ville;
             }
         }        
             

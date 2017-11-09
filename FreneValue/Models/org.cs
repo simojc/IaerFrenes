@@ -8,7 +8,7 @@ namespace FreneValue.Models
         [Key]
         public int id { get; set; }
         [Display(Name = "Niveau")]
-        public int niv { get; set; }
+        public int? niv { get; set; }
         [Display(Name = "Nom")]
         public string nom { get; set; }
         [Display(Name = "sigle")]

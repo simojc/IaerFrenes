@@ -37,7 +37,7 @@ namespace FreneValue.Controllers
                  .Select(s => new SelectListItem
                  {
                      Value = s.id.ToString(),
-                     Text = s.num_civc + ", " + s.voie + ", " + s.ville
+                     Text = s.nom + "-" + s.num_civc + "- " + s.voie + "- " + s.ville
         }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
         }
@@ -47,7 +47,7 @@ namespace FreneValue.Controllers
         {            
             ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
 
-            ViewBag.adresse = db.localisations.Where(x => x.num_civc != null);
+            ViewBag.adresse = db.localisations;
 
             ViewBag.proprio = db.prof_utils; //.Where(x => x.typ_util == "PROPRIETAIRE");
            
@@ -66,13 +66,27 @@ namespace FreneValue.Controllers
             {
                 predicate = predicate.And(x => x.id_local.ToString().ToLower().Contains(model.id_local.ToString().ToLower()));
             }
-            model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
-            model.arbres = (from x in db.arbres.AsQueryable().Where(predicate) 
-                              orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
+          //  predicate = predicate.And(x => x.id = s.id_arbre);
+           model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
+            model.arbres = (from x in db.arbres.AsQueryable().Include(s => s.Evals).Where(predicate)
+                            orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
                                 select x)
                                 .Skip((model.Page - 1) * model.PageSize)
                                 .Take(model.PageSize)
-                                .ToList();           
+                                .ToList();
+
+
+           // List<eval_abr> eval_abrs;
+          
+           // foreach (var s_abr in model.arbres)
+           // {
+           //     eval_abrs = db.evaluations.Where(c => c.id_arbre == s_abr.id).ToList(); 
+           // }
+           //// int count = eval_abrs.Count(); //Here you will  get count
+
+           // ViewBag.Counts = eval_abrs.Count();
+
+            // var r = model.arbres.ev
             return View(model);
         }
 

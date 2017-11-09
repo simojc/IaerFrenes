@@ -382,6 +382,7 @@ namespace FreneValue.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             arbre abr = db.arbres.Find(id);
+
             
             DateTime maxdateval = db.evaluations.Where(x => x.id_arbre == id).Max(x => x.dt_eval);
 
@@ -389,11 +390,7 @@ namespace FreneValue.Controllers
 
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
-
-            if (eval_abr == null)
-            {
-                return HttpNotFound();
-            }
+       
             ViewBag.arbre = abr;
             ViewBag.id_arbre = eval_abr.id_arbre;
             ViewBag.id_eval = eval_abr.id;
