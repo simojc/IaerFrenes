@@ -374,19 +374,20 @@ namespace FreneValue.Controllers
         }
 
        // [OutputCache(Duration = 60, VaryByParam = "id")]
-        public ActionResult EvalLast(int? id)
+        public ActionResult EvalLast(int id)
         {
             // return View(await db.evaluations.ToListAsync());
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            arbre abr = db.arbres.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            arbre abr = db.arbres.Find(id);            
+            //DateTime? maxdateval = db.evaluations.Where(x => x.id_arbre == id).Max(x => x.dt_eval);
+            //eval_abr eval_abr1 = db.evaluations.Where(x => x.id_arbre == id).First(x => x.dt_eval == maxdateval);
 
-            
-            DateTime maxdateval = db.evaluations.Where(x => x.id_arbre == id).Max(x => x.dt_eval);
-
-            eval_abr eval_abr = db.evaluations.Where(x => x.id_arbre == id).First(x => x.dt_eval == maxdateval);        
+            eval_abr eval_abr = db.evaluations.Where(x => x.id_arbre == id)
+                                .OrderByDescending(x => x.dt_eval)
+                                .FirstOrDefault();
 
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;

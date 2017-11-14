@@ -16,7 +16,8 @@ namespace FreneValue.Models
         public int id_evalteur { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Display(Name = "Date Éval.")]
-        public DateTime dt_eval { get; set; }
+        [Required]
+        public DateTime? dt_eval { get; set; }
         [Display(Name = "DHP Total")]
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhp_tot { get; set; }

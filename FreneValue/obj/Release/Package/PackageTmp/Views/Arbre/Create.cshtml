@@ -165,17 +165,22 @@
                         </div>
                     </td>
                 </tr>
+              
                 <tr>
                     <td colspan="3">
-                        <div align="left">
-                            <div class="col-md-offset-2 col-md-10">
-                                @Html.ActionLink("Retour", "Index", "Arbre", htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
-                                @*@Html.ActionLink("LinkName", "ActionName", "ControllerName", new { @id = idValue, @secondParam= = 2 }, new { @class = "btn btn-info", @target = "_blank" })*@
-                            </div>
-                        </div>
-                        <div align="right">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Enregistrer" class="btn  btn-primary" />
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <div class="col-lg-2">
+                                    @Html.ActionLink(
+                                    linkText: "Retour à la liste",
+                                    actionName: "Index",
+                                    controllerName: "Arbre",
+                                    routeValues: null,
+                                    htmlAttributes: new { @class = "btn btn-primary " })
+                                </div>
+                                <div class="col-lg-2 pull-right">
+                                    <input type="submit" value="Enregistrer" class="btn  btn-primary" />
+                                </div>
                             </div>
                         </div>
                     </td>

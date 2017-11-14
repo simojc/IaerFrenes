@@ -405,9 +405,9 @@
     <Content Include="Views\Souche\Details.cshtml" />
     <Content Include="Views\Souche\Edit.cshtml" />
     <Content Include="Views\Souche\Index.cshtml" />
-    <Content Include="Views\EvalAbr\_Tronc.cshtml" />
-    <Content Include="Views\EvalAbr\_Profil.cshtml" />
-    <Content Include="Views\EvalAbr\_Souche.cshtml" />
+    <Content Include="Views\Shared\_Tronc.cshtml" />
+    <Content Include="Views\Shared\_Profil.cshtml" />
+    <Content Include="Views\Shared\_Souche.cshtml" />
     <Content Include="Views\DomaineValeur\Index.cshtml" />
     <Content Include="Views\EvalAbr\Eval_First.cshtml" />
     <Content Include="Views\EvalAbr\EvalLast.cshtml" />

@@ -1,4 +1,6 @@
-﻿@model FreneValue.ViewModels.ArbreSearchModel
+﻿@using FreneValue.Helpers
+
+@model FreneValue.ViewModels.ArbreSearchModel
 <style type="text/css">
     .action {
         width: 300px !important;
@@ -35,8 +37,8 @@
             </div>
 
             @*<div class="col-lg-2">
-                @Html.TextBoxFor(m => m.Adress, new { @class = "form-control", @placeholder = "Adresse contient" })
-            </div>*@
+                    @Html.TextBoxFor(m => m.Adress, new { @class = "form-control", @placeholder = "Adresse contient" })
+                </div>*@
 
             <div class="col-lg-1 pull-left">
                 <button type="submit" class="btn btn-success">
@@ -75,13 +77,22 @@
               grid.Column("ess", "Essence", style: "col-lg-2"),
               grid.Column("dt_plant", "Planté_en", style: "col-lg-2", format: (item) => item.dt_plant != null ? item.dt_plant.ToString("yyyy") : "", canSort: true),
 
-              grid.Column(header: "Action", canSort: false, style: "action",
+              grid.Column(header: "Action ", canSort: false, style: "action",
                 format: @<text>
-                <a data-modal='' href="@Url.Action("Edit", "Arbre", new { id = item.id })" title='Modifier inventaire'> <span class="glyphicon glyphicon-edit"></span> </a>
-                &nbsp;
-               
-          <a data-modal='' href="@Url.Action("EvalLast", "EvalAbr", new { id = item.id })" title='Dernière évaluation'> <span class="glyphicon glyphicon-tree-conifer"></span> </a>
-                
+                <div class="row">
+                    &nbsp;
+                    <a data-modal='' href="@Url.Action("Edit", "Arbre", new { id = item.id })" title='Modifier inventaire'> <span class="glyphicon glyphicon-edit"></span> </a>
+                    &nbsp; 
+                    <a data-modal='' href="@Url.Action("Create", "EvalAbr", new { id_arbre = item.id })" title='Créer évaluation'> <span class="glyphicon glyphicon-plus"></span> </a>
+                    @*&nbsp;*@
+                    @if (item.Nbevals > 0)
+                    {
+                        <a data-modal='' href="@Url.Action("EvalLast", "EvalAbr", new { id = item.id })" title='Dernière évaluation'> <span class="glyphicon glyphicon-tree-conifer"></span> </a>
+                        @Html.NoEncodeActionLink("Dernière éval.", "Add", "EvalLast", "EvalAbr", routeValues: new { id = item.id }, htmlAttributes: new { data_modal = "", @class = "glyphicon glyphicon-tree-conifer" })
+                    }
+                </div>
+                @*@Html.NoEncodeActionLink("Créer évaluation", "Add", "Create", "EvalAbr", routeValues: new { id_arbre = ViewBag.id_arbre }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })*@
+
                 @*&nbsp;
                          @Ajax.ActionLink(" ", "Evaluation", new { id_arbre = item.id }, new AjaxOptions
                     {

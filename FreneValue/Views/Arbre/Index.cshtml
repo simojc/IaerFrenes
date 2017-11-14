@@ -88,6 +88,7 @@
                     @if (item.Nbevals > 0)
                     {
                         <a data-modal='' href="@Url.Action("EvalLast", "EvalAbr", new { id = item.id })" title='Dernière évaluation'> <span class="glyphicon glyphicon-tree-conifer"></span> </a>
+                        @Html.NoEncodeActionLink("Dernière éval.", "Add", "EvalLast", "EvalAbr", routeValues: new { id = item.id }, htmlAttributes: new { data_modal = "", @class = "glyphicon glyphicon-tree-conifer" })
                     }
                 </div>
                 @*@Html.NoEncodeActionLink("Créer évaluation", "Add", "Create", "EvalAbr", routeValues: new { id_arbre = ViewBag.id_arbre }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })*@
