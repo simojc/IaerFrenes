@@ -68,7 +68,7 @@
             </div>
             @if (ViewBag.nb_tronc > 1)
             {
-                
+
 
                 for (var i = 0; i <= ViewBag.nb_tronc - 1; i++)
                 {
@@ -77,7 +77,7 @@
                         @{Html.RenderAction("Tronc", new { id = ViewBag.List_id_tronc[@i].id });}
 
                     </div>
-                            }
+                                }
 
                             }
 

@@ -377,10 +377,10 @@ namespace FreneValue.Controllers
         public ActionResult EvalLast(int id)
         {
             // return View(await db.evaluations.ToListAsync());
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             arbre abr = db.arbres.Find(id);            
             //DateTime? maxdateval = db.evaluations.Where(x => x.id_arbre == id).Max(x => x.dt_eval);
             //eval_abr eval_abr1 = db.evaluations.Where(x => x.id_arbre == id).First(x => x.dt_eval == maxdateval);
@@ -396,13 +396,13 @@ namespace FreneValue.Controllers
             ViewBag.id_arbre = eval_abr.id_arbre;
             ViewBag.id_eval = eval_abr.id;
             ViewBag.id_souche = db.souches
-                          .Where(r => r.id_eval == id)
+                          .Where(r => r.id_eval == eval_abr.id)
                           .Select(r => r.id)
                           .FirstOrDefault();
             ViewBag.List_id_tronc = db.troncs
-                          .Where(r => r.id_eval == id).ToList();
+                          .Where(r => r.id_eval == eval_abr.id).ToList();
             ViewBag.nb_tronc = db.troncs
-                       .Where(r => r.id_eval == id).Count();
+                       .Where(r => r.id_eval == eval_abr.id).Count();
 
             return View();
         }

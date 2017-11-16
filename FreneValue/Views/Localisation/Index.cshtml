@@ -9,7 +9,7 @@
 
 <div class="container">
     
-    <h2>Gestion des localisations</h2>
+    <center>  <h3>Gestion des localisations</h3> </center>
    
     @using (Html.BeginForm("Index", "Localisation", FormMethod.Get))
     {
@@ -23,7 +23,7 @@
             <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Localisation")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
         </div>
     }
-    <table class="table">
+    <table class="table table-bordered table-striped">
         <tr>
 
             <th>
@@ -31,10 +31,10 @@
             </th>
             <th>
                 @Html.ActionLink("Ville", "Index", new { sortOrder = ViewBag.villeSortParm, currentFilter = ViewBag.CurrentFilter })
-                
+
             </th>
             <th>
-                @Html.ActionLink("Code postal", "Index", new { sortOrder = ViewBag.code_postSortParm, currentFilter = ViewBag.CurrentFilter })                
+                @Html.ActionLink("Code postal", "Index", new { sortOrder = ViewBag.code_postSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 Numéro civique
@@ -46,11 +46,11 @@
                 Lot
             </th>
             <th>
-                Nom 
+                Nom
             </th>
             <th>
                 Tronçon
-            </th>        
+            </th>
             <th>
                 Section
             </th>
@@ -86,7 +86,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tronc_rue)
-                </td>               
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.sectn_cours_eau)
                 </td>

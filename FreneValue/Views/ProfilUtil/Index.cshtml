@@ -10,11 +10,11 @@
 <p>
     @Html.ActionLink("Créer nouveau profil", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
         @*<th>
-            @Html.DisplayNameFor(model => model.id_util)
-        </th>*@
+                @Html.DisplayNameFor(model => model.id_util)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.typ_util)
         </th>
@@ -46,74 +46,73 @@
             @Html.DisplayNameFor(model => model.id_local)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.util)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dt_cretn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dt_modf)
-        </th>*@
+                @Html.DisplayNameFor(model => model.util)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dt_cretn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dt_modf)
+            </th>*@
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.id_util)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_util)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_propr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pren)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.org)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ss_org)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telph)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.extnsn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tel_cell)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_local)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.util)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dt_cretn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dt_modf)
-        </td>*@
-        <td>
-            <div class="pull-right">
-                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
-                &nbsp;
-                &nbsp;
-                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
-            </div>
-        </td>
-        @*<td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |            
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
-        </td>*@
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.id_util)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.typ_util)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typ_propr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pren)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.org)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ss_org)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telph)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.extnsn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tel_cell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_local)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.util)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dt_cretn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dt_modf)
+                </td>*@
+            <td>
+                <div class="pull-right">
+                    @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                    &nbsp;
+                    &nbsp;
+                    @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
+                </div>
+            </td>
+            @*<td>
+                    @Html.ActionLink("Modifier", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id=item.id })
+                </td>*@
+        </tr>
+    }
 </table>

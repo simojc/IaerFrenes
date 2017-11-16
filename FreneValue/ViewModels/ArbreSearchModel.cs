@@ -31,7 +31,7 @@ namespace FreneValue.ViewModels
         public ArbreSearchModel()
         {
             Page = 1;
-            PageSize = 5;
+            PageSize = 10;
             Sort = "id";
             SortDir = "DESC";
         }
