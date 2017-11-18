@@ -8,12 +8,11 @@
 }
 
 <div class="container">
-    
+
     <center>  <h3>Gestion des localisations</h3> </center>
-   
+
     @using (Html.BeginForm("Index", "Localisation", FormMethod.Get))
-    {
-        @*@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { data_autocomplete = Url.Action("RechercherRapid", "Valeur") })*@
+    {        
         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { })
         <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-refresh"></span>
@@ -55,10 +54,10 @@
                 Section
             </th>
             <th>
-                Longueur
+                Long.
             </th>
 
-            <th></th>
+            <th> Action </th>
         </tr>
         @foreach (var item in Model)
         {
@@ -95,10 +94,9 @@
                 </td>
 
                 <td>
-                    <div class="pull-right">
-                        @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                    <div class="form-horizontal">
+                        @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-edit", title = "Modifier" })
                         &nbsp;
-                        @*&nbsp;*@
                         @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
                     </div>
                 </td>

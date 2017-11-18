@@ -34,11 +34,7 @@
             <div class="col-lg-2">
                 @Html.DropDownListFor(m => m.ess, new SelectList(ViewBag.ESSENCE),
                    "Toutes les essences", new { @class = "form-control", @placeholder = "Essence" })
-            </div>
-
-            @*<div class="col-lg-2">
-                    @Html.TextBoxFor(m => m.Adress, new { @class = "form-control", @placeholder = "Adresse contient" })
-                </div>*@
+            </div>            
 
             <div class="col-lg-1 pull-left">
                 <button type="submit" class="btn btn-success">
@@ -92,7 +88,7 @@
                     &nbsp;
                 </div>               
 
-                @*&nbsp;
+                @*
                          @Ajax.ActionLink(" ", "Evaluation", new { id_arbre = item.id }, new AjaxOptions
                     {
                         UpdateTargetId = "EvalDiv",

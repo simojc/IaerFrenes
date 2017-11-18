@@ -75,7 +75,7 @@
 
             <td>
                 <div class="pull-right">
-                    @Html.ActionLink(" ", "Eval", "EvalAbr", new { id = item.id }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                    @Html.ActionLink(" ", "Eval", "EvalAbr", new { id = item.id }, new { @class = "glyphicon glyphicon-edit", title = "Modifier" })
                     &nbsp;
                     &nbsp;
                     @Html.ActionLink(" ", "Delete", "EvalAbr", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
@@ -83,7 +83,7 @@
             </td>
             @*<td>
                 <div class="pull-right">                  
-                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", "Modifier", "Edit", "EvalAbr", routeValues: new { id = item.id })
+                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-edit'></span>", "Modifier", "Edit", "EvalAbr", routeValues: new { id = item.id })
                     &nbsp;
                     @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Supprimer", "Delete", "EvalAbr", routeValues: new { id = item.id })
                     @*public static MvcHtmlString NoEncodeActionLink(this HtmlHelper htmlHelper,

@@ -30,11 +30,12 @@
                     </button>
                 </div>
 
-                <div class="col-lg-2 pull-right">
-                    <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "DomaineValeur")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+                <div class="col-lg-4">
+                    @Html.NoEncodeActionLink("Nouveau Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
                 </div>
             </div>
         </div>
+    
         <table class="table table-bordered table-striped" id="RstRecherche">
             <tr>
                 <th>
@@ -64,7 +65,7 @@
 
                     <td>
                         <div class="pull-right">
-                            @Html.ActionLink(" ", "Edit", new { id = item.code }, new { @class = "glyphicon glyphicon-pencil", title = "Modifier" })
+                            @Html.ActionLink(" ", "Edit", new { id = item.code }, new { @class = "glyphicon glyphicon-edit", title = "Modifier" })
                             &nbsp;
                             &nbsp;
                             &nbsp;

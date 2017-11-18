@@ -66,8 +66,13 @@ namespace FreneValue.Controllers
             {
                 predicate = predicate.And(x => x.id_local.ToString().ToLower().Contains(model.id_local.ToString().ToLower()));
             }
-          //  predicate = predicate.And(x => x.id = s.id_arbre);
-           model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
+
+            if (model.id_profil != null)
+            {
+                predicate = predicate.And(x => x.id_profil.ToString().ToLower().Contains(model.id_profil.ToString().ToLower()));
+            }
+            //  predicate = predicate.And(x => x.id = s.id_arbre);
+            model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
             model.arbres = (from x in db.arbres.AsQueryable().Include(s => s.Evals).Where(predicate)
                             orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
                                 select x)
