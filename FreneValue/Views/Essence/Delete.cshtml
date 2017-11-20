@@ -1,0 +1,209 @@
+﻿@model FreneValue.Models.essence
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>essence</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_fr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_fr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_en)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_en)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.famille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.famille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.origin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.origin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_abr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_abr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.croisnce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.croisnce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.haut_max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.haut_max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diam_cime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diam_cime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_lumiere)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_lumiere)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_sol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_sol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.coulr_autom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coulr_autom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valo_mat_lignse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valo_mat_lignse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dens_bois)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dens_bois)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maladie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maladie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.insecte_ravgeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.insecte_ravgeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.champgn_ravgeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.champgn_ravgeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ph_sol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ph_sol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enracinemt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enracinemt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.util)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.util)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_cretn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_cretn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dt_modf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dt_modf)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -24,6 +24,8 @@ namespace FreneValue.Models
         // Ajoutez un DbSet pour chaque type d'entité à inclure dans votre modèle. Pour plus d'informations 
         // sur la configuration et l'utilisation du modèle Code First, consultez http://go.microsoft.com/fwlink/?LinkId=390109.
 
+        
+
         public DbSet<val_dom> valeurs { get; set; }
         public DbSet<code_dom> domaines { get; set; }
         public DbSet<arbre> arbres { get; set; }
@@ -35,34 +37,30 @@ namespace FreneValue.Models
         public DbSet<org> organisations { get; set; }
         public DbSet<eval_abr> evaluations { get; set; }
 
+        public DbSet<PhotoViewImage> PhotoViewImage { get; set; }
+
         public DbSet<ErrorLog> Errors { get; set; }
 
         public DbSet<mun_cod_post> codepostal { get; set; }
-        
+
+        public DbSet<essence> essence { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
 
-            modelBuilder.Entity<code_dom>()
-                      .ToTable("code_dom");
-            modelBuilder.Entity<val_dom>()
-                  .ToTable("val_dom");
-            modelBuilder.Entity<arbre>()
-                  .ToTable("arbre");
-            modelBuilder.Entity<tronc>()
-            .ToTable("tronc");
-            modelBuilder.Entity<souche>()
-          .ToTable("souche");
-            modelBuilder.Entity<cime>()
-          .ToTable("cime");
-            modelBuilder.Entity<org>()
-         .ToTable("org");
-            modelBuilder.Entity<loclsn>()
-         .ToTable("loclsn");
-            modelBuilder.Entity<prof_util>()
-       .ToTable("prof_util");
-            modelBuilder.Entity<ErrorLog>()
-      .ToTable("errorlog");
+            modelBuilder.Entity<code_dom>().ToTable("code_dom");
+            modelBuilder.Entity<val_dom>().ToTable("val_dom");
+            modelBuilder.Entity<arbre>().ToTable("arbre");
+            modelBuilder.Entity<tronc>().ToTable("tronc");
+            modelBuilder.Entity<souche>().ToTable("souche");
+            modelBuilder.Entity<cime>().ToTable("cime");
+            modelBuilder.Entity<org>().ToTable("org");
+            modelBuilder.Entity<loclsn>().ToTable("loclsn");
+            modelBuilder.Entity<prof_util>().ToTable("prof_util");
+            modelBuilder.Entity<ErrorLog>().ToTable("errorlog");
+            modelBuilder.Entity<PhotoViewImage>().ToTable("photo_abr");
+            modelBuilder.Entity<essence>().ToTable("ess");
 
         }
 

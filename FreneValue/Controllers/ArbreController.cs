@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using LinqKit;
 //using System.Web.Caching;
 using FreneValue.Infrastructure;
+using System.Web;
 
 namespace FreneValue.Controllers
 {
@@ -226,30 +227,78 @@ namespace FreneValue.Controllers
             }
         }
 
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult Upload(PhotoForSingleItem photo)
+        public ActionResult Upload([Bind(Include = "id,id_arbre,nom,alt,image,typ_cont")] PhotoViewImage photoViewImage)             
+        {
+        //PhotoForSingleItem is just a class that has properties
+        // Name and Alternate text.  I use strongly typed Views and Actions
+        //  because I'm not a fan of using string to get the posted data from the
+        //  FormCollection.  That just seems ugly and unreliable to me.
+
+        //PhotoViewImage is just a Entityframework class that has
+        // String Name, String AlternateText, Byte[] ActualImage,
+        //  and String ContentType
+        //  PhotoViewImage newImage = new PhotoViewImage();
+            HttpPostedFileBase file = Request.Files["OriginalLocation"];
+            // newImage.nom = photo.nom;
+            // newImage.alt = photo.alt;
+
+            //Here's where the ContentType column comes in handy.  By saving
+            //  this to the database, it makes it infinitely easier to get it back
+            //  later when trying to show the image.
+            photoViewImage.typ_cont = file.ContentType;
+
+            Int32 length = file.ContentLength;
+            //This may seem odd, but the fun part is that if
+            //  I didn't have a temp image to read into, I would
+            //  get memory issues for some reason.  Something to do
+            //  with reading straight into the object's ActualImage property.
+            byte[] tempImage = new byte[length];
+            file.InputStream.Read(tempImage, 0, length);
+            photoViewImage.image = tempImage;
+
+            if (ModelState.IsValid)
+            {
+                db.PhotoViewImage.Add(photoViewImage);
+                 db.SaveChanges();
+               // return RedirectToAction("Index");
+            }
+
+          //  return View(photoViewImage);
+
+           // db.SaveChanges();
+
+           // newImage.Save();
         
-        // POST: Profil/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
-   
+            //This part is completely optional.  You could redirect on success
+            // or handle errors ect.  Just wanted to keep this simple for the example.
+            return View();
+        }
 
-        //public ActionResult _tronc(int?id_abr)
-        //{      
-        //    //  var model = await _db.valeurs.ToListAsync();
-        //    //ViewBag.codedom = _db.domaines.Select(r => r.code).Distinct();
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ShowPhoto(Int32 id)
+        {
+            //This is my method for getting the image information
+            // including the image byte array from the image column in
+            // a database.
+            //PhotoViewImage image = PhotoViewImage.GetById(id);
+            PhotoViewImage image =  db.PhotoViewImage.Find(id);
+            //As you can see the use is stupid simple.  Just get the image bytes and the
+            //  saved content type.  See this is where the contentType comes in real handy.
+            ImageResult result = new ImageResult(image.image, image.typ_cont);
 
-        //    var model = _db.troncs
-        //               .OrderByDescending(r => r.no_tronc)
-        //               .Where(r => r.id_arbre == id_abr || (id_abr == null));
-
-        //  //  return PartialView("_Valeurs", valeurs);
-        //    return PartialView(model);
-        //}
-
-
-       
-
+            return result;
+        }
 
 
+        /// important
+        /// // Utiliser cette balise pour appeler l'action et afficher la photo:
+        /// //  /* <img src="/Photo/ShowPhoto/1" alt="" />*/  ou encore
+        /// // <img width="150" height="150"  src="@Url.Action("GetImage", "Admin", new {Model.Id})" />
+        ///// ou encore
+        /// // @Html.ActionImageLink("Controller", "action/url", null, null, Url.Content("image/location"), null)
 
     }
 }
