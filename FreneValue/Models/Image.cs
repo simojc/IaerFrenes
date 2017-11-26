@@ -10,27 +10,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FreneValue.Models
 {
-    public class PhotoViewImage
+    public class Image
     {
         [Key]
         public int id { get; set; }
-        [Display(Name = "Arbre")]
-        public int id_arbre { get; set; }
         public String nom { get; set; }
         public String alt { get; set; }
         public Byte[] image { get; set; }
         public String typ_cont { get; set; }
     }
 
-    public class PhotoForSingleItem
-    {
-        public String nom { get; set; }
-        public String alt { get; set; }
-    }
-
-
-
-public class ImageResult : ActionResult
+    public class ImageResult : ActionResult
     {
         public String ContentType { get; set; }
         public byte[] ImageBytes { get; set; }

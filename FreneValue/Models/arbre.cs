@@ -20,10 +20,10 @@ namespace FreneValue.Models
         public string typ_emplcmt { get; set; }
         [Display(Name = "Emplacement")]
         public string emplcmt { get; set; }
-        [Display(Name = "Orientation (pos. rel.)")]
+        [Display(Name = "Orientation")]
         public string orientatn { get; set; }
         [Display(Name = "Essence")]
-        public string ess { get; set; }
+        public int ess_id { get; set; }
         [Display(Name = "Latitude")]
         [DisplayFormat(DataFormatString = "{0:n0}")]
         public decimal? lattd { get; set; }
@@ -36,7 +36,7 @@ namespace FreneValue.Models
         [Display(Name = "DHP")]
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal dhp_tot { get; set; }
-        [Display(Name = "Nb. troncs")]
+        [Display(Name = "Nb_troncs")]
         public int nb_tronc { get; set; }
         [Display(Name = "Type lieu")]
         public string type_lieu { get; set; }
@@ -50,17 +50,24 @@ namespace FreneValue.Models
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
 
+        [Display(Name = "Image")]
+        public int? image_id { get; set; }      
+
         [ForeignKey("id_profil")]
         public virtual prof_util proprio { get; set; }
+
         [ForeignKey("id_local")]
         public virtual loclsn adresse { get; set; }
 
-        public ICollection<eval_abr> Evals { get; set; }
+        [ForeignKey("ess_id")]
+        public virtual essence essence { get; set; }
 
-        public int Nbevals
-        {
-            get { return Evals.Count; }
-        }
+
+        //[ForeignKey("image_id")]
+        //public virtual Image image { get; set; }
+
+        public ICollection<eval_abr> Evals { get; set; }
+        
     }
 
 }

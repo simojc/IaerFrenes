@@ -198,7 +198,6 @@
     <Compile Include="Controllers\LocalisationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrgController.cs" />
-    <Compile Include="Controllers\PhotoViewImagesController.cs" />
     <Compile Include="Controllers\ProfilUtilController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SoucheController.cs" />
@@ -223,7 +222,7 @@
     <Compile Include="Models\loclsn.cs" />
     <Compile Include="Models\mun_cod_post.cs" />
     <Compile Include="Models\org.cs" />
-    <Compile Include="Models\PhotoViewImage.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\prof_util.cs" />
     <Compile Include="Models\souche.cs" />
     <Compile Include="Models\tronc.cs" />
@@ -427,11 +426,12 @@
     <Content Include="Views\Essence\Details.cshtml" />
     <Content Include="Views\Essence\Edit.cshtml" />
     <Content Include="Views\Essence\Index.cshtml" />
-    <Content Include="Views\Arbre\_Image.cshtml" />
+    <Content Include="Views\Essence\_Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app_code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

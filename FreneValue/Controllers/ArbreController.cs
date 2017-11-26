@@ -20,10 +20,10 @@ namespace FreneValue.Controllers
     public class ArbreController : Controller
     {
         private arbredb db = new arbredb();
-       
+
         void ChargerToutesLesDDL()
         {
-            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
+            
             ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("ORIENTATION");
             ViewBag.TYPE_EMPLACEMENT = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
             //ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
@@ -31,7 +31,7 @@ namespace FreneValue.Controllers
                   .Select(s => new SelectListItem
                   {
                       Value = s.id.ToString(),
-                      Text = s.nom +" "+ s.pren 
+                      Text = s.nom + " " + s.pren
                   }).ToList();
             ViewBag.profilUtil = new SelectList(w_profilUtil, "Value", "Text");
             var w_localisation = db.localisations
@@ -39,28 +39,35 @@ namespace FreneValue.Controllers
                  {
                      Value = s.id.ToString(),
                      Text = s.nom + "-" + s.num_civc + "- " + s.voie + "- " + s.ville
-        }).ToList();
+                 }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
+            var w_ess = db.essence
+                  .Select(s => new SelectListItem
+                  {
+                      Value = s.id.ToString(),
+                      Text = s.nom_fr
+                  }).ToList();
+            ViewBag.ESSENCE = new SelectList(w_ess, "Value", "Text");
         }
 
         //[OutputCache(Duration = 60, VaryByParam = "model")]
         public ActionResult Index(ArbreSearchModel model)
-        {            
-            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
+        {
+            ViewBag.ESSENCE = db.essence;  // Utilitaires.LireCodeValeurCache("ESSENCE");
 
             ViewBag.adresse = db.localisations;
 
             ViewBag.proprio = db.prof_utils; //.Where(x => x.typ_util == "PROPRIETAIRE");
-           
+
             var predicate = PredicateBuilder.True<arbre>();
             if (model.num_arbre != null)
             {
-                predicate = predicate.And(x => x.num_arbre.ToLower().Contains(model.num_arbre.ToLower() ));
+                predicate = predicate.And(x => x.num_arbre.ToLower().Contains(model.num_arbre.ToLower()));
             }
 
-            if (model.ess != null)
+            if (model.ess_id != null)
             {
-                predicate = predicate.And(x => x.ess.ToLower().Contains(model.ess.ToLower()));
+                predicate = predicate.And(x => x.ess_id.ToString().ToLower().Contains(model.ess_id.ToString().ToLower()));
             }
 
             if (model.id_local != null)
@@ -75,22 +82,22 @@ namespace FreneValue.Controllers
             //  predicate = predicate.And(x => x.id = s.id_arbre);
             model.TotalRecords = (from x in db.arbres.AsQueryable().Where(predicate) select x.id).Count();
             model.arbres = (from x in db.arbres.AsQueryable().Include(s => s.Evals).Where(predicate)
-                            orderby   (x.id)              /// (model.Sort  + " " + model.SortDir)
-                                select x)
+                            orderby (x.id)              /// (model.Sort  + " " + model.SortDir)
+                            select x)
                                 .Skip((model.Page - 1) * model.PageSize)
                                 .Take(model.PageSize)
                                 .ToList();
 
 
-           // List<eval_abr> eval_abrs;
-          
-           // foreach (var s_abr in model.arbres)
-           // {
-           //     eval_abrs = db.evaluations.Where(c => c.id_arbre == s_abr.id).ToList(); 
-           // }
-           //// int count = eval_abrs.Count(); //Here you will  get count
+            // List<eval_abr> eval_abrs;
 
-           // ViewBag.Counts = eval_abrs.Count();
+            // foreach (var s_abr in model.arbres)
+            // {
+            //     eval_abrs = db.evaluations.Where(c => c.id_arbre == s_abr.id).ToList(); 
+            // }
+            //// int count = eval_abrs.Count(); //Here you will  get count
+
+            // ViewBag.Counts = eval_abrs.Count();
 
             // var r = model.arbres.ev
             return View(model);
@@ -123,7 +130,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf")] arbre arbre)
+        public async Task<ActionResult> Create([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +138,7 @@ namespace FreneValue.Controllers
                 db.arbres.Add(arbre);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
-           }
+            }
             ChargerToutesLesDDL();
             return View(arbre);
         }
@@ -157,15 +164,35 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf")] arbre arbre)
-        {
-            if (ModelState.IsValid)
+        public async Task<ActionResult> Edit([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
+        {            
+            Image newImage = new Image();
+            HttpPostedFileBase file = Request.Files["OriginalLocation"];                                
+            newImage.nom = arbre.num_arbre;
+            newImage.alt = "Photo de l'arbre numéro: " + arbre.num_arbre;
+
+            if (file != null && file.ContentLength > 0)
             {
-                arbre.util = User.Identity.GetUserName();
-                db.Entry(arbre).State = EntityState.Modified;
+                newImage.typ_cont = file.ContentType;
+                Int32 length = file.ContentLength;               
+                byte[] tempImage = new byte[length];
+                file.InputStream.Read(tempImage, 0, length);
+                newImage.image = tempImage;
+                db.images.Add(newImage);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                //await db.SaveChanges();
+
+                if (ModelState.IsValid)
+                {
+                    arbre.image_id = newImage.id;
+                    arbre.util = User.Identity.GetUserName();
+                    db.Entry(arbre).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
+            // Fin gestion de fichire
+         
             return View(arbre);
         }
 
@@ -227,56 +254,6 @@ namespace FreneValue.Controllers
             }
         }
 
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Upload(PhotoForSingleItem photo)
-        public ActionResult Upload([Bind(Include = "id,id_arbre,nom,alt,image,typ_cont")] PhotoViewImage photoViewImage)             
-        {
-        //PhotoForSingleItem is just a class that has properties
-        // Name and Alternate text.  I use strongly typed Views and Actions
-        //  because I'm not a fan of using string to get the posted data from the
-        //  FormCollection.  That just seems ugly and unreliable to me.
-
-        //PhotoViewImage is just a Entityframework class that has
-        // String Name, String AlternateText, Byte[] ActualImage,
-        //  and String ContentType
-        //  PhotoViewImage newImage = new PhotoViewImage();
-            HttpPostedFileBase file = Request.Files["OriginalLocation"];
-            // newImage.nom = photo.nom;
-            // newImage.alt = photo.alt;
-
-            //Here's where the ContentType column comes in handy.  By saving
-            //  this to the database, it makes it infinitely easier to get it back
-            //  later when trying to show the image.
-            photoViewImage.typ_cont = file.ContentType;
-
-            Int32 length = file.ContentLength;
-            //This may seem odd, but the fun part is that if
-            //  I didn't have a temp image to read into, I would
-            //  get memory issues for some reason.  Something to do
-            //  with reading straight into the object's ActualImage property.
-            byte[] tempImage = new byte[length];
-            file.InputStream.Read(tempImage, 0, length);
-            photoViewImage.image = tempImage;
-
-            if (ModelState.IsValid)
-            {
-                db.PhotoViewImage.Add(photoViewImage);
-                 db.SaveChanges();
-               // return RedirectToAction("Index");
-            }
-
-          //  return View(photoViewImage);
-
-           // db.SaveChanges();
-
-           // newImage.Save();
-        
-            //This part is completely optional.  You could redirect on success
-            // or handle errors ect.  Just wanted to keep this simple for the example.
-            return View();
-        }
-
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ShowPhoto(Int32 id)
         {
@@ -284,21 +261,13 @@ namespace FreneValue.Controllers
             // including the image byte array from the image column in
             // a database.
             //PhotoViewImage image = PhotoViewImage.GetById(id);
-            PhotoViewImage image =  db.PhotoViewImage.Find(id);
+            Image image = db.images.Find(id);
             //As you can see the use is stupid simple.  Just get the image bytes and the
             //  saved content type.  See this is where the contentType comes in real handy.
             ImageResult result = new ImageResult(image.image, image.typ_cont);
 
             return result;
         }
-
-
-        /// important
-        /// // Utiliser cette balise pour appeler l'action et afficher la photo:
-        /// //  /* <img src="/Photo/ShowPhoto/1" alt="" />*/  ou encore
-        /// // <img width="150" height="150"  src="@Url.Action("GetImage", "Admin", new {Model.Id})" />
-        ///// ou encore
-        /// // @Html.ActionImageLink("Controller", "action/url", null, null, Url.Content("image/location"), null)
-
+        
     }
 }

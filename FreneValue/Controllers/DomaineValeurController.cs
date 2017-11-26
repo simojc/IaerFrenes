@@ -42,39 +42,7 @@ namespace FreneValue.Controllers
             return View(model);
             }
 
-        //public ActionResult RechercherRapid(string term)
-        //{
-        //    var valeurs = _db.domaines
-        //              .OrderByDescending(r => r.code)
-        //              .Where(r => r.code.Contains(term))
-        //              .Take(10)
-        //              .Select(r => new { label = r.code })
-        //              .Distinct();
-
-        //    return Json(valeurs, JsonRequestBehavior.AllowGet);
-        //}
-
-        //public PartialViewResult Rechercher(string q)
-        //{
-        //    if (q != null)
-        //    {
-        //        var dom = _db.domaines
-        //                  .OrderByDescending(r => r.code)
-        //                  .Where(r => r.code.Contains(q))
-        //                  .Take(10);
-
-        //        return PartialView("_Valeurs", dom);
-        //    }
-        //    else
-        //    {
-        //        var dom = _db.domaines
-        //             .OrderByDescending(r => r.code)
-        //             .Take(10);
-
-        //        return PartialView("_Valeurs", dom);
-        //    }
-        //}
-
+       
 
         // private  model = new arbredb();
 

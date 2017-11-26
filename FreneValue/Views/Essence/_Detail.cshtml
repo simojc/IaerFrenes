@@ -1,0 +1,101 @@
+﻿@model FreneValue.Models.essence
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <center>   <h4 class="modal-title" id="myModalLabel">Information sur l'essence</h4> </center>
+</div>
+
+<div class="modal-body">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nom_lat)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nom_lat)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nom_fr)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nom_fr)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nom_en)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nom_en)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.famille)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.famille)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.origin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.origin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.descrip)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.descrip)
+                        </dd>
+                    </dl>
+                </div>
+
+                @*<div class="modal-footer">
+                    <button class="btn" data-dismiss="modal">Fermer</button>                    
+                </div>*@
+            </td>
+
+            <td>
+
+                @if (Model.id_dessn_feuil != null)
+                {
+                    <div class="col-md-2">
+                        <img width="200" height="200" src="../ShowPhoto/@Model.id_dessn_feuil" alt="" />
+                    </div>
+                }
+
+            </td>
+
+            <td>
+
+                @if (Model.id_dessn_abr != null)
+                {
+                    <div class="col-md-2">
+                        <img width="150" height="150" src="../ShowPhoto/@Model.id_dessn_abr" alt="" />
+                    </div>
+                }
+
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}
+
+

@@ -19,7 +19,7 @@ namespace FreneValue.ViewModels
             public Int32? id_local { get; set; }
 
             [Display(Name = "Essence")]
-            public String ess { get; set; }
+            public String ess_id { get; set; }
 
             public Int32 Page { get; set; }
             public Int32 PageSize { get; set; }

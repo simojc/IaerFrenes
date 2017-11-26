@@ -5,14 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2> Gestion des essences</h2>
+<center> <h2> Gestion des essences</h2> </center>
 <div class="col-lg-1 pull-right">
     <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Essence")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
 </div>
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-<table class="table">
+
+<table class="table table-bordered table-striped" id="RstRecherche">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.nom_lat)
@@ -20,135 +18,94 @@
         <th>
             @Html.DisplayNameFor(model => model.nom_fr)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.nom_en)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.famille)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.origin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descrip)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.typ_abr)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.croisnce)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.haut_max)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.diam_cime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.typ_lumiere)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.typ_sol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.coulr_autom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valo_mat_lignse)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.dens_bois)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.maladie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.insecte_ravgeur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.champgn_ravgeur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ph_sol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enracinemt)
-        </th>*@
+                @Html.DisplayNameFor(model => model.maladie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.insecte_ravgeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.champgn_ravgeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ph_sol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enracinemt)
+            </th>*@
         @*<th>
-            @Html.DisplayNameFor(model => model.util)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dt_cretn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dt_modf)
-        </th>*@
+                @Html.DisplayNameFor(model => model.util)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dt_cretn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dt_modf)
+            </th>*@
         <th> Action </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nom_lat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nom_fr)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.nom_en)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.famille)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.origin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descrip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_abr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.croisnce)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.haut_max)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diam_cime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_lumiere)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_sol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.coulr_autom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valo_mat_lignse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dens_bois)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_lat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_fr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_en)
+            </td>
 
-        <td>
-            @*<div class="row">*@
+            <td>
+                @Html.DisplayFor(modelItem => item.typ_abr)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.haut_max)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.diam_cime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dens_bois)
+            </td>
+
+            <td>
+                @*<div class="row">*@
                 <div class="form-horizontal">
                     @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "glyphicon glyphicon-edit", title = "Modifier" })
-                    &nbsp; 
+                    &nbsp;
                     @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash", title = "Supprimer" })
                 </div>
-        </td>
+            </td>
 
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>*@
-    </tr>
-}
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>*@
+        </tr>
+    }
 
 </table>

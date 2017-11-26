@@ -20,7 +20,7 @@ namespace FreneValue.Controllers
 
         void ChargerToutesLesDDL()
         {
-            ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
+           // ViewBag.ESSENCE = Utilitaires.LireCodeValeurCache("ESSENCE");
             ViewBag.CLASSE_HAUTEUR = Utilitaires.LireCodeValeurCache("CLASSE_HAUTEUR");
             ViewBag.RACCORDEMENT = Utilitaires.LireCodeValeurCache("RACCORDEMENT");
             ViewBag.INTERFERENCES = Utilitaires.LireCodeValeurCache("INTERFERENCES");
@@ -45,6 +45,13 @@ namespace FreneValue.Controllers
                      Text = s.emplcmt + " - "  + s.num_civc + " - " + s.voie + " - "+ s.code_post + " - " + s.ville
                  }).ToList();
             ViewBag.localisation = new SelectList(w_localisation, "Value", "Text");
+            var w_ess = db.essence
+                  .Select(s => new SelectListItem
+                  {
+                      Value = s.id.ToString(),
+                      Text = s.nom_fr
+                  }).ToList();
+            ViewBag.ESSENCE = new SelectList(w_ess, "Value", "Text");
         }
 
 
@@ -353,7 +360,9 @@ namespace FreneValue.Controllers
             arbre abr = db.arbres.Find(eval_abr.id_arbre);
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
-                            
+            var w_ess = db.essence.Find(abr.ess_id);
+            ViewBag.essence = w_ess.nom_fr;
+
             if (eval_abr == null)
             {
                 return HttpNotFound();
@@ -391,7 +400,10 @@ namespace FreneValue.Controllers
 
             var profilUtil = db.prof_utils.Find(abr.id_profil);
             ViewBag.profilUtil = profilUtil.nom + " " + profilUtil.pren;
-       
+
+            var w_ess = db.essence.Find(abr.ess_id);
+            ViewBag.essence = w_ess.nom_fr; 
+
             ViewBag.arbre = abr;
             ViewBag.id_arbre = eval_abr.id_arbre;
             ViewBag.id_eval = eval_abr.id;

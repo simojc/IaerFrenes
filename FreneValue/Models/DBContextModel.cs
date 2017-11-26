@@ -37,7 +37,7 @@ namespace FreneValue.Models
         public DbSet<org> organisations { get; set; }
         public DbSet<eval_abr> evaluations { get; set; }
 
-        public DbSet<PhotoViewImage> PhotoViewImage { get; set; }
+        public DbSet<Image> images { get; set; } 
 
         public DbSet<ErrorLog> Errors { get; set; }
 
@@ -59,7 +59,7 @@ namespace FreneValue.Models
             modelBuilder.Entity<loclsn>().ToTable("loclsn");
             modelBuilder.Entity<prof_util>().ToTable("prof_util");
             modelBuilder.Entity<ErrorLog>().ToTable("errorlog");
-            modelBuilder.Entity<PhotoViewImage>().ToTable("photo_abr");
+            modelBuilder.Entity<Image>().ToTable("image");
             modelBuilder.Entity<essence>().ToTable("ess");
 
         }
