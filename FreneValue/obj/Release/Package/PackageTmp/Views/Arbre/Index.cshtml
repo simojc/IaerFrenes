@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-lg-2">
-                @Html.DropDownListFor(m => m.ess, new SelectList(ViewBag.ESSENCE),
+                @Html.DropDownListFor(m => m.ess_id, new SelectList(ViewBag.ESSENCE, "id", "nom_fr"),
                    "Toutes les essences", new { @class = "form-control", @placeholder = "Essence" })
             </div>            
 
@@ -70,7 +70,7 @@
 
               grid.Column("typ_emplcmt", "Type Emplcmt", style: "col-lg-2"),
               grid.Column("orientatn", "Orientation", style: "col-lg-2"),
-              grid.Column("ess", "Essence", style: "col-lg-2"),
+              grid.Column("essence.nom_fr", "Essence", style: "col-lg-2"),
               grid.Column("dt_plant", "Planté_en", style: "col-lg-2", format: (item) => item.dt_plant != null ? item.dt_plant.ToString("yyyy") : "", canSort: true),
 
               grid.Column(header: "Action ", canSort: false, style: "col-lg-3",
@@ -80,8 +80,8 @@
                     <a data-modal='' href="@Url.Action("Edit", "Arbre", new { id = item.id })" title='Modifier inventaire'> <span class="glyphicon glyphicon-edit"></span> </a>
                     &nbsp; 
                     <a data-modal='' href="@Url.Action("Create", "EvalAbr", new { id_arbre = item.id })" title='Créer évaluation'> <span class="glyphicon glyphicon-plus"></span> </a>
-                     @*&nbsp;*@
-                    @if (item.Nbevals > 0)
+                    
+                    @if (item.Evals.Count > 0)
                     {
                         <a data-modal='' href="@Url.Action("EvalLast", "EvalAbr", new { id = item.id })" title='Dernière évaluation'> <span class="glyphicon glyphicon-tree-conifer"></span> </a>                      
                     }

@@ -10,6 +10,15 @@
 @using PagedList;
 @using PagedList.Mvc;
 
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 
     <center>  <h3>  Gestion des domaines de valeurs  </h3> </center>
@@ -30,11 +39,13 @@
                     </button>
                 </div>
 
+                @*<div class="col-lg-4">*@
                 <div class="col-lg-2 pull-right">
-                    <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "DomaineValeur")" title='Créer'> <span class='glyphicon glyphicon-plus'> </span> </a>
+                    @Html.NoEncodeActionLink("Nouveau Code Domaine", "Add", "Create", "DomaineValeur", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })
                 </div>
             </div>
         </div>
+
         <table class="table table-bordered table-striped" id="RstRecherche">
             <tr>
                 <th>
@@ -92,7 +103,7 @@
             </div>
         </div>
     }
-    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

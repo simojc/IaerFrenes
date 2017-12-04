@@ -45,7 +45,7 @@
                                         @Html.LabelFor(model => model.typ_emplcmt, htmlAttributes: new { @class = "control-label col-md-3" })
                                         <div class="col-md-5">
                                             @Html.DropDownListFor(model => model.typ_emplcmt, new SelectList(ViewBag.TYPE_EMPLACEMENT), new { @class = "form-control  " })
-                                            @Html.ValidationMessageFor(model => model.typ_emplcmt, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.typ_emplcmt, "", new { @class = "text-danger" })                                            
                                         </div>
                                     </div>
                                 </p>
@@ -86,17 +86,10 @@
                                     <div class="col-md-5">
                                         @Html.DropDownListFor(model => model.ess_id, ViewBag.ESSENCE.Items as List<SelectListItem>, new { @class = "form-control  " })
                                         @Html.ValidationMessageFor(model => model.ess_id, "", new { @class = "text-danger" })
-                                    </div>
-                                    @*<a data-modal='' href="@Url.Action("Edit", "Arbre", new {  })" title='Modifier inventaire'> <span class="glyphicon glyphicon-info-sign"></span> </a>*@
-                                    
-                                    @*@Html.NoEncodeActionLink("", "Voir", "Detail", "Ess", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "glyphicon glyphicon-question-sign" })*@
-
-                                    @Html.NoEncodeActionLink("", "Voir", "Details", "Essence", routeValues: new {id = Model.ess_id }, htmlAttributes: new { data_modal = "", @class = "glyphicon glyphicon-leaf" })
-                                   
-                                    @*@Html.NoEncodeActionLink("Info Essence", "Voir", "Details", "Essence", routeValues: new { id = Model.ess }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary " })*@
+                                    </div>                                 
+                                    @Html.NoEncodeActionLink("", "Voir", "Details", "Essence", routeValues: new {id = Model.ess_id }, htmlAttributes: new { data_modal = "", @class = "glyphicon glyphicon-leaf" })                                   
                                 </div>
                              
-
                                 <p>
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.orientatn, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -126,7 +119,7 @@
                                         </div>
                                     </div>
                                 </p>
-                                @if (Model.image_id == null)
+                                @if (ViewBag.nb_imgArb == 0)
                                 {
                                     <div class="form-group">
                                         <div class = "control-label col-md-5">
@@ -187,10 +180,11 @@
             </div>
         }
     </div>
-    @if (Model.image_id != null)
+    @if (ViewBag.nb_imgArb > 0)
+            
     {
         <div class="col-md-2">
-            <img src="../ShowPhoto/@Model.image_id" alt="" />
+            <img src="../ShowPhoto/@ViewBag.img_id" alt="" />
             @*<img src="@Url.Action("ShowPhoto", "Arbre", new { Model.image_id })" />*@
 
             @*<img width="150" height="150" src="../ShowPhoto/@Model.image_id" alt="" />*@

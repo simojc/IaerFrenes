@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 using System.Data.Entity;
-using System.Linq;
 
 namespace FreneValue.Models
 {
@@ -37,7 +33,11 @@ namespace FreneValue.Models
         public DbSet<org> organisations { get; set; }
         public DbSet<eval_abr> evaluations { get; set; }
 
-        public DbSet<Image> images { get; set; } 
+        public DbSet<Image> images { get; set; }
+
+        public DbSet<arbre_image> arbre_image { get; set; }
+
+        public DbSet<ess_image> ess_image { get; set; }
 
         public DbSet<ErrorLog> Errors { get; set; }
 

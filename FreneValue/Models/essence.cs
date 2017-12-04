@@ -19,31 +19,14 @@ namespace FreneValue.Models
         public string origin { get; set; }
         [Display(Name = "Description")]
         public string descrip { get; set; }
-        [Display(Name = "Type arbre")]
-        public string typ_abr { get; set; }
-        [Display(Name = "Croissance")]
-        public string croisnce { get; set; }
+        
         [Display(Name = "Hauteur Max")]
         public int? haut_max { get; set; }
         [Display(Name = "Diamètre Cime")]
         public int diam_cime { get; set; } 
-        [Display(Name = "Type de lumière  ")]
-        public string typ_lumiere { get; set; }
-        [Display(Name = "Type de sol")]
-        public string typ_sol { get; set; }
         [Display(Name = "Couleur automnale")]
         public string coulr_autom { get; set; }
-        [Display(Name = "Image Feuille")]
-        public int? id_dessn_feuil { get; set; }
-        [Display(Name = "Image feuille")]
-        public int? id_img_feuil { get; set; }
-        [Display(Name = "Image arbre")]
-        public int? id_dessn_abr { get; set; }
-        [Display(Name = "Image arbre")]
-        public int? id_img_abr { get; set; }
-
-        [Display(Name = "Valorisation matière ligneuse")]
-        public string valo_mat_lignse { get; set; }
+        
         [Display(Name = "Densité bois")]
         public decimal? dens_bois { get; set; }
         [Display(Name = "Maladie")]
@@ -54,8 +37,7 @@ namespace FreneValue.Models
         public string champgn_ravgeur { get; set; }
         [Display(Name = "PH sol")]
         public decimal? ph_sol { get; set; }
-        [Display(Name = "Enracinement")]
-        public string enracinemt { get; set; }
+        
         public string util { get; set; }
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }

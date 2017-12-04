@@ -3,8 +3,6 @@
 using System.Web.Mvc;
 using System.IO;
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,6 +16,27 @@ namespace FreneValue.Models
         public String alt { get; set; }
         public Byte[] image { get; set; }
         public String typ_cont { get; set; }
+        public string util { get; set; }
+    }
+
+    public class arbre_image
+    {
+        [Key]
+        public int id { get; set; }
+        public int arbre_id { get; set; }
+        public int img_id { get; set; }
+        public string util { get; set; }
+    }
+
+    public class ess_image
+    {
+        [Key]
+        public int id { get; set; }
+        public int ess_id { get; set; }
+        public int? id_dessn_feuil { get; set; }        
+        public int? id_dessn_brh { get; set; }
+        public int? id_dessn_abr { get; set; }
+        public string util { get; set; }
     }
 
     public class ImageResult : ActionResult

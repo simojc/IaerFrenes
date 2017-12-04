@@ -9,7 +9,7 @@ namespace FreneValue.Models
     public class arbre
     {
         [Key]
-        public int? id { get; set; }
+        public int id { get; set; }
         [Display(Name = "N° arbre")]
         public string num_arbre { get; set; }
         [Display(Name = "Propriétaire ")]
@@ -50,8 +50,8 @@ namespace FreneValue.Models
         public DateTime dt_cretn { get; set; }
         public DateTime dt_modf { get; set; }
 
-        [Display(Name = "Image")]
-        public int? image_id { get; set; }      
+        //[Display(Name = "Image")]
+        //public int? image_id { get; set; }      
 
         [ForeignKey("id_profil")]
         public virtual prof_util proprio { get; set; }

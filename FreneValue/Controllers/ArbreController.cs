@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +12,6 @@ using LinqKit;
 //using System.Web.Caching;
 using FreneValue.Infrastructure;
 using System.Web;
-
 namespace FreneValue.Controllers
 {
     public class ArbreController : Controller
@@ -23,7 +20,6 @@ namespace FreneValue.Controllers
 
         void ChargerToutesLesDDL()
         {
-            
             ViewBag.ORIENTATION = Utilitaires.LireCodeValeurCache("ORIENTATION");
             ViewBag.TYPE_EMPLACEMENT = Utilitaires.LireCodeValeurCache("TYPE_EMPLACEMENT");
             //ViewBag.EMPLACEMENT = Utilitaires.LireCodeValeurCache("EMPLACEMENT");
@@ -130,7 +126,7 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
+        public async Task<ActionResult> Create([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess_id,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
         {
             if (ModelState.IsValid)
             {
@@ -147,6 +143,7 @@ namespace FreneValue.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ChargerToutesLesDDL();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -156,6 +153,15 @@ namespace FreneValue.Controllers
             {
                 return HttpNotFound();
             }
+
+            var nb_imgArb = (from x in db.arbre_image.AsQueryable().Where(x => x.arbre_id == arbre.id) select x.id).Count();
+            ViewBag.nb_imgArb = nb_imgArb;
+            if (nb_imgArb > 0)
+            {
+                arbre_image arbImg = db.arbre_image.Where(r => r.arbre_id == arbre.id).Single();
+                ViewBag.img_id = arbImg.img_id;
+            }
+           
             return View(arbre);
         }
 
@@ -164,35 +170,38 @@ namespace FreneValue.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
-        {            
+        public async Task<ActionResult> Edit([Bind(Include = "id,num_arbre,id_profil,id_local,typ_emplcmt,emplcmt,orientatn,ess_id,lattd,longtd,dt_plant,dhp_tot,nb_tronc,type_lieu,typ_abr,typ_prop,nom_topo,util,dt_cretn,dt_modf,image_id")] arbre arbre)
+        {
+            arbre_image arbImg = new arbre_image();
             Image newImage = new Image();
-            HttpPostedFileBase file = Request.Files["OriginalLocation"];                                
+            HttpPostedFileBase file = Request.Files["OriginalLocation"];
             newImage.nom = arbre.num_arbre;
             newImage.alt = "Photo de l'arbre numéro: " + arbre.num_arbre;
-
             if (file != null && file.ContentLength > 0)
             {
                 newImage.typ_cont = file.ContentType;
-                Int32 length = file.ContentLength;               
+                Int32 length = file.ContentLength;
                 byte[] tempImage = new byte[length];
                 file.InputStream.Read(tempImage, 0, length);
                 newImage.image = tempImage;
-                db.images.Add(newImage);
+                db.images.Add(newImage);               
                 await db.SaveChangesAsync();
-                //await db.SaveChanges();
 
-                if (ModelState.IsValid)
-                {
-                    arbre.image_id = newImage.id;
-                    arbre.util = User.Identity.GetUserName();
-                    db.Entry(arbre).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
-                }
+                arbImg.arbre_id = arbre.id;
+                arbImg.img_id = newImage.id;
+                arbImg.util = User.Identity.GetUserName();
+                db.arbre_image.Add(arbImg);
+                await db.SaveChangesAsync();
+            }
+            if (ModelState.IsValid)
+            {                 
+                arbre.util = User.Identity.GetUserName();
+                db.Entry(arbre).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
             // Fin gestion de fichire
-         
+            ChargerToutesLesDDL();
             return View(arbre);
         }
 
@@ -234,22 +243,18 @@ namespace FreneValue.Controllers
         public ActionResult Evaluation(int? id_arbre)
         {
             // return View(await db.evaluations.ToListAsync());
-
             ViewBag.id_arbre = id_arbre;
-
             if (id_arbre != null)
             {
                 var w_eval = db.evaluations
                            .OrderByDescending(r => r.dt_eval)
                            .Where(r => r.id_arbre == id_arbre);
-
                 return PartialView("_Evaluation", w_eval);
             }
             else
             {
                 var w_eval = db.evaluations
                      .OrderByDescending(r => r.dt_eval);
-
                 return PartialView("_Evaluation", w_eval);
             }
         }
@@ -263,11 +268,10 @@ namespace FreneValue.Controllers
             //PhotoViewImage image = PhotoViewImage.GetById(id);
             Image image = db.images.Find(id);
             //As you can see the use is stupid simple.  Just get the image bytes and the
-            //  saved content type.  See this is where the contentType comes in real handy.
+            //saved content type.  See this is where the contentType comes in real handy.
             ImageResult result = new ImageResult(image.image, image.typ_cont);
-
             return result;
         }
-        
+
     }
 }

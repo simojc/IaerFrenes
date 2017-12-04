@@ -88,31 +88,31 @@ namespace FreneValue.Controllers
 
         // GET: EvalAbr
         //[OutputCache(Duration = 60, VaryByParam = "id_arbre")]
-        public ActionResult Index1(int? id_arbre, int page = 1, int pageSize = 10)
-        {
-            // return View(await db.evaluations.ToListAsync());
-            ViewBag.evaluateur = db.prof_utils;
+        //public ActionResult Index1(int? id_arbre, int page = 1, int pageSize = 10)
+        //{
+        //    // return View(await db.evaluations.ToListAsync());
+        //    ViewBag.evaluateur = db.prof_utils;
 
-            List<eval_abr> w_eval = null;
+        //    List<eval_abr> w_eval = null;
 
-            if (id_arbre != null)
-            {
-                 w_eval = db.evaluations
-                           .OrderByDescending(r => r.dt_eval)
-                           .Where(r => r.id_arbre == id_arbre).ToList();
+        //    if (id_arbre != null)
+        //    {
+        //         w_eval = db.evaluations
+        //                   .OrderByDescending(r => r.dt_eval)
+        //                   .Where(r => r.id_arbre == id_arbre).ToList();
 
-               // return PartialView("_Index", w_eval);
-            }
-            else
-            {
-                 w_eval = db.evaluations
-                     .OrderByDescending(r => r.dt_eval).ToList();
+        //       // return PartialView("_Index", w_eval);
+        //    }
+        //    else
+        //    {
+        //         w_eval = db.evaluations
+        //             .OrderByDescending(r => r.dt_eval).ToList();
 
-               // return PartialView("_Index", w_eval);
-            };
-            PagedList<eval_abr> model = new PagedList<eval_abr>(w_eval, page, pageSize);
-            return View(model);   // PartialView("_Index", model);
-        }
+        //       // return PartialView("_Index", w_eval);
+        //    };
+        //    PagedList<eval_abr> model = new PagedList<eval_abr>(w_eval, page, pageSize);
+        //    return View(model);   // PartialView("_Index", model);
+        //}
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
